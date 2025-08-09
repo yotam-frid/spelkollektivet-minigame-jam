@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv3mnwh8y42ph"]
+
+[sub_resource type="GDScript" id="GDScript_s5ka1"]
+script/source = "extends Minigame
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_button_pressed() -> void:
+	win()
+"
+
+[node name="Minigame" type="Node2D"]
+script = SubResource("GDScript_s5ka1")
+instruction = "Pet Samus!"
+mouse = 2
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+offset_left = 72.0
+offset_top = 64.0
+offset_right = 180.0
+offset_bottom = 95.0
+text = "click to win :)"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,43 @@
+﻿{"frames": {
+
+"MOUSE0000":
+{
+	"frame": {"x":0,"y":0,"w":161,"h":145},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":161,"h":145},
+	"sourceSize": {"w":161,"h":145}
+},
+"MOUSE0001":
+{
+	"frame": {"x":161,"y":0,"w":161,"h":145},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":161,"h":145},
+	"sourceSize": {"w":161,"h":145}
+},
+"MOUSE0002":
+{
+	"frame": {"x":322,"y":0,"w":161,"h":145},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":161,"h":145},
+	"sourceSize": {"w":161,"h":145}
+},
+"MOUSE0003":
+{
+	"frame": {"x":0,"y":145,"w":161,"h":145},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":161,"h":145},
+	"sourceSize": {"w":161,"h":145}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.4.39603",
+	"image": "mouse_sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1"
+}
+}

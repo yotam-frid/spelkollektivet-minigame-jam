@@ -1,0 +1,27 @@
+﻿{"frames": {
+
+"directionals0000":
+{
+	"frame": {"x":0,"y":0,"w":101,"h":68},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":101,"h":68},
+	"sourceSize": {"w":101,"h":68}
+},
+"directionals0001":
+{
+	"frame": {"x":0,"y":68,"w":99,"h":60},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":8,"w":101,"h":68},
+	"sourceSize": {"w":101,"h":68}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.4.39603",
+	"image": "directionals.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1"
+}
+}

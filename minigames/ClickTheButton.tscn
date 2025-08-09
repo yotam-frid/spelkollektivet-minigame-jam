@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://t22snqmareyr"]
+
+[sub_resource type="GDScript" id="GDScript_dl3dl"]
+script/source = "extends Minigame
+
+# We create a script on the root node that extends Minigame,
+# then we call win()
+
+func _on_button_pressed() -> void:
+	# This is connected from the button node's 'pressed' signal
+	$Button.text = \"you win!\"
+	win()
+"
+
+[node name="ClickTheButton" type="Node"]
+script = SubResource("GDScript_dl3dl")
+instruction = "Click the button!!!"
+mouse = 2
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+offset_left = 422.0
+offset_top = 324.0
+offset_right = 493.0
+offset_bottom = 355.0
+text = "click me"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

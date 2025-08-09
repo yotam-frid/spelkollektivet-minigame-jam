@@ -1,0 +1,345 @@
+[gd_scene load_steps=25 format=3 uid="uid://bk8s5wu05xdmr"]
+
+[ext_resource type="Script" uid="uid://djtc0jl710y1" path="res://ui/ui.gd" id="1_nb4k0"]
+[ext_resource type="Texture2D" uid="uid://bvnxk3iit6t5u" path="res://assets/brown-and-red-horse-running-in-a-field-of-green-grass-desktop-wallpaper-hd-wallpaper-preview-1428625403.jpg" id="2_ks8t7"]
+[ext_resource type="Script" uid="uid://bvjck5jjycgm4" path="res://ui/grow_shrink_ui.gd" id="2_vkava"]
+[ext_resource type="Texture2D" uid="uid://bpb4xf4ikq7gx" path="res://assets/mouse_sheet.png" id="3_vkava"]
+[ext_resource type="Texture2D" uid="uid://d1gwx4vtregis" path="res://assets/directionals.png" id="4_bo1jx"]
+[ext_resource type="Texture2D" uid="uid://dlcqo3k6qk6ml" path="res://assets/spacebar.png" id="4_tf0e0"]
+[ext_resource type="Texture2D" uid="uid://om8ril5xmkp7" path="res://assets/keyboard.png" id="5_obcwv"]
+[ext_resource type="Script" uid="uid://bkpsdrc4rcq5o" path="res://ui/ingame_ui.gd" id="7_gycre"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf0e0"]
+atlas = ExtResource("3_vkava")
+region = Rect2(0, 0, 161, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gycre"]
+atlas = ExtResource("3_vkava")
+region = Rect2(0, 145, 161, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obcwv"]
+atlas = ExtResource("3_vkava")
+region = Rect2(161, 0, 161, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo1jx"]
+atlas = ExtResource("3_vkava")
+region = Rect2(322, 0, 161, 145)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vkava"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf0e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gycre")
+}],
+"loop": true,
+"name": &"both",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf0e0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf0e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obcwv")
+}],
+"loop": true,
+"name": &"left_click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf0e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo1jx")
+}],
+"loop": true,
+"name": &"right_click",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7jpl"]
+atlas = ExtResource("4_bo1jx")
+region = Rect2(0, 0, 101, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os0ka"]
+atlas = ExtResource("4_bo1jx")
+region = Rect2(0, 68, 101, 68)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_diyc5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7jpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os0ka")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa1oa"]
+atlas = ExtResource("4_tf0e0")
+region = Rect2(0, 0, 119, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay4pc"]
+atlas = ExtResource("4_tf0e0")
+region = Rect2(0, 57, 119, 57)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bi8hs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa1oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay4pc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi8hs"]
+atlas = ExtResource("5_obcwv")
+region = Rect2(0, 0, 205, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrmpd"]
+atlas = ExtResource("5_obcwv")
+region = Rect2(205, 0, 205, 117)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7jpl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi8hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrmpd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bo1jx"]
+font_size = 75
+outline_size = 24
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gycre"]
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("minigame_viewport_container", "minigame_viewport", "ingame_ui")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nb4k0")
+minigame_viewport_container = NodePath("MinigameContainer")
+minigame_viewport = NodePath("MinigameContainer/SubViewport")
+ingame_ui = NodePath("IngameUI")
+
+[node name="ViewportAnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="MinigameContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MinigameContainer"]
+handle_input_locally = false
+size = Vector2i(960, 720)
+render_target_update_mode = 4
+
+[node name="IntroControls" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="IntroMouse" type="Control" parent="IntroControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_vkava")
+metadata/_custom_type_script = "uid://bvjck5jjycgm4"
+
+[node name="IntroMouseSprite" type="AnimatedSprite2D" parent="IntroControls/IntroMouse"]
+unique_name_in_owner = true
+position = Vector2(104, 100)
+sprite_frames = SubResource("SpriteFrames_vkava")
+animation = &"left_click"
+autoplay = "default"
+frame = 1
+frame_progress = 0.19444327
+
+[node name="IntroDirectionals" type="Control" parent="IntroControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_vkava")
+metadata/_custom_type_script = "uid://bvjck5jjycgm4"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroDirectionals"]
+position = Vector2(47, -1)
+sprite_frames = SubResource("SpriteFrames_diyc5")
+autoplay = "default"
+
+[node name="IntroSpacebar" type="Control" parent="IntroControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_vkava")
+metadata/_custom_type_script = "uid://bvjck5jjycgm4"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroSpacebar"]
+position = Vector2(62, -2)
+sprite_frames = SubResource("SpriteFrames_bi8hs")
+autoplay = "default"
+
+[node name="IntroFullKeyboard" type="Control" parent="IntroControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_vkava")
+metadata/_custom_type_script = "uid://bvjck5jjycgm4"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroFullKeyboard"]
+position = Vector2(100, -8)
+sprite_frames = SubResource("SpriteFrames_x7jpl")
+autoplay = "default"
+
+[node name="IntroText" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_vkava")
+metadata/_custom_type_script = "uid://bvjck5jjycgm4"
+
+[node name="IntroTextLabel" type="Label" parent="IntroText"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = -51.5
+offset_right = 75.5
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PET!"
+label_settings = SubResource("LabelSettings_bo1jx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IngameUI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_gycre")
+
+[node name="TimerSeconds" type="Label" parent="IngameUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 614.0
+offset_right = 59.0
+offset_bottom = 659.0
+grow_vertical = 0
+text = "5"
+label_settings = SubResource("LabelSettings_gycre")
+
+[node name="Timer" type="Timer" parent="IngameUI"]
+
+[node name="WinLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -11.5
+offset_right = 42.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Good job :)"
+
+[node name="LoseLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -11.5
+offset_right = 42.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU SUCK!!!!"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ks8t7")
+
+[connection signal="visibility_changed" from="IngameUI" to="IngameUI" method="_on_visibility_changed"]
+[connection signal="timeout" from="IngameUI/Timer" to="IngameUI" method="_on_timer_timeout"]

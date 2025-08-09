@@ -1,0 +1,27 @@
+﻿{"frames": {
+
+"full_keyboard0000":
+{
+	"frame": {"x":0,"y":0,"w":205,"h":117},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":205,"h":117},
+	"sourceSize": {"w":205,"h":117}
+},
+"full_keyboard0001":
+{
+	"frame": {"x":205,"y":0,"w":205,"h":117},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":205,"h":117},
+	"sourceSize": {"w":205,"h":117}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.4.39603",
+	"image": "keyboard.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1"
+}
+}

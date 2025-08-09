@@ -1,0 +1,27 @@
+﻿{"frames": {
+
+"spacebar0000":
+{
+	"frame": {"x":0,"y":0,"w":119,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":119,"h":57},
+	"sourceSize": {"w":119,"h":57}
+},
+"spacebar0001":
+{
+	"frame": {"x":0,"y":57,"w":115,"h":49},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":8,"w":119,"h":57},
+	"sourceSize": {"w":119,"h":57}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "21.0.4.39603",
+	"image": "spacebar.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1"
+}
+}
