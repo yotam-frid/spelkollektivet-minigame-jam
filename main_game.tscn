@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8f0m3qivw0b3"]
 
 [ext_resource type="Script" uid="uid://dnebk85oo17s6" path="res://game_manager.gd" id="1_1oj5k"]
-[ext_resource type="PackedScene" uid="uid://d1q7ipevbxcan" path="res://minigames/code_keyboard_smash/code_keyboard_smash.tscn" id="2_ykeeq"]
+[ext_resource type="PackedScene" uid="uid://t22snqmareyr" path="res://minigames/_example_click_the_button/ClickTheButton.tscn" id="2_ykeeq"]
 [ext_resource type="PackedScene" uid="uid://bk8s5wu05xdmr" path="res://ui/ui.tscn" id="3_ykeeq"]
 
 [node name="Game" type="Control"]
