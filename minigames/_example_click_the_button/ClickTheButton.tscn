@@ -6,7 +6,7 @@
 script/source = "extends Button
 
 func _on_pressed() -> void:
-	CurrentGame.win()
+	CurrentGame.instance.win()
 	text = \"good job\"
 "
 

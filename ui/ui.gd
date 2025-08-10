@@ -6,7 +6,6 @@ var minigame_won = false
 @export var minigame_viewport_container: SubViewportContainer
 @export var minigame_viewport: SubViewport
 @export var ingame_ui: IngameUI
-
 var current_minigame: Minigame = null
 
 func _ready() -> void:
@@ -127,6 +126,7 @@ func _hide_text(animate: bool):
 		
 
 func _show_text(text: String):
+	text = text if text.ends_with("!") else text + "!"
 	%IntroTextLabel.text = text
 	%IntroText.animate_show()
 

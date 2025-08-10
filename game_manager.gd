@@ -35,8 +35,6 @@ func next_minigame():
 	
 func on_minigame_finished():
 	print("Game finished, won: " + str(current_minigame_won))
-	ui.set_won(current_minigame_won)
-	
 	await ui.hide_minigame_viewport()
 	
 	print("Unloading game")
@@ -64,17 +62,19 @@ func prepare_next_minigame():
 	current_minigame.game_finish.connect(on_minigame_finished)
 	
 	# Expose game on the global scope
-	CurrentGame.set_target(current_minigame)
+	CurrentGame.set_instance(current_minigame)
 	
 func unload_current_minigame():
+	current_minigame.unload_resources()
 	current_minigame.queue_free()
 	is_current_minigame_in_tree = false
 	
 	# Hide from global scope
-	CurrentGame.clear_target()
+	CurrentGame.clear_instance()
 	
 func on_minigame_won():
 	if current_minigame_won:
 		return
 	print("Received win signal")
 	current_minigame_won = true
+	ui.set_won(true)
