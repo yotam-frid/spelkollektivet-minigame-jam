@@ -9,6 +9,7 @@ var difficulty: int:
 	set(_value):
 		printerr("Can't change difficulty from Global Scope.")
 
+## Notifies that a win condition was met.
 func win():
 	_assert_target_exists()
 	_target.win()
