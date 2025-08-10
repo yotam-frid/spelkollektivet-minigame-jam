@@ -14,6 +14,7 @@ func _on_button_pressed() -> void:
 
 [node name="ClickTheButton" type="Node"]
 script = SubResource("GDScript_dl3dl")
+duration = 3
 instruction = "Click the button!!!"
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"

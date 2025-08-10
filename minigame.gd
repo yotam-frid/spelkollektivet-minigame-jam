@@ -16,6 +16,9 @@ signal game_finish
 ## Possible keyboard inputs that are shown before the game starts.
 @export_flags("WASD/Arrows", "Spacebar", "Full Keyboard") var keyboard: int
 
+## Value from 1-3 set by the game manager. Can be used to increase difficulty.
+var difficulty: int = 1
+
 ## Call this to let the Game Manager know the minigame has been won!
 func win():
 	game_win.emit()

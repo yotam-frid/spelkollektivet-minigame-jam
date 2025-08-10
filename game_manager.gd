@@ -63,9 +63,15 @@ func prepare_next_minigame():
 	current_minigame.game_win.connect(on_minigame_won)
 	current_minigame.game_finish.connect(on_minigame_finished)
 	
+	# Expose game on the global scope
+	CurrentMinigame.set_target(current_minigame)
+	
 func unload_current_minigame():
 	current_minigame.queue_free()
 	is_current_minigame_in_tree = false
+	
+	# Hide from global scope
+	CurrentMinigame.clear_target()
 	
 func on_minigame_won():
 	if current_minigame_won:
