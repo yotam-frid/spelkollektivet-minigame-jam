@@ -1,9 +1,8 @@
 extends Node
 class_name Minigame
 
-signal game_win
-signal game_finish
-signal unloading
+signal game_won
+signal game_finished
 
 ## The duration of the minigame in seconds.
 @export var duration: int = 5
@@ -24,7 +23,7 @@ var is_finished = false
 
 ## Signals that the game has been won.
 func win():
-	game_win.emit()
+	game_won.emit()
 	
 ## Signals to end the game early.
 func finish():
@@ -32,13 +31,10 @@ func finish():
 		return
 		
 	is_finished = true
-	game_finish.emit()
+	game_finished.emit()
 
 func _enter_tree() -> void:
 	# Wait duration
 	if not Engine.is_editor_hint():
 		await get_tree().create_timer(duration).timeout
 		finish()
-		
-func unload_resources():
-	unloading.emit()

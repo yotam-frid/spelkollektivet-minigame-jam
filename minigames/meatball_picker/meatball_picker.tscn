@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dma744e4ntbm2"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_lxgd4"]
+
+[node name="MeatballPicker" type="Node"]
+script = ExtResource("1_lxgd4")
+metadata/_custom_type_script = "uid://bajhxofytc8oh"

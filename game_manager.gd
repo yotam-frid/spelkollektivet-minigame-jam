@@ -24,6 +24,7 @@ func next_minigame():
 	
 	print("Preparing next minigame")
 	prepare_next_minigame()
+	ui.set_won(false)
 	
 	print("Showing intro")
 	await ui.show_minigame_intro(current_minigame)
@@ -34,6 +35,9 @@ func next_minigame():
 	ui.show_minigame_viewport(current_minigame)
 	
 func on_minigame_finished():
+	# Wait 1 frame to let any logic run
+	await get_tree().process_frame
+	
 	print("Game finished, won: " + str(current_minigame_won))
 	await ui.hide_minigame_viewport()
 	
@@ -57,15 +61,15 @@ func prepare_next_minigame():
 	if minigame_queue.size() == 0:
 		create_new_minigame_queue()
 	
+	@warning_ignore("unsafe_method_access")
 	current_minigame = minigame_queue.pop_front().instantiate()
-	current_minigame.game_win.connect(on_minigame_won)
-	current_minigame.game_finish.connect(on_minigame_finished)
+	current_minigame.game_won.connect(on_minigame_won)
+	current_minigame.game_finished.connect(on_minigame_finished)
 	
 	# Expose game on the global scope
 	CurrentGame.set_instance(current_minigame)
 	
 func unload_current_minigame():
-	current_minigame.unload_resources()
 	current_minigame.queue_free()
 	is_current_minigame_in_tree = false
 	
