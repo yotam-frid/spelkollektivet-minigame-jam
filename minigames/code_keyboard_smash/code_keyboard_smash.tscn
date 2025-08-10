@@ -1380,7 +1380,7 @@ animations = [{
 
 [node name="CodeKeyboardSmash" type="Node"]
 script = ExtResource("1_67bia")
-instruction = "Finish Your Game"
+title = "Finish Your Game"
 keyboard = 4
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 

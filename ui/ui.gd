@@ -16,7 +16,7 @@ func _ready() -> void:
 func show_minigame_intro(minigame: Minigame):
 	_show_controls(minigame)
 	await _create_ui_timer(1.5)
-	_show_text(minigame.instruction)
+	_show_text(minigame.title)
 	await _create_ui_timer(1.0)
 	
 func hide_minigame_intro():
@@ -27,7 +27,13 @@ func hide_minigame_intro():
 func show_minigame_viewport(minigame: Minigame):
 	# Load minigame into viewport
 	minigame_viewport.add_child(minigame)
-	minigame_viewport.canvas_item_default_texture_filter = minigame.viewport_texture_filter
+	if minigame.viewport_texture_filter:
+		minigame_viewport_container.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		minigame_viewport.canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
+	else:
+		minigame_viewport_container.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		minigame_viewport.canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
+	minigame_viewport_container.stretch_shrink = minigame.viewport_zoom
 	
 	# Show the viewport and ingame UI
 	minigame_viewport_container.scale = Vector2.ZERO

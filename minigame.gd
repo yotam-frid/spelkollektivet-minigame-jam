@@ -4,13 +4,18 @@ class_name Minigame
 signal game_won
 signal game_finished
 
+## Instruction text shown before the game starts.
+@export var title = ""
 ## The duration of the minigame in seconds.
 @export var duration: int = 5
-@export var viewport_texture_filter: Viewport.DefaultCanvasItemTextureFilter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
 
-@export_category("Intro")
-## Instruction text shown before the game starts.
-@export var instruction = ""
+@export_category("Viewport")
+## Increases the stretch zoom of the viewport, useful for pixelart minigames.
+@export var viewport_zoom: int = 1
+## Disable to use nearest-neighbor filtering, which better for pixelart minigames.
+@export var viewport_texture_filter: bool = true
+
+@export_category("Controls")
 ## Possible mouse inputs that are shown before the game starts.
 @export_flags("Movement", "Left Click", "Right Click") var mouse: int
 ## Possible keyboard inputs that are shown before the game starts.
@@ -20,6 +25,7 @@ signal game_finished
 var difficulty: int = 1
 
 var is_finished = false
+var is_in_game_manager = true
 
 ## Signals that the game has been won.
 func win():

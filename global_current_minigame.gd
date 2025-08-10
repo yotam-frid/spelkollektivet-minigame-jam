@@ -5,6 +5,7 @@ var instance: Minigame = null
 func _init():
 	var default_instance: Minigame = Minigame.new()
 	default_instance.difficulty = 1
+	default_instance.is_in_game_manager = false
 	
 	instance = default_instance
 

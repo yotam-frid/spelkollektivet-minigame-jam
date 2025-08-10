@@ -1,7 +1,204 @@
-[gd_scene load_steps=2 format=3 uid="uid://dma744e4ntbm2"]
+[gd_scene load_steps=12 format=3 uid="uid://dma744e4ntbm2"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_lxgd4"]
+[ext_resource type="Texture2D" uid="uid://cna0mjwvybcpr" path="res://minigames/meatball_picker/bg.png" id="2_el4pa"]
+[ext_resource type="Texture2D" uid="uid://6qi7nw1l166j" path="res://minigames/meatball_picker/hand_right.png" id="3_8oscx"]
+[ext_resource type="Script" uid="uid://fhskaucmsc6d" path="res://minigames/meatball_picker/meatball_holder.gd" id="4_0fghw"]
+[ext_resource type="Texture2D" uid="uid://d4dvg1gmkr7av" path="res://minigames/meatball_picker/hand_left.png" id="4_bttca"]
+[ext_resource type="Texture2D" uid="uid://di4xg8eegbpbr" path="res://minigames/meatball_picker/meatball.png" id="4_ilb8o"]
+[ext_resource type="Script" uid="uid://bk34wmuh53q0p" path="res://minigames/meatball_picker/meatball_hand.tres.gd" id="6_tl2bm"]
+
+[sub_resource type="GDScript" id="GDScript_el4pa"]
+script/source = "extends Node
+
+
+func _ready():
+	CurrentGame.instance.game_finished.connect(_on_finish)
+	
+var balls_amount = 0
+var required = 7
+
+func _on_plate_meatballs_changed(amount: int) -> void:
+	balls_amount = amount
+	if balls_amount > 7:
+		print(\"WTF BRO!\")
+
+func _on_finish():
+	if balls_amount == required:
+		CurrentGame.instance.win()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0fghw"]
+size = Vector2(58, 38.999996)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ilb8o"]
+radius = 43.931767
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ilb8o"]
+size = Vector2(19, 23)
 
 [node name="MeatballPicker" type="Node"]
 script = ExtResource("1_lxgd4")
+title = "Take 7"
+duration = 8
+viewport_texture_filter = false
+mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+enabled = false
+zoom = Vector2(4, 4)
+
+[node name="Control" type="Node2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+script = SubResource("GDScript_el4pa")
+
+[node name="Bg" type="Sprite2D" parent="Control"]
+texture = ExtResource("2_el4pa")
+centered = false
+
+[node name="Tray" type="Area2D" parent="Control" node_paths=PackedStringArray("hand")]
+position = Vector2(145, 80)
+collision_layer = 0
+script = ExtResource("4_0fghw")
+take_meatballs = true
+hand = NodePath("../Hand")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Tray"]
+position = Vector2(-8, -6.5)
+shape = SubResource("RectangleShape2D_0fghw")
+debug_color = Color(3.9948522e-06, 0.6430162, 0.3131239, 0.41960785)
+
+[node name="Meatballs" type="Node2D" parent="Control/Tray"]
+position = Vector2(-3, -6)
+
+[node name="Meatball" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-22, -10)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball2" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-11, -12)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball3" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-6, -9)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball4" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(2, -2)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball5" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(18, 12)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball6" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(10, -9)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball13" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-14, -1)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball14" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-2, 4)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball15" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-25, 8)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball7" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(15, 2)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball8" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-27, 11)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball9" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-11, 12)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball10" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-28, -2)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball11" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(7, 11)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball12" type="Sprite2D" parent="Control/Tray/Meatballs"]
+position = Vector2(-1, 12)
+texture = ExtResource("4_ilb8o")
+
+[node name="Plate" type="Area2D" parent="Control" node_paths=PackedStringArray("hand")]
+position = Vector2(60, 132)
+collision_layer = 0
+script = ExtResource("4_0fghw")
+hand = NodePath("../Hand")
+
+[node name="HandLeft" type="Sprite2D" parent="Control/Plate"]
+position = Vector2(-2, 0)
+texture = ExtResource("4_bttca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Plate"]
+position = Vector2(1, -2)
+shape = SubResource("CircleShape2D_ilb8o")
+debug_color = Color(0.89491034, 0.00021601081, 0.7813745, 0.41960785)
+
+[node name="Meatballs" type="Node2D" parent="Control/Plate"]
+
+[node name="Meatball" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(-6, -4)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball2" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(5, -4)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball3" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(-2, 2)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball4" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(-1, -13)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball5" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(8, 5)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball6" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(-13, -9)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball7" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(-12, 3)
+texture = ExtResource("4_ilb8o")
+
+[node name="Meatball8" type="Sprite2D" parent="Control/Plate/Meatballs"]
+position = Vector2(-2, 9)
+texture = ExtResource("4_ilb8o")
+
+[node name="Hand" type="Area2D" parent="Control"]
+position = Vector2(180, 114)
+collision_mask = 0
+monitoring = false
+script = ExtResource("6_tl2bm")
+
+[node name="Meatball" type="Sprite2D" parent="Control/Hand"]
+position = Vector2(-1, -2)
+texture = ExtResource("4_ilb8o")
+
+[node name="HandRightSprite" type="Sprite2D" parent="Control/Hand"]
+position = Vector2(28, 38)
+texture = ExtResource("3_8oscx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Hand"]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_ilb8o")
+
+[connection signal="meatballs_changed" from="Control/Plate" to="Control" method="_on_plate_meatballs_changed"]

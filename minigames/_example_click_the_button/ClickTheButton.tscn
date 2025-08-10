@@ -12,7 +12,8 @@ func _on_pressed() -> void:
 
 [node name="ClickTheButton" type="Node"]
 script = ExtResource("1_1bkhp")
-instruction = "Click It!"
+title = "Click It"
+viewport_zoom = 4
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 
