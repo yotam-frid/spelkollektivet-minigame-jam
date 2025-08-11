@@ -49,6 +49,10 @@ func on_minigame_finished():
 	await ui.inbetween()
 	next_minigame()
 	
+func on_minigame_timer_cleared():
+	print("Timer cleared")
+	ui.hide_ingame_ui()
+	
 
 #############
 ## Methods ##
@@ -65,6 +69,7 @@ func prepare_next_minigame():
 	current_minigame = minigame_queue.pop_front().instantiate()
 	current_minigame.game_won.connect(on_minigame_won)
 	current_minigame.game_finished.connect(on_minigame_finished)
+	current_minigame.timer_cleared.connect(on_minigame_timer_cleared)
 	
 	# Expose game on the global scope
 	CurrentGame.set_instance(current_minigame)

@@ -38,14 +38,14 @@ func show_minigame_viewport(minigame: Minigame):
 	# Show the viewport and ingame UI
 	minigame_viewport_container.scale = Vector2.ZERO
 	minigame_viewport_container.visible = true
-	ingame_ui.show_for_minigame(minigame)
+	show_ingame_ui(minigame)
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(minigame_viewport_container, "scale", Vector2.ONE, 0.5)
 	
 func hide_minigame_viewport():
-	_hide_ingame_ui()
+	hide_ingame_ui()
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
@@ -136,11 +136,11 @@ func _show_text(text: String):
 	%IntroTextLabel.text = text
 	%IntroText.animate_show()
 
-func _show_ingame_ui():
-	ingame_ui.visible = true
+func show_ingame_ui(minigame: Minigame):
+	ingame_ui.show_for_minigame(minigame)
 	
-func _hide_ingame_ui():
-	ingame_ui.visible = false
+func hide_ingame_ui():
+	ingame_ui.hide()
 
 func _center_pivot(control: Control):
 	control.pivot_offset = control.size / 2

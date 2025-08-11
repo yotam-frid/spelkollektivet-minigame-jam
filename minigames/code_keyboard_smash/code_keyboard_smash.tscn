@@ -26,8 +26,8 @@ script/source = "extends Node
 @onready var animation_player: AnimationPlayer = $\"../AnimationPlayer\"
 
 var presses: int = 0
-var presses_required: int = 50
-var requirement_increase_per_level: int = 25
+var presses_required: int = 75
+var requirement_increase_per_level: int = 35
 
 var camera_shake_amount: float = 0.0
 
@@ -79,13 +79,13 @@ func _input(event: InputEvent) -> void:
 			code_label.text += token
 		
 func win():
-	CurrentGame.instance.win()
 	typing_sound.stop()
 	$Applause.play()
 	$Fanfare.play()
 	is_finished = true
 	animation_player.play(\"ending\")
 	stop_typing()
+	CurrentGame.instance.win_and_finish(2.0)
 	
 
 func start_typing():

@@ -3,6 +3,7 @@ class_name Minigame
 
 signal game_won
 signal game_finished
+signal timer_cleared
 
 ## Instruction text shown before the game starts.
 @export var title = ""
@@ -27,20 +28,46 @@ var difficulty: int = 1
 var is_finished = false
 var is_in_game_manager = true
 
+var _timer_cleared = false
+
 ## Signals that the game has been won.
 func win():
 	game_won.emit()
 	
-## Signals to end the game early.
+## Signals to end the game and return to the main screen.
+##
+## This will be called automatically unless [code]clear_timer()[/code] has been called.
 func finish():
 	if is_finished:
 		return
 		
 	is_finished = true
 	game_finished.emit()
+	
+## Signals that the game has been won, cancels the running game timer,
+## and returns to the main screen after a delay (2 seconds by default, if not provided.)
+func win_and_finish(wait_seconds: float = 2.0):
+	if is_finished:
+		return
+		
+	win()
+	clear_timer()
+	await get_tree().create_timer(wait_seconds).timeout
+	finish()
+	
+## Clears the default minigame countdown timer, and hides the timer UI.
+## If you use this, you MUST call [code]finish()[/code] manually, otherwise
+## the game will be stuck!
+func clear_timer():
+	if is_finished or _timer_cleared:
+		return
+		
+	_timer_cleared = true
+	timer_cleared.emit()
 
 func _enter_tree() -> void:
 	# Wait duration
 	if not Engine.is_editor_hint():
 		await get_tree().create_timer(duration).timeout
-		finish()
+		if not _timer_cleared:
+			finish()
