@@ -1,0 +1,8 @@
+[19:20:53 2025-08-11] FETCHING Version 2.40.11
+[19:20:53 2025-08-11] DOWNLOADING https://github.com/spicetify/cli/releases/download/v2.40.11/spicetify-2.40.11-darwin-arm64.tar.gz
+[19:20:55 2025-08-11] EXTRACTING /Users/yotamfrid/.spicetify/spicetify.tar.gz
+[19:20:55 2025-08-11] SETTING EXECUTABLE PERMISSIONS TO /Users/yotamfrid/.spicetify/spicetify
+[19:20:55 2025-08-11] REMOVING /Users/yotamfrid/.spicetify/spicetify.tar.gz
+[19:20:55 2025-08-11] spicetify path already set in /Users/yotamfrid/.zshrc, continuing...
+[19:20:55 2025-08-11] spicetify v2.40.11 was installed successfully to /Users/yotamfrid/.spicetify
+[19:20:55 2025-08-11] Run 'spicetify --help' to get started

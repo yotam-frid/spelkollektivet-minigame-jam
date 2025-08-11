@@ -64,10 +64,8 @@ func clear_timer():
 		
 	_timer_cleared = true
 	timer_cleared.emit()
-
-func _enter_tree() -> void:
-	# Wait duration
-	if not Engine.is_editor_hint() and is_inside_tree():
-		await get_tree().create_timer(duration).timeout
-		if not _timer_cleared:
-			finish()
+	
+func start_timer():
+	await get_tree().create_timer(duration).timeout
+	if not _timer_cleared:
+		finish()
