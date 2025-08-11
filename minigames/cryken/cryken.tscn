@@ -1,0 +1,257 @@
+[gd_scene load_steps=17 format=3 uid="uid://dbtk0fry8mt2i"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_jj3yu"]
+[ext_resource type="PackedScene" uid="uid://dkmkn1qfl3e2p" path="res://minigames/cryken/test.blend" id="2_gq332"]
+[ext_resource type="AudioStream" uid="uid://ymm1phgn227k" path="res://minigames/cryken/victory.wav" id="2_ov85x"]
+[ext_resource type="Texture2D" uid="uid://b85wgoxwmm2l3" path="res://minigames/cryken/eyes.png" id="3_rqjyf"]
+[ext_resource type="PackedScene" uid="uid://b8rfgbrhbt4ec" path="res://minigames/cryken/crystal_6.fbx" id="4_gc8ni"]
+[ext_resource type="AudioStream" uid="uid://c6h6q2txytljs" path="res://minigames/cryken/jump.wav" id="5_hatlx"]
+
+[sub_resource type="GDScript" id="GDScript_ov85x"]
+script/source = "extends Node
+
+@export var ortho_camera: Camera3D
+@export var persp_camera: Camera3D
+@export var persp_camera_pivot: Node3D
+
+@export var player: Node3D
+
+var got_crystal = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	ortho_camera.make_current()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if got_crystal:
+		persp_camera_pivot.rotation.y += deg_to_rad(90) * delta
+
+
+func _on_area_3d_body_entered(_body: Node3D) -> void:
+	if got_crystal:
+		return
+		
+	CurrentGame.instance.win_and_finish(2.0)
+		
+	$Victory.play()
+	got_crystal = true
+	player.got_crystal = true
+	ortho_camera.current = false
+	persp_camera.make_current()	
+	
+	await get_tree().create_timer(1.0).timeout
+	
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(persp_camera, \"fov\", 160, 1.2)
+"
+
+[sub_resource type="Environment" id="Environment_rqjyf"]
+background_mode = 1
+background_color = Color(0.4591506, 0.42550915, 2.8878452e-07, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+
+[sub_resource type="GDScript" id="GDScript_hatlx"]
+script/source = "
+extends WorldEnvironment
+
+@export var colors: Array[Color] = [Color.BLUE, Color.ORANGE, Color.PURPLE]
+@export var duration_per_color: float = 3.0
+
+var current_index: int = 0
+var tween: Tween
+
+func _ready():
+	if colors.size() == 0:
+		return
+	
+	start_color_cycle()
+
+func start_color_cycle():
+	if tween:
+		tween.kill()
+	
+	tween = create_tween().set_loops()
+	
+	for i in colors.size():
+		var next_index = (i + 1) % colors.size()
+		tween.tween_method(set_bg_color, colors[i], colors[next_index], duration_per_color)
+
+func set_bg_color(color: Color):
+	environment.background_color = color
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqjyf"]
+albedo_color = Color(0.23326853, 0.0001242736, 0.76378256, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gc8ni"]
+albedo_color = Color(0.44870633, 0.035351556, 0.4757995, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ov85x"]
+albedo_color = Color(0.17758769, 0.2535896, 0.24324879, 1)
+
+[sub_resource type="GDScript" id="GDScript_rqjyf"]
+script/source = "extends CharacterBody3D
+
+
+@export var speed = 5.0
+@export var jump_velocity = 4.5
+@export var gravity = 9.8
+
+var got_crystal = false
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += Vector3.DOWN * gravity * delta * (1 if not got_crystal else 2)
+
+	# Handle jump.
+	if (got_crystal or Input.is_action_pressed(\"spacebar\")) and is_on_floor():
+		if not got_crystal:
+			$Jump.play()
+		velocity.y = jump_velocity
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector(\"left\", \"right\", \"up\", \"down\") if not got_crystal else Vector2.ZERO
+	input_dir = input_dir.rotated(-deg_to_rad(45))
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+
+	if input_dir != Vector2.ZERO:
+		var look_velo = velocity
+		look_velo.y = 0.0
+		$Model.look_at($Model.global_position-look_velo)
+	move_and_slide()
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rqjyf"]
+radius = 1.0112305
+height = 2.022461
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gc8ni"]
+size = Vector3(5, 5, 4)
+
+[sub_resource type="GDScript" id="GDScript_gc8ni"]
+script/source = "extends Node3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	rotation.y += deg_to_rad(40) * delta
+"
+
+[node name="Cryken" type="Node"]
+script = ExtResource("1_jj3yu")
+title = "Get Crystal"
+duration = 6
+keyboard = 3
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Control" type="Node" parent="." node_paths=PackedStringArray("ortho_camera", "persp_camera", "persp_camera_pivot", "player")]
+script = SubResource("GDScript_ov85x")
+ortho_camera = NodePath("../OrthoCamera3D")
+persp_camera = NodePath("../PerspCameraPivot/Camera3D")
+persp_camera_pivot = NodePath("../PerspCameraPivot")
+player = NodePath("../Player")
+
+[node name="Victory" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("2_ov85x")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rqjyf")
+script = SubResource("GDScript_hatlx")
+colors = Array[Color]([Color(0.56511205, 0.683812, 1, 1), Color(0.44716036, 0.9406256, 0.6225694, 1), Color(0.95936316, 0.70554876, 0.50891274, 1), Color(0.908007, 0.59294635, 0.84292954, 1), Color(0.39554167, 0.77321, 0.89911044, 1), Color(0.7818174, 0.79453737, 0.3281131, 1), Color(0.9584314, 0.67001086, 0.74368566, 1)])
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.6704949, 0.7383408, -0.072727606, 0.06341317, 0.040635556, 0.9971597, 0.73919904, -0.6732025, -0.01957461, 0, 9, 0)
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.01
+directional_shadow_fade_start = 1.0
+directional_shadow_pancake_size = 61.8
+
+[node name="OrthoCamera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.7071068, -0.36056256, 0.60827184, 1.2904787e-08, 0.8602263, 0.5099125, -0.7071068, -0.3605626, 0.60827184, 13, 11.3758335, 10.490576)
+projection = 1
+size = 20.0
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01171875, 0, -3.0263672)
+use_collision = true
+size = Vector3(16, 1, 13)
+material = SubResource("StandardMaterial3D_rqjyf")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9882813, 1.5, 0.4736328)
+use_collision = true
+size = Vector3(8, 2, 6)
+material = SubResource("StandardMaterial3D_gc8ni")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4882813, 3, -6.026367)
+use_collision = true
+size = Vector3(5, 5, 7)
+material = SubResource("StandardMaterial3D_ov85x")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.3319707, -5)
+collision_layer = 2
+axis_lock_angular_x = true
+script = SubResource("GDScript_rqjyf")
+speed = 5.5
+jump_velocity = 25.0
+gravity = 70.0
+
+[node name="Model" type="Node3D" parent="Player"]
+
+[node name="test" parent="Player/Model" instance=ExtResource("2_gq332")]
+
+[node name="Sprite3D" type="Sprite3D" parent="Player/Model"]
+transform = Transform3D(0.4842223, 0, 0, 0, 0.4842223, 0, 0, 0, 1, 0.015593648, 0.25288534, 1.0061438)
+texture = ExtResource("3_rqjyf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_rqjyf")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_hatlx")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7113414, 9, -6.932995)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -0.5)
+shape = SubResource("BoxShape3D_gc8ni")
+
+[node name="PerspCameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4072533, 6, -6.780281)
+
+[node name="Camera3D" type="Camera3D" parent="PerspCameraPivot"]
+transform = Transform3D(-1, 5.3290705e-15, 8.742277e-08, 4.3711385e-08, 0.86602545, 0.5, -7.571034e-08, 0.5, -0.86602545, 0.088552, 4.6772137, -5.7257195)
+fov = 90.0
+
+[node name="crystal_6" parent="." instance=ExtResource("4_gc8ni")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 5.4958053, 8, -6.506001)
+script = SubResource("GDScript_gc8ni")
+
+[connection signal="body_entered" from="Area3D" to="Control" method="_on_area_3d_body_entered"]

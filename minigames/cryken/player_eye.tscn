@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://ca8oy8aju8mtp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1dyv4"]
+shading_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gun26"]
+material = SubResource("StandardMaterial3D_1dyv4")
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_l6smr"]
+height = 0.107421875
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gun26"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2gorg"]
+material = SubResource("StandardMaterial3D_gun26")
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1dyv4"]
+height = 0.024536133
+radius = 0.107421875
+
+[node name="PlayerEye" type="Node3D"]
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="."]
+node_a = NodePath("../Eyeball")
+node_b = NodePath("../Pupil")
+linear_limit_x/upper_distance = 0.4
+linear_limit_x/lower_distance = -0.4
+linear_limit_y/upper_distance = 0.4
+linear_limit_y/lower_distance = -0.4
+linear_limit_z/upper_distance = -0.05
+linear_limit_z/lower_distance = -0.08
+
+[node name="Eyeball" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Eyeball"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_gun26")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Eyeball"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.7074697e-10, -0.00390625)
+shape = SubResource("CylinderShape3D_l6smr")
+
+[node name="Pupil" type="RigidBody3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Pupil"]
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0, 0.06494525)
+mesh = SubResource("CylinderMesh_2gorg")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pupil"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -2.8893705e-09, 0.066101074)
+shape = SubResource("CylinderShape3D_1dyv4")

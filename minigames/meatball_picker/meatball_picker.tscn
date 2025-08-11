@@ -31,13 +31,11 @@ func _on_plate_meatballs_changed(amount: int) -> void:
 	balls_amount = amount
 	$AddSfx.pitch_scale = 1.0 + (amount - 1) / 15.0
 	$AddSfx.play()
-	if balls_amount > 7:
+	if balls_amount > required:
 		hand.disabled = true
 		lose_animation_player.play(\"lose\")
 		$LoseSfx.play()
 		$JordanSwearing.play()
-		await get_tree().create_timer(2.0).timeout
-		CurrentGame.instance.finish()
 
 func _on_finish():
 	if balls_amount == required:
@@ -52,6 +50,33 @@ radius = 43.931767
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ilb8o"]
 size = Vector2(19, 23)
+
+[sub_resource type="Animation" id="Animation_1npu6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoseAnimationPlayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1043, 278)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LoseAnimationPlayer/LoseFace:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-395, 334)]
+}
 
 [sub_resource type="Animation" id="Animation_e5hvv"]
 resource_name = "lose"
@@ -78,34 +103,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(-269, 334), Vector2(194, 334)]
-}
-
-[sub_resource type="Animation" id="Animation_1npu6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LoseAnimationPlayer/Label:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1043, 278)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LoseAnimationPlayer/LoseFace:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-269, 334)]
+"values": [Vector2(-406, 334), Vector2(194, 334)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1npu6"]
@@ -324,7 +322,7 @@ libraries = {
 }
 
 [node name="LoseFace" type="Node2D" parent="LoseAnimationPlayer"]
-position = Vector2(-269, 334)
+position = Vector2(-395, 334)
 script = SubResource("GDScript_vc8d6")
 
 [node name="Sprite2D" type="Sprite2D" parent="LoseAnimationPlayer/LoseFace"]
@@ -333,7 +331,7 @@ texture = ExtResource("12_xfwwi")
 
 [node name="AngryJordanEye2" type="Sprite2D" parent="LoseAnimationPlayer/LoseFace/Sprite2D"]
 position = Vector2(358, -48)
-rotation = 1.2081327
+rotation = 3.0421743
 scale = Vector2(2, 2)
 texture = ExtResource("13_ygutc")
 script = SubResource("GDScript_ygutc")
@@ -348,7 +346,7 @@ script = SubResource("GDScript_ygutc")
 anchors_preset = -1
 offset_left = 1043.0
 offset_top = 278.0
-offset_right = 1616.0
+offset_right = 1616.0002
 offset_bottom = 571.0
 text = "
 
