@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbdd47v83s3pd"]
+[gd_scene load_steps=15 format=3 uid="uid://dbdd47v83s3pd"]
 
 [ext_resource type="Script" uid="uid://bwxhu67cn62by" path="res://ui/ui_main_scene_foreground.gd" id="1_0d34j"]
 [ext_resource type="Texture2D" uid="uid://bxkamgxxn54fm" path="res://ui/mainscene/leftcurtainback.png" id="2_s2liu"]
@@ -7,11 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://b5yyfs4bc85jo" path="res://ui/mainscene/rightcurtain.png" id="4_0d34j"]
 [ext_resource type="Texture2D" uid="uid://qsxyot8statk" path="res://ui/mainscene/topcurtain.png" id="4_sqbdq"]
 [ext_resource type="Texture2D" uid="uid://bbndbvsd2erlo" path="res://ui/mainscene/tvtemp.png" id="7_sqbdq"]
+[ext_resource type="Texture2D" uid="uid://btciipifngyef" path="res://ui/mainscene/boxes.png" id="8_qqt4v"]
+[ext_resource type="Texture2D" uid="uid://ck5xk7q7mhv5t" path="res://ui/mainscene/fitzgerald.png" id="9_3y81l"]
+[ext_resource type="Texture2D" uid="uid://4a7mmmgdbl7m" path="res://ui/mainscene/meatballs.png" id="10_3y81l"]
+[ext_resource type="Script" uid="uid://cs1cka3qnkxl" path="res://utils/beat_sprite_2d.gd" id="10_pu8t4"]
 
 [sub_resource type="Animation" id="Animation_s2liu"]
 resource_name = "open"
 length = 2.0
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,7 +38,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
-"values": [Vector2(108, 344), Vector2(-219, 344)]
+"values": [Vector2(95, 344), Vector2(-219, 344)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -125,6 +129,54 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.2, 1.2), Vector2(5, 5)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FitzTower:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.1),
+"transitions": PackedFloat32Array(2, 0.70710653, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1.6, 0.5)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("FitzTower:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(783, 714), Vector2(783, 714), Vector2(783, 1157)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MeatballsPivot:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.15, 0.84999996, 1.2500001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(208, 718), Vector2(208, 718), Vector2(208, 1162)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("MeatballsPivot:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.15, 0.45, 0.84999996, 1.2500001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1.6, 0.7)]
+}
 
 [sub_resource type="Animation" id="Animation_0d34j"]
 length = 0.001
@@ -148,9 +200,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(-2),
 "update": 0,
-"values": [Vector2(108, 344)]
+"values": [Vector2(95, 344)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -224,6 +276,54 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("FitzTower:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("FitzTower:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(783, 714)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MeatballsPivot:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(208, 718)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MeatballsPivot:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sqbdq"]
 _data = {
@@ -250,24 +350,62 @@ texture = ExtResource("7_sqbdq")
 [node name="Leftcurtainback" type="Sprite2D" parent="."]
 position = Vector2(212.5, 305.5)
 texture = ExtResource("2_s2liu")
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(5, 0)
 
 [node name="Rightcurtainback" type="Sprite2D" parent="."]
 position = Vector2(724.5, 304.5)
 texture = ExtResource("3_0d34j")
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(-5, 0)
 
 [node name="Leftcurtain" type="Sprite2D" parent="."]
-position = Vector2(108, 344)
+position = Vector2(95, 344)
 texture = ExtResource("3_s2liu")
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(0, 5)
 
 [node name="Rightcurtain" type="Sprite2D" parent="."]
 position = Vector2(866, 350)
 texture = ExtResource("4_0d34j")
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(0, 5)
 
 [node name="Topcurtain" type="Sprite2D" parent="."]
 position = Vector2(484, 40)
 texture = ExtResource("4_sqbdq")
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(0, 10)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_sqbdq")
 }
+
+[node name="FitzTower" type="Node2D" parent="."]
+position = Vector2(783, 714)
+
+[node name="Boxes" type="Sprite2D" parent="FitzTower"]
+position = Vector2(-16, -131.5)
+texture = ExtResource("8_qqt4v")
+offset = Vector2(0, 20)
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(0, 15)
+beat_scale_target = Vector2(1.1, 0.9)
+
+[node name="Fitzgerald" type="Sprite2D" parent="FitzTower"]
+position = Vector2(11, -274.5)
+texture = ExtResource("9_3y81l")
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(0, 25)
+beat_scale_target = Vector2(1.2, 0.8)
+
+[node name="MeatballsPivot" type="Node2D" parent="."]
+position = Vector2(208, 718)
+
+[node name="Meatballs" type="Sprite2D" parent="MeatballsPivot"]
+position = Vector2(-16, -117)
+texture = ExtResource("10_3y81l")
+script = ExtResource("10_pu8t4")
+beat_position_add = Vector2(0, 15)
+beat_scale_target = Vector2(1.1, 0.9)

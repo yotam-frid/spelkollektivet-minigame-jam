@@ -69,7 +69,7 @@ func hide_minigame_viewport():
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(minigame_viewport_container, "scale", minigame_zoomed_out_scale, minigame_zoom_duration)
+	tween.tween_property(minigame_viewport_container, "scale", minigame_zoomed_out_scale, minigame_zoom_duration / 2.0)
 	
 	await main_scene_foreground.closed
 	

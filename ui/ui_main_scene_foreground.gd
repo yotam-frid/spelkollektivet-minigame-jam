@@ -10,7 +10,7 @@ func open():
 	animation_player.play("open", -1, 2.0, false)
 	
 func close():
-	animation_player.play("open", -1, -2.0, true)
+	animation_player.play("open", -1, -4.0, true)
 
 func _on_tv_zoom():
 	zoomed.emit()

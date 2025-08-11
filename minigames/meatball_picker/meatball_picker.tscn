@@ -141,7 +141,7 @@ outline_color = Color(0.57925385, 1.973361e-06, 3.85046e-07, 1)
 [node name="MeatballPicker" type="Node"]
 script = ExtResource("1_lxgd4")
 title = "Take 7"
-duration = 8
+duration = 6
 viewport_texture_filter = false
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"

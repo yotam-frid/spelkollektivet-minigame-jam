@@ -206,10 +206,8 @@ metadata/_custom_type_script = "uid://bvjck5jjycgm4"
 unique_name_in_owner = true
 position = Vector2(104, 100)
 sprite_frames = SubResource("SpriteFrames_vkava")
-animation = &"left_click"
+animation = &"both"
 autoplay = "default"
-frame = 1
-frame_progress = 0.19444327
 
 [node name="IntroDirectionals" type="Control" parent="IntroControls"]
 unique_name_in_owner = true

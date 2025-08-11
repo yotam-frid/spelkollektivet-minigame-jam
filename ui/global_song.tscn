@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtu074x08fvi4"]
+
+[ext_resource type="Script" uid="uid://e4gx2rwrfwqx" path="res://ui/global_song.gd" id="1_4wvmx"]
+
+[node name="GlobalSong" type="Node"]
+script = ExtResource("1_4wvmx")
+
+[node name="BeatTimer" type="Timer" parent="."]
+ignore_time_scale = true
+
+[connection signal="timeout" from="BeatTimer" to="." method="_on_beat_timer_timeout"]
