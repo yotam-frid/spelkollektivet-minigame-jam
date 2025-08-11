@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkk3ele4jbpob"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_6tker"]
+[ext_resource type="Script" uid="uid://r6b7lw3lfar8" path="res://minigames/lasagna_seconds/lasagna_gamemanager.gd" id="2_t7q41"]
+
+[node name="Lasagna" type="Node"]
+script = ExtResource("1_6tker")
+title = "Lasagna"
+mouse = 2
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="LasagnaGamemanager" type="Node2D" parent="."]
+script = ExtResource("2_t7q41")
+
+[node name="Label" type="Label" parent="LasagnaGamemanager"]
+anchors_preset = -1
+anchor_left = 0.42600003
+anchor_top = 0.374
+anchor_right = 0.72
+anchor_bottom = 0.544
+offset_left = 409.0
+offset_top = 269.0
+offset_right = 526.0
+offset_bottom = 292.0
+text = "TAKE SECONDS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="signal_timer" type="Timer" parent="LasagnaGamemanager"]
+one_shot = true
+
+[node name="window_timer" type="Timer" parent="LasagnaGamemanager"]
+
+[connection signal="timeout" from="LasagnaGamemanager/signal_timer" to="LasagnaGamemanager" method="_on_signal_timer_timeout"]
+[connection signal="timeout" from="LasagnaGamemanager/window_timer" to="LasagnaGamemanager" method="_on_window_timer_timeout"]
