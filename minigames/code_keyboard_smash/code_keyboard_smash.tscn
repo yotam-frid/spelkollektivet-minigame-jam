@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://qe6xo8mtngdt" path="res://minigames/code_keyboard_smash/sweaty_speedrunner.png" id="3_8f06g"]
 [ext_resource type="Texture2D" uid="uid://2eycgkebfme6" path="res://minigames/code_keyboard_smash/note.png" id="3_oryqq"]
 [ext_resource type="AudioStream" uid="uid://dy1rux5vlpti4" path="res://minigames/code_keyboard_smash/typing.wav" id="4_lk80t"]
-[ext_resource type="AudioStream" uid="uid://cfidbckbuc3a8" path="res://minigames/code_keyboard_smash/fanfare.wav" id="4_wto8c"]
+[ext_resource type="AudioStream" uid="uid://8vhhafy0qflq" path="res://minigames/code_keyboard_smash/fanfare.mp3" id="4_wto8c"]
 [ext_resource type="FontFile" uid="uid://bsueqpcviwyrx" path="res://assets/upheavtt.ttf" id="6_ahsnl"]
 [ext_resource type="Texture2D" uid="uid://dbanem7p4m1fu" path="res://minigames/code_keyboard_smash/ending bg.png" id="7_1mdgl"]
 [ext_resource type="Texture2D" uid="uid://dgvnc2wkvlde8" path="res://minigames/code_keyboard_smash/success_objects.png" id="7_5ax3w"]

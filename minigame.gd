@@ -47,7 +47,7 @@ func finish():
 ## Signals that the game has been won, cancels the running game timer,
 ## and returns to the main screen after a delay (2 seconds by default, if not provided.)
 func win_and_finish(wait_seconds: float = 2.0):
-	if is_finished:
+	if is_finished or not is_inside_tree():
 		return
 		
 	win()
@@ -67,7 +67,7 @@ func clear_timer():
 
 func _enter_tree() -> void:
 	# Wait duration
-	if not Engine.is_editor_hint():
+	if not Engine.is_editor_hint() and is_inside_tree():
 		await get_tree().create_timer(duration).timeout
 		if not _timer_cleared:
 			finish()
