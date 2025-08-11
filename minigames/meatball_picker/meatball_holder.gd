@@ -17,10 +17,11 @@ func _ready() -> void:
 	else:
 		for m: Node2D in meatballs.get_children():
 			m.hide()
+		GlobalSong.animate_on_beat(self, "position", Vector2.DOWN * 4, true)
 			
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
-	
+
 func _on_area_entered(_area: Area2D):
 	in_area = true
 	

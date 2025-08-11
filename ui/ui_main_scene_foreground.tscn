@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://dbdd47v83s3pd"]
 
 [ext_resource type="Script" uid="uid://bwxhu67cn62by" path="res://ui/ui_main_scene_foreground.gd" id="1_0d34j"]
+[ext_resource type="Texture2D" uid="uid://chfcdnotynvbh" path="res://ui/mainscene/tv.png" id="2_pu8t4"]
 [ext_resource type="Texture2D" uid="uid://bxkamgxxn54fm" path="res://ui/mainscene/leftcurtainback.png" id="2_s2liu"]
 [ext_resource type="Texture2D" uid="uid://cc3md1bguxdk5" path="res://ui/mainscene/rightcurtainback.png" id="3_0d34j"]
 [ext_resource type="Texture2D" uid="uid://b878g8y82o0an" path="res://ui/mainscene/leftcurtain.png" id="3_s2liu"]
 [ext_resource type="Texture2D" uid="uid://b5yyfs4bc85jo" path="res://ui/mainscene/rightcurtain.png" id="4_0d34j"]
 [ext_resource type="Texture2D" uid="uid://qsxyot8statk" path="res://ui/mainscene/topcurtain.png" id="4_sqbdq"]
-[ext_resource type="Texture2D" uid="uid://bbndbvsd2erlo" path="res://ui/mainscene/tvtemp.png" id="7_sqbdq"]
 [ext_resource type="Texture2D" uid="uid://btciipifngyef" path="res://ui/mainscene/boxes.png" id="8_qqt4v"]
 [ext_resource type="Texture2D" uid="uid://ck5xk7q7mhv5t" path="res://ui/mainscene/fitzgerald.png" id="9_3y81l"]
 [ext_resource type="Texture2D" uid="uid://4a7mmmgdbl7m" path="res://ui/mainscene/meatballs.png" id="10_3y81l"]
@@ -124,10 +124,10 @@ tracks/8/path = NodePath("TvBack:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 1.2, 1.4, 2),
-"transitions": PackedFloat32Array(0.5, 1, 2, 1),
+"times": PackedFloat32Array(0, 1.4, 2),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1.2, 1.2), Vector2(5, 5)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(5, 5)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -343,9 +343,8 @@ mouse_filter = 2
 script = ExtResource("1_0d34j")
 
 [node name="TvBack" type="Sprite2D" parent="."]
-modulate = Color(0.18039216, 1, 1, 1)
 position = Vector2(484, 350)
-texture = ExtResource("7_sqbdq")
+texture = ExtResource("2_pu8t4")
 
 [node name="Leftcurtainback" type="Sprite2D" parent="."]
 position = Vector2(212.5, 305.5)
