@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://6nr01nsh7cp1"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_60xju"]
+[ext_resource type="Texture2D" uid="uid://6qi7nw1l166j" path="res://minigames/meatball_picker/hand_right.png" id="2_746cp"]
+
+[sub_resource type="GDScript" id="GDScript_60xju"]
+script/source = "extends Node2D
+
+@export_range(0, 90, 1.0, \"radians_as_degrees\") var move_sprite_angle: float
+@export var target_screen_distance = 5.0 # Multiple of screen
+
+@export var pet_target: CanvasItem
+@export var pet_target_done: CanvasItem
+
+var target_position = Vector2(-1.0, -1.0)
+var target_distance: float
+var current_distance = 0.0
+
+var max_x_offset = 120.0
+var is_won = false
+var is_started = false
+
+
+func _ready() -> void:
+	target_distance = get_viewport_rect().size.length() * target_screen_distance
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var motion_ev: InputEventMouseMotion = event
+		target_position = motion_ev.global_position
+		
+		if not is_started:
+			is_started = true
+			global_position = target_position
+
+func _process(_delta: float) -> void:
+	var distance = target_position - global_position
+	var distance_rate = min(distance.x / max_x_offset, 1.0)
+
+	if is_started:
+		current_distance += distance.length()
+		rotation = move_sprite_angle * distance_rate
+		global_position += distance / 4.0
+		
+	if current_distance >= target_distance and not is_won:
+		win()
+		
+func win():
+	is_won = true
+	pet_target.hide()
+	pet_target_done.show()
+	CurrentGame.instance.win()
+"
+
+[node name="PetSamus" type="Node"]
+script = ExtResource("1_60xju")
+title = "Pet"
+mouse = 1
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 1, 0.4117647, 1)
+
+[node name="PetTarget" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_left = 245.0
+offset_top = 126.0
+offset_right = 686.0
+offset_bottom = 588.0
+color = Color(1, 0, 0, 1)
+
+[node name="PetTargetDone" type="ColorRect" parent="."]
+visible = false
+anchors_preset = -1
+offset_left = 245.0
+offset_top = 126.0
+offset_right = 686.0
+offset_bottom = 588.0
+color = Color(0.32196397, 0.48928207, 1, 1)
+
+[node name="HandNode" type="Node2D" parent="." node_paths=PackedStringArray("pet_target", "pet_target_done")]
+position = Vector2(2, 18)
+script = SubResource("GDScript_60xju")
+move_sprite_angle = 0.4363323129985824
+pet_target = NodePath("../PetTarget")
+pet_target_done = NodePath("../PetTargetDone")
+
+[node name="Sprite2D" type="Sprite2D" parent="HandNode"]
+position = Vector2(1, -72)
+texture = ExtResource("2_746cp")
