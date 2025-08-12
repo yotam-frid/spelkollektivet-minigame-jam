@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cha3eeymyhg4j"]
+
+[ext_resource type="Script" uid="uid://d2ps0qmpu3h4s" path="res://ui/life_indicator.gd" id="1_ollid"]
+[ext_resource type="Texture2D" uid="uid://57eruetu8x1n" path="res://ui/wall_photos/Frame0002.png" id="2_v4i8g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0mxwb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v4i8g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LifeIndicator" type="Node2D"]
+script = ExtResource("1_ollid")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7, -35)
+sprite_frames = SubResource("SpriteFrames_0mxwb")

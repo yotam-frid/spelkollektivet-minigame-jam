@@ -2,7 +2,7 @@ extends Node
 
 signal beat
 
-var bpm = 134.0
+var bpm = 110
 var beat_timer: Timer
 
 var node_tweens: Dictionary[Node, Array]
