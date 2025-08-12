@@ -61,10 +61,6 @@ func show_minigame_viewport(minigame: Minigame):
 		show_ingame_ui(minigame)
 	)
 	
-	# Allow one frame to process, and start the timer
-	await get_tree().process_frame
-	minigame.start_timer()
-	
 	
 func hide_minigame_viewport():
 	hide_ingame_ui()
