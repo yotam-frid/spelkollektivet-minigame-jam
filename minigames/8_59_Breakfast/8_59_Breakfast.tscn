@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=30 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://exac6delq2d1" path="res://minigames/8_59_Breakfast/sprites/chair.png" id="8_23u02"]
 [ext_resource type="Script" uid="uid://ccunla0trl2my" path="res://minigames/8_59_Breakfast/Breadroll.gd" id="9_nph22"]
 [ext_resource type="Texture2D" uid="uid://bcfclxim8rh0n" path="res://minigames/8_59_Breakfast/sprites/items/dkflag.png" id="9_qrew8"]
+[ext_resource type="Texture2D" uid="uid://bkc2dnlqjnqgm" path="res://minigames/8_59_Breakfast/sprites/time.png" id="9_rdmqm"]
+[ext_resource type="Texture2D" uid="uid://dgqfg6aq7bf4a" path="res://minigames/8_59_Breakfast/sprites/madeit.png" id="10_bhd8d"]
 [ext_resource type="Script" uid="uid://danr73imcxxst" path="res://minigames/8_59_Breakfast/Item.gd" id="10_tfue5"]
 [ext_resource type="Texture2D" uid="uid://7nfxaduaxpng" path="res://minigames/8_59_Breakfast/sprites/items/oil.png" id="11_4nth4"]
 [ext_resource type="Texture2D" uid="uid://v65v0aw8k8cl" path="res://minigames/8_59_Breakfast/sprites/items/soya.png" id="12_tfue5"]
@@ -92,6 +94,13 @@ func _ready() -> void:
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
 	
+	var tween = get_tree().create_tween().set_loops()
+	tween.tween_property($Time, \"scale\", Vector2(1.5, 1.5), .1)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_interval(.1)
+	tween.tween_property($Time, \"scale\", Vector2(1.0, 1.0), .1)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
 func _body_entered(body):
 	if body is Breadroll:
 		print(\"breadroll!!!!\")
@@ -109,12 +118,13 @@ func _body_exited(body):
 
 func finish():
 	for breadroll in breadrolls:
-		breadroll.freeze_mode = RigidBody2D.FreezeMode.FREEZE_MODE_STATIC
-		breadroll.lock_rotation = true
-		breadroll.freeze = true
+		var sprite = breadroll.get_node(\"Sprite2D\")
+		sprite.reparent(self)
 		
 	CurrentGame.instance.win_and_finish(1.0)
 	
+	$Time.hide()
+	$Madeit.show()
 	await get_tree().create_timer(.1).timeout
 	$Oven_Closed.show()
 	$Oven_Open.hide()
@@ -239,6 +249,15 @@ texture = ExtResource("7_sgvae")
 z_index = 100
 position = Vector2(345, 166)
 texture = ExtResource("8_23u02")
+
+[node name="Time" type="Sprite2D" parent="Right/Oven/BreadCensor"]
+position = Vector2(-4, -165)
+texture = ExtResource("9_rdmqm")
+
+[node name="Madeit" type="Sprite2D" parent="Right/Oven/BreadCensor"]
+visible = false
+position = Vector2(1, -164)
+texture = ExtResource("10_bhd8d")
 
 [node name="Tray" type="Sprite2D" parent="Right"]
 position = Vector2(-5, 57)
