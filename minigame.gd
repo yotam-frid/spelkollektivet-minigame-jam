@@ -56,6 +56,7 @@ func win_and_finish(wait_seconds: float = 2.0):
 		return
 		
 	win()
+	clear_timer()
 	finish(wait_seconds)
 	
 ## Clears the default minigame countdown timer, and hides the timer UI.
