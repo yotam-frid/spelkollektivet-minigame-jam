@@ -9,6 +9,8 @@ var minigame_won = false
 
 @onready var main_scene_foreground: MainSceneForegroundUI = $MainSceneForeground
 
+signal minigame_zoomed_in
+
 var current_minigame: Minigame = null
 var minigame_zoomed_out_scale = Vector2.ONE / 3.5
 var minigame_zoom_duration = 0.3
@@ -57,8 +59,8 @@ func show_minigame_viewport(minigame: Minigame):
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(minigame_viewport_container, "scale", Vector2.ONE, minigame_zoom_duration)
-	tween.tween_callback(func(): 
-		show_ingame_ui(minigame)
+	tween.tween_callback(func():
+		minigame_zoomed_in.emit()
 	)
 	
 	
