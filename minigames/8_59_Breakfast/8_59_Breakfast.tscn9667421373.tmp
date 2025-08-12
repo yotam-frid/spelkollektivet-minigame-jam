@@ -20,19 +20,16 @@ func _input(event: InputEvent) -> void:
 	if mouse_event.pressed and hovered_object != null: 
 		held_object = hovered_object
 		held_object.freeze = true
-	elif held_object != null: 
-		held_object.global_position = get_global_mouse_position()
-		#var mouse_speed = (get_global_mouse_position() - held_object.global_position) / get_physics_process_delta_time()
-		#held_object.linear_velocity = mouse_speed
-		#held_object.angular_velocity = 0
-		held_object.freeze = false
-		held_object = null
-		
-func _physics_process(_delta: float) -> void:
-	if held_object == null:
-		picking()
 	else: 
+		held_object = null
+		held_object.freeze = false
+	print(held_object)
+		
+func _process(_delta):
+	if held_object != null:
 		holding()
+	else: 
+		picking()
 	
 func picking():
 	var mouse_pos = get_viewport().get_mouse_position()
@@ -52,13 +49,7 @@ func picking():
 	hovered_object = null
 	
 func holding():
-	var target_pos = get_global_mouse_position()
-	var motion = target_pos - held_object.global_position
-	held_object.move_and_collide(motion) 
-
-func win():
-	CurrentGame.instance.win_and_finish(1.0)
-	
+        held_object.global_position = get_global_mouse_position()
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sgjaw"]
@@ -74,6 +65,7 @@ script/source = "extends RigidBody2D
 [node name="8_59_Breakfast" type="Node"]
 script = ExtResource("1_ioj25")
 title = "8:59 Breakfast"
+viewport_zoom = 4
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 
@@ -86,27 +78,6 @@ position = Vector2(487, 716)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_sgjaw")
 
-[node name="Ceiling" type="StaticBody2D" parent="."]
-position = Vector2(487, 0)
-rotation = 3.1415927
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
-shape = SubResource("WorldBoundaryShape2D_sgjaw")
-
-[node name="WallRight" type="StaticBody2D" parent="."]
-position = Vector2(960, 357)
-rotation = 4.712389
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
-shape = SubResource("WorldBoundaryShape2D_sgjaw")
-
-[node name="WallLeft" type="StaticBody2D" parent="."]
-position = Vector2(-1, 357)
-rotation = 1.5707964
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
-shape = SubResource("WorldBoundaryShape2D_sgjaw")
-
 [node name="Shelf" type="StaticBody2D" parent="."]
 position = Vector2(723, 382)
 
@@ -115,7 +86,6 @@ shape = SubResource("RectangleShape2D_sgjaw")
 
 [node name="Breadroll" type="RigidBody2D" parent="."]
 position = Vector2(217, 155)
-freeze_mode = 1
 script = SubResource("GDScript_ewha7")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Breadroll"]

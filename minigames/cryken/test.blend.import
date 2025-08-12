@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dkmkn1qfl3e2p"
-path="res://.godot/imported/test.blend-9f173af310c1a8574f8e4ab249aa0382.scn"
+valid=false
 
 [deps]
 
 source_file="res://minigames/cryken/test.blend"
-dest_files=["res://.godot/imported/test.blend-9f173af310c1a8574f8e4ab249aa0382.scn"]
 
 [params]
 
