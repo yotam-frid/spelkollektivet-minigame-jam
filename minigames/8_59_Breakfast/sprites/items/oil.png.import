@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyq7q4jhfn1pc"
-path="res://.godot/imported/box.png-face6587449b1471dbbda71c063d9eac.ctex"
+uid="uid://7nfxaduaxpng"
+path="res://.godot/imported/oil.png-3fa3560b1b2cabe8ff4ba8b58d059aa5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/8_59_Breakfast/sprites/box.png"
-dest_files=["res://.godot/imported/box.png-face6587449b1471dbbda71c063d9eac.ctex"]
+source_file="res://minigames/8_59_Breakfast/sprites/items/oil.png"
+dest_files=["res://.godot/imported/oil.png-3fa3560b1b2cabe8ff4ba8b58d059aa5.ctex"]
 
 [params]
 

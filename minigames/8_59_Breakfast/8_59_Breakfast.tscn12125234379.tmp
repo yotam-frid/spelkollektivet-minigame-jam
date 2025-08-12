@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=16 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
@@ -73,27 +73,18 @@ func win():
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgjaw"]
 size = Vector2(296.16785, 8.940582)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qrew8"]
-friction = 0.4
-bounce = 0.2
-
 [sub_resource type="GDScript" id="GDScript_ewha7"]
 resource_name = "Breadroll"
 script/source = "extends RigidBody2D
 
 func _ready() -> void:
-	print(\"body.breadrooll: \", name)
 	set_global_scale(Vector2.ONE * randf())
-	contact_monitor = true
-	max_contacts_reported = 8
-	body_entered.connect(_on_body_entered)
-	
+
+    body_entered.connect(_on_body_entered)
+
 func _on_body_entered(body: Node) -> void:
 	if body is RigidBody2D:
 		print(\"Collided with:\", body.name)
-		var direction = (body.global_position - global_position).normalized()
-		body.linear_velocity = direction * 500 + Vector2.UP * 100
-		body.angular_velocity = 0
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ca2cv"]
@@ -173,7 +164,6 @@ texture = ExtResource("7_sgvae")
 
 [node name="Breadroll" type="RigidBody2D" parent="."]
 position = Vector2(217, 155)
-physics_material_override = SubResource("PhysicsMaterial_qrew8")
 freeze_mode = 1
 script = SubResource("GDScript_ewha7")
 

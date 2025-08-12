@@ -26,13 +26,13 @@ func _input(event: InputEvent) -> void:
 		
 	if mouse_event.pressed and hovered_object != null: 
 		held_object = hovered_object
-		held_object.freeze = true
+			held_object.body_type = RigidBody2D.BodyType.Kinematic
 	elif held_object != null: 
 		held_object.global_position = get_global_mouse_position()
 		#var mouse_speed = (get_global_mouse_position() - held_object.global_position) / get_physics_process_delta_time()
 		#held_object.linear_velocity = mouse_speed
 		#held_object.angular_velocity = 0
-		held_object.freeze = false
+		held_object.body_type = null
 		held_object = null
 		
 func _physics_process(_delta: float) -> void:

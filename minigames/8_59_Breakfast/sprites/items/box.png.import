@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcfclxim8rh0n"
-path="res://.godot/imported/dkflag.png-166f74b76370633daa2b9fc9053ae5e5.ctex"
+uid="uid://dyq7q4jhfn1pc"
+path="res://.godot/imported/box.png-50ef89bb44e8931aef5a275aa5e39a14.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/8_59_Breakfast/sprites/dkflag.png"
-dest_files=["res://.godot/imported/dkflag.png-166f74b76370633daa2b9fc9053ae5e5.ctex"]
+source_file="res://minigames/8_59_Breakfast/sprites/items/box.png"
+dest_files=["res://.godot/imported/box.png-50ef89bb44e8931aef5a275aa5e39a14.ctex"]
 
 [params]
 

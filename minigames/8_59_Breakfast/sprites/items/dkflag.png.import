@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v65v0aw8k8cl"
-path="res://.godot/imported/soya.png-1bc5b3214e630257ed81271b61d8523e.ctex"
+uid="uid://bcfclxim8rh0n"
+path="res://.godot/imported/dkflag.png-f89497af7888b3df6378c9b213061347.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/8_59_Breakfast/sprites/soya.png"
-dest_files=["res://.godot/imported/soya.png-1bc5b3214e630257ed81271b61d8523e.ctex"]
+source_file="res://minigames/8_59_Breakfast/sprites/items/dkflag.png"
+dest_files=["res://.godot/imported/dkflag.png-f89497af7888b3df6378c9b213061347.ctex"]
 
 [params]
 
