@@ -20,9 +20,11 @@ script/source = "extends Node
 
 @export var hand: MeatballPickerHand
 @export var lose_animation_player: AnimationPlayer
+@export var lose_label: Label
 
 func _ready():
 	CurrentGame.instance.game_finished.connect(_on_finish)
+	GlobalSong.animate_on_beat(lose_label, \"scale\", Vector2.ONE * 1.02)
 	
 var balls_amount = 0
 var required = 7
@@ -141,7 +143,7 @@ outline_color = Color(0.57925385, 1.973361e-06, 3.85046e-07, 1)
 [node name="MeatballPicker" type="Node"]
 script = ExtResource("1_lxgd4")
 title = "Take 7"
-duration = 8
+duration = 6
 viewport_texture_filter = false
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
@@ -151,12 +153,13 @@ anchor_mode = 0
 enabled = false
 zoom = Vector2(4, 4)
 
-[node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("hand", "lose_animation_player")]
+[node name="Control" type="Node2D" parent="." node_paths=PackedStringArray("hand", "lose_animation_player", "lose_label")]
 texture_filter = 1
 scale = Vector2(4, 4)
 script = SubResource("GDScript_el4pa")
 hand = NodePath("Hand")
 lose_animation_player = NodePath("../LoseAnimationPlayer")
+lose_label = NodePath("../LoseAnimationPlayer/Label")
 
 [node name="Bg" type="Sprite2D" parent="Control"]
 texture = ExtResource("2_el4pa")
@@ -295,11 +298,13 @@ script = ExtResource("6_tl2bm")
 [node name="TakeSfx" type="AudioStreamPlayer" parent="Control/Hand"]
 stream = ExtResource("8_vc8d6")
 
-[node name="Meatball" type="Sprite2D" parent="Control/Hand"]
+[node name="Pivot" type="Node2D" parent="Control/Hand"]
+
+[node name="Meatball" type="Sprite2D" parent="Control/Hand/Pivot"]
 position = Vector2(-1, -2)
 texture = ExtResource("4_ilb8o")
 
-[node name="HandRightSprite" type="Sprite2D" parent="Control/Hand"]
+[node name="HandRightSprite" type="Sprite2D" parent="Control/Hand/Pivot"]
 position = Vector2(42.75, 102)
 texture = ExtResource("7_tl2bm")
 

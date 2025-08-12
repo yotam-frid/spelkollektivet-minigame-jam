@@ -221,6 +221,7 @@ jump_velocity = 25.0
 gravity = 70.0
 
 [node name="Model" type="Node3D" parent="Player"]
+transform = Transform3D(0.7071067, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071067, 0, 0, 0)
 
 [node name="test" parent="Player/Model" instance=ExtResource("2_gq332")]
 

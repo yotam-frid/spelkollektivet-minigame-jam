@@ -2,9 +2,8 @@ extends Node
 class_name GameManager
 
 @export var ui: UI
-
+@export var shuffle: bool = true
 @export var minigame_scenes: Array[PackedScene]
-@export var preloader: ResourcePreloader
 
 var minigame_queue: Array[PackedScene]
 var current_minigame: Minigame = null
@@ -59,7 +58,8 @@ func on_minigame_timer_cleared():
 #############
 func create_new_minigame_queue():
 	minigame_queue = minigame_scenes.duplicate()
-	minigame_queue.shuffle()
+	if shuffle:
+		minigame_queue.shuffle()
 	
 func prepare_next_minigame():
 	if minigame_queue.size() == 0:

@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://bk8s5wu05xdmr"]
+[gd_scene load_steps=28 format=3 uid="uid://bk8s5wu05xdmr"]
 
+[ext_resource type="FontFile" uid="uid://bsueqpcviwyrx" path="res://assets/upheavtt.ttf" id="1_ay4pc"]
 [ext_resource type="Script" uid="uid://djtc0jl710y1" path="res://ui/ui.gd" id="1_nb4k0"]
 [ext_resource type="Texture2D" uid="uid://bvnxk3iit6t5u" path="res://assets/brown-and-red-horse-running-in-a-field-of-green-grass-desktop-wallpaper-hd-wallpaper-preview-1428625403.jpg" id="2_ks8t7"]
 [ext_resource type="Script" uid="uid://bvjck5jjycgm4" path="res://ui/grow_shrink_ui.gd" id="2_vkava"]
@@ -8,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dlcqo3k6qk6ml" path="res://assets/spacebar.png" id="4_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://om8ril5xmkp7" path="res://assets/keyboard.png" id="5_obcwv"]
 [ext_resource type="Script" uid="uid://bkpsdrc4rcq5o" path="res://ui/ingame_ui.gd" id="7_gycre"]
+[ext_resource type="PackedScene" uid="uid://dbdd47v83s3pd" path="res://ui/ui_main_scene_foreground.tscn" id="7_pa1oa"]
+
+[sub_resource type="Theme" id="Theme_pa1oa"]
+default_font = ExtResource("1_ay4pc")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tf0e0"]
 atlas = ExtResource("3_vkava")
@@ -152,6 +157,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_pa1oa")
 script = ExtResource("1_nb4k0")
 minigame_viewport_container = NodePath("MinigameContainer")
 minigame_viewport = NodePath("MinigameContainer/SubViewport")
@@ -173,6 +179,9 @@ stretch_shrink = 4
 handle_input_locally = false
 size = Vector2i(240, 180)
 render_target_update_mode = 4
+
+[node name="MainSceneForeground" parent="." instance=ExtResource("7_pa1oa")]
+layout_mode = 1
 
 [node name="IntroControls" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -197,10 +206,8 @@ metadata/_custom_type_script = "uid://bvjck5jjycgm4"
 unique_name_in_owner = true
 position = Vector2(104, 100)
 sprite_frames = SubResource("SpriteFrames_vkava")
-animation = &"left_click"
+animation = &"both"
 autoplay = "default"
-frame = 1
-frame_progress = 0.19444327
 
 [node name="IntroDirectionals" type="Control" parent="IntroControls"]
 unique_name_in_owner = true

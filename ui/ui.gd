@@ -6,7 +6,12 @@ var minigame_won = false
 @export var minigame_viewport_container: SubViewportContainer
 @export var minigame_viewport: SubViewport
 @export var ingame_ui: IngameUI
+
+@onready var main_scene_foreground: MainSceneForegroundUI = $MainSceneForeground
+
 var current_minigame: Minigame = null
+var minigame_zoomed_out_scale = Vector2.ONE / 3.5
+var minigame_zoom_duration = 0.3
 
 func _ready() -> void:
 	_hide_controls(false)
@@ -34,23 +39,39 @@ func show_minigame_viewport(minigame: Minigame):
 		minigame_viewport_container.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		minigame_viewport.canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
 	minigame_viewport_container.stretch_shrink = minigame.viewport_zoom
+	minigame.process_mode = Node.PROCESS_MODE_DISABLED
 	
-	# Show the viewport and ingame UI
-	minigame_viewport_container.scale = Vector2.ZERO
+	# Open curtains, wait for the TV zoom effect
+	minigame_viewport_container.show()
+	minigame_viewport_container.scale = minigame_zoomed_out_scale # This should fit in the viewport
+	
+	main_scene_foreground.open()
+	
+	await main_scene_foreground.zoomed
+	
+	# Re-enable minigame process
+	minigame.process_mode = Node.PROCESS_MODE_INHERIT
+	minigame.start_timer()
+	
+	# Show ingame UI and zoom in
 	minigame_viewport_container.visible = true
-	show_ingame_ui(minigame)
 	
 	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(minigame_viewport_container, "scale", Vector2.ONE, 0.5)
+	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(minigame_viewport_container, "scale", Vector2.ONE, minigame_zoom_duration)
+	tween.tween_callback(func(): 
+		show_ingame_ui(minigame)
+	)
 	
 func hide_minigame_viewport():
 	hide_ingame_ui()
+	main_scene_foreground.close()
 	
 	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(minigame_viewport_container, "scale", Vector2.ZERO, 0.2)
-	await tween.finished
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(minigame_viewport_container, "scale", minigame_zoomed_out_scale, minigame_zoom_duration / 2.0)
+	
+	await main_scene_foreground.closed
 	
 	minigame_viewport_container.hide()
 	
