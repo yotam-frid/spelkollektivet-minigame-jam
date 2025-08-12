@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=14 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
@@ -77,14 +77,11 @@ resource_name = "Breadroll"
 script/source = "extends RigidBody2D
 
 func _ready() -> void:
-	global_scale = Vector2.ONE * randf()
+	scale = Vector2.ONE * 0.1 * randf()
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ca2cv"]
-radius = 33.06055
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0l1d5"]
-radius = 39.0
+radius = 63.0
 
 [node name="8_59_Breakfast" type="Node"]
 script = ExtResource("1_ioj25")
@@ -144,12 +141,7 @@ freeze_mode = 1
 script = SubResource("GDScript_ewha7")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll"]
-position = Vector2(13, 21)
 shape = SubResource("CircleShape2D_ca2cv")
-
-[node name="Shape2" type="CollisionShape2D" parent="Breadroll"]
-position = Vector2(-8, -9)
-shape = SubResource("CircleShape2D_0l1d5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Breadroll"]
 texture = ExtResource("3_vgw02")
