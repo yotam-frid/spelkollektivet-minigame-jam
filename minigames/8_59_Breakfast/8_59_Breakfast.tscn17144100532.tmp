@@ -35,6 +35,7 @@ func _input(event: InputEvent) -> void:
 	if mouse_event.pressed and hovered_object != null: 
 		held_object = hovered_object
 		held_object.freeze = true
+		breadroll.freeze_mode = RigidBody2D.FreezeMode.FREEZE_MODE_STATIC
 	elif held_object != null: 
 		held_object.global_position = get_global_mouse_position()
 		#var mouse_speed = (get_global_mouse_position() - held_object.global_position) / get_physics_process_delta_time()
@@ -110,7 +111,6 @@ func _body_exited(body):
 func finish():
 	for breadroll in breadrolls:
 		breadroll.freeze_mode = RigidBody2D.FreezeMode.FREEZE_MODE_STATIC
-		breadroll.lock_rotation = true
 		breadroll.freeze = true
 		
 	CurrentGame.instance.win_and_finish(1.0)
@@ -261,6 +261,7 @@ shape = SubResource("RectangleShape2D_sgjaw")
 [node name="Breadroll" type="RigidBody2D" parent="."]
 position = Vector2(128, 323)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll"]
@@ -277,6 +278,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll2" type="RigidBody2D" parent="."]
 position = Vector2(104, 424)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll2"]
@@ -293,6 +295,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll3" type="RigidBody2D" parent="."]
 position = Vector2(204, 408)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll3"]
@@ -309,6 +312,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll4" type="RigidBody2D" parent="."]
 position = Vector2(300, 412)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll4"]
@@ -325,6 +329,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll5" type="RigidBody2D" parent="."]
 position = Vector2(391, 414)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll5"]
@@ -341,6 +346,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll6" type="RigidBody2D" parent="."]
 position = Vector2(322, 315)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll6"]
@@ -357,6 +363,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll7" type="RigidBody2D" parent="."]
 position = Vector2(224, 310)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll7"]
@@ -373,6 +380,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll8" type="RigidBody2D" parent="."]
 position = Vector2(264, 186)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll8"]

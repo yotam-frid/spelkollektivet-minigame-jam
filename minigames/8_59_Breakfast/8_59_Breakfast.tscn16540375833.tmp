@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=27 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://dldejhyvao36v" path="res://minigames/8_59_Breakfast/sprites/trays.png" id="6_sgvae"]
 [ext_resource type="Texture2D" uid="uid://da74h688wxsqd" path="res://minigames/8_59_Breakfast/sprites/door open.png" id="7_sgvae"]
 [ext_resource type="Texture2D" uid="uid://tueldydjxpen" path="res://minigames/8_59_Breakfast/sprites/freezer.png" id="8_0l1d5"]
-[ext_resource type="Texture2D" uid="uid://exac6delq2d1" path="res://minigames/8_59_Breakfast/sprites/chair.png" id="8_23u02"]
 [ext_resource type="Script" uid="uid://ccunla0trl2my" path="res://minigames/8_59_Breakfast/Breadroll.gd" id="9_nph22"]
 [ext_resource type="Texture2D" uid="uid://bcfclxim8rh0n" path="res://minigames/8_59_Breakfast/sprites/items/dkflag.png" id="9_qrew8"]
 [ext_resource type="Script" uid="uid://danr73imcxxst" path="res://minigames/8_59_Breakfast/Item.gd" id="10_tfue5"]
@@ -71,6 +70,8 @@ func holding():
 	var motion = target_pos - held_object.global_position
 	held_object.move_and_collide(motion) 
 
+func win():
+	CurrentGame.instance.win_and_finish(1.0)
 	
 "
 
@@ -109,19 +110,9 @@ func _body_exited(body):
 
 func finish():
 	for breadroll in breadrolls:
-		breadroll.freeze_mode = RigidBody2D.FreezeMode.FREEZE_MODE_STATIC
-		breadroll.lock_rotation = true
 		breadroll.freeze = true
-		
-	CurrentGame.instance.win_and_finish(1.0)
-	
-	await get_tree().create_timer(.1).timeout
 	$Oven_Closed.show()
 	$Oven_Open.hide()
-	await get_tree().create_timer(.1).timeout
-	var tween = get_tree().create_tween()
-	tween.tween_property($Chair, \"position\", Vector2(15, 166), .24)
-	tween.set_ease(Tween.EASE_OUT)
 	
 "
 
@@ -227,18 +218,12 @@ shape = SubResource("RectangleShape2D_23u02")
 
 [node name="Oven_Closed" type="Sprite2D" parent="Right/Oven/BreadCensor"]
 visible = false
-z_index = 100
 position = Vector2(2, 0)
 texture = ExtResource("6_qrew8")
 
 [node name="Oven_Open" type="Sprite2D" parent="Right/Oven/BreadCensor"]
 position = Vector2(-13, 205)
 texture = ExtResource("7_sgvae")
-
-[node name="Chair" type="Sprite2D" parent="Right/Oven/BreadCensor"]
-z_index = 100
-position = Vector2(345, 166)
-texture = ExtResource("8_23u02")
 
 [node name="Tray" type="Sprite2D" parent="Right"]
 position = Vector2(-5, 57)
@@ -261,6 +246,7 @@ shape = SubResource("RectangleShape2D_sgjaw")
 [node name="Breadroll" type="RigidBody2D" parent="."]
 position = Vector2(128, 323)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll"]
@@ -277,6 +263,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll2" type="RigidBody2D" parent="."]
 position = Vector2(104, 424)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll2"]
@@ -293,6 +280,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll3" type="RigidBody2D" parent="."]
 position = Vector2(204, 408)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll3"]
@@ -309,6 +297,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll4" type="RigidBody2D" parent="."]
 position = Vector2(300, 412)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll4"]
@@ -325,6 +314,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll5" type="RigidBody2D" parent="."]
 position = Vector2(391, 414)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll5"]
@@ -341,6 +331,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll6" type="RigidBody2D" parent="."]
 position = Vector2(322, 315)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll6"]
@@ -357,6 +348,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll7" type="RigidBody2D" parent="."]
 position = Vector2(224, 310)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll7"]
@@ -373,6 +365,7 @@ texture = ExtResource("3_vgw02")
 [node name="Breadroll8" type="RigidBody2D" parent="."]
 position = Vector2(264, 186)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
+freeze_mode = 1
 script = ExtResource("9_nph22")
 
 [node name="Shape" type="CollisionShape2D" parent="Breadroll8"]
