@@ -37,11 +37,16 @@ func win():
 ## Signals to end the game and return to the main screen.
 ##
 ## This will be called automatically unless [code]clear_timer()[/code] has been called.
-func finish():
+## Can optionally add a delay before finishing.
+func finish(wait_seconds: float = 0.0):
 	if is_finished:
 		return
 		
 	is_finished = true
+	clear_timer()
+	
+	if wait_seconds > 0.0:
+		await get_tree().create_timer(wait_seconds).timeout
 	game_finished.emit()
 	
 ## Signals that the game has been won, cancels the running game timer,
@@ -51,9 +56,7 @@ func win_and_finish(wait_seconds: float = 2.0):
 		return
 		
 	win()
-	clear_timer()
-	await get_tree().create_timer(wait_seconds).timeout
-	finish()
+	finish(wait_seconds)
 	
 ## Clears the default minigame countdown timer, and hides the timer UI.
 ## If you use this, you MUST call [code]finish()[/code] manually, otherwise
