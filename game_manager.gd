@@ -33,6 +33,10 @@ func next_minigame():
 	print("Showing game")
 	ui.show_minigame_viewport(current_minigame)
 	
+	await get_tree().process_frame
+	print("Starting timer: " + str(current_minigame.duration) + " seconds")
+	current_minigame.start_timer()
+	
 func on_minigame_finished():
 	# Wait 1 frame to let any logic run
 	await get_tree().process_frame

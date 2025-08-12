@@ -51,8 +51,6 @@ func show_minigame_viewport(minigame: Minigame):
 	
 	# Re-enable minigame process
 	minigame.process_mode = Node.PROCESS_MODE_INHERIT
-	minigame.start_timer()
-	
 	# Show ingame UI and zoom in
 	minigame_viewport_container.visible = true
 	
@@ -62,6 +60,7 @@ func show_minigame_viewport(minigame: Minigame):
 	tween.tween_callback(func(): 
 		show_ingame_ui(minigame)
 	)
+	
 	
 func hide_minigame_viewport():
 	hide_ingame_ui()
