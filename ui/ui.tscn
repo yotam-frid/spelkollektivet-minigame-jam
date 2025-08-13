@@ -262,7 +262,6 @@ sprite_frames = SubResource("SpriteFrames_x7jpl")
 autoplay = "default"
 
 [node name="MainSceneForeground" parent="." instance=ExtResource("7_pa1oa")]
-visible = false
 layout_mode = 1
 
 [node name="IntroText" type="Control" parent="."]

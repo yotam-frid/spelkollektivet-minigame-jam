@@ -123,12 +123,13 @@ _data = {
 [node name="OrbGame" type="Node"]
 script = ExtResource("1_ahhux")
 title = "Worship"
+keyboard = 1
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oxfw8")
 autoplay = "default"
-frame_progress = 0.9465351
+frame_progress = 0.48836097
 centered = false
 
 [node name="Node" type="Node" parent="." node_paths=PackedStringArray("hand_left", "hand_right")]
