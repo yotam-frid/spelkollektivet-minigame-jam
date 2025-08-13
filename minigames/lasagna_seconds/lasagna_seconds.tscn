@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh1ho2105x7ae"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_qcy1b"]
+
+[node name="LasagnaSeconds" type="Node2D"]
+
+[node name="Minigame" type="Node" parent="."]
+script = ExtResource("1_qcy1b")
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
