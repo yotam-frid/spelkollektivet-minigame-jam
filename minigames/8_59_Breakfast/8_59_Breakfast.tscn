@@ -71,8 +71,10 @@ func picking():
 func holding():
 	var target_pos = get_global_mouse_position()
 	var motion = target_pos - held_object.global_position
-	held_object.move_and_collide(motion) 
-
+	var follow_speed = 20.0
+	held_object.linear_velocity = motion * follow_speed
+	held_object.angular_velocity = 0
+	#held_object.move_and_collide(motion) 
 	
 "
 
