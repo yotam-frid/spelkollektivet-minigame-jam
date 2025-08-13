@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=34 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
 [ext_resource type="Texture2D" uid="uid://tovxpsg41m8m" path="res://minigames/8_59_Breakfast/sprites/breadroll.png" id="3_vgw02"]
 [ext_resource type="Texture2D" uid="uid://gdltb20nan27" path="res://minigames/8_59_Breakfast/sprites/bottomarea.png" id="4_5i65a"]
+[ext_resource type="Texture2D" uid="uid://dqip3nfmd8aas" path="res://minigames/8_59_Breakfast/sprites/fitsgertalt.png" id="4_bhd8d"]
 [ext_resource type="Texture2D" uid="uid://cll3r1qwnrmpg" path="res://minigames/8_59_Breakfast/sprites/base.png" id="5_0l1d5"]
 [ext_resource type="Texture2D" uid="uid://clq1alvplbg3a" path="res://minigames/8_59_Breakfast/sprites/door closed.png" id="6_qrew8"]
 [ext_resource type="Texture2D" uid="uid://dldejhyvao36v" path="res://minigames/8_59_Breakfast/sprites/trays.png" id="6_sgvae"]
@@ -52,6 +53,8 @@ func _physics_process(_delta: float) -> void:
 		held.apply_force(force)
 		held.angular_velocity *= 0.9
 		held.can_sleep = false 
+		
+		set_sprite_z(held, 10)
 	else:
 		picking()
 
@@ -76,16 +79,41 @@ func start_drag(body: RigidBody2D) -> void:
 func stop_drag() -> void:
 	if held:
 		held.can_sleep = true
+		set_sprite_z(held, 0)
 	held = null
+
+func set_sprite_z(held, z):
+	var sprite : Sprite2D = held.get_node(\"Sprite2D\")
+	if sprite != null:
+		sprite.z_index = z
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sgjaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhd8d"]
+size = Vector2(62.27124, 8.940582)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tfue5"]
 size = Vector2(362.99554, 35.762405)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nph22"]
 size = Vector2(30.376183, 113.99231)
+
+[sub_resource type="GDScript" id="GDScript_bhd8d"]
+resource_name = "FreezerCensor"
+script/source = "extends Area2D
+
+func _ready() -> void:
+	body_entered.connect(_body_entered)
+	
+func _body_entered(body):
+	var sprite : Sprite2D = body.get_node(\"Sprite2D\")
+	if sprite != null:
+		sprite.z_index = 0
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8rp8"]
+size = Vector2(381, 180)
 
 [sub_resource type="GDScript" id="GDScript_tfue5"]
 resource_name = "BreadCensor"
@@ -164,6 +192,7 @@ metadata/_custom_type_script = "uid://bajhxofytc8oh"
 script = SubResource("GDScript_sgjaw")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -100
 position = Vector2(480, 360)
 texture = ExtResource("3_ewha7")
 
@@ -195,6 +224,13 @@ rotation = 1.5707964
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/WallLeft"]
 shape = SubResource("WorldBoundaryShape2D_sgjaw")
 
+[node name="fitz" type="StaticBody2D" parent="Background"]
+position = Vector2(-38, 309)
+scale = Vector2(1.3168206, 0.8947952)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/fitz"]
+shape = SubResource("RectangleShape2D_bhd8d")
+
 [node name="Freezer" type="Sprite2D" parent="."]
 position = Vector2(262, 422)
 texture = ExtResource("8_0l1d5")
@@ -206,6 +242,7 @@ scale = Vector2(1.3168206, 0.8947952)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Freezer/Bottom"]
 position = Vector2(1.5188141, 13.41095)
 shape = SubResource("RectangleShape2D_tfue5")
+one_way_collision = true
 
 [node name="Side" type="StaticBody2D" parent="Freezer"]
 position = Vector2(-246, 3)
@@ -223,11 +260,37 @@ scale = Vector2(1.3168206, 0.8947952)
 position = Vector2(1.518816, 13.411041)
 shape = SubResource("RectangleShape2D_nph22")
 
+[node name="Front" type="Sprite2D" parent="Freezer"]
+z_index = 4
+position = Vector2(0, 132)
+texture = ExtResource("19_rdmqm")
+
+[node name="FreezerCensor" type="Area2D" parent="Freezer"]
+position = Vector2(-14, 64)
+script = SubResource("GDScript_bhd8d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Freezer/FreezerCensor"]
+position = Vector2(22.5, 13)
+shape = SubResource("RectangleShape2D_b8rp8")
+
+[node name="fitzgeralt" type="RigidBody2D" parent="."]
+position = Vector2(461, 625)
+freeze_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="fitzgeralt"]
+texture = ExtResource("4_bhd8d")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="fitzgeralt"]
+polygon = PackedVector2Array(2, -45, -5.9000015, -36, -8, -36, -8, -20.6, -19, -23.5, -19, -25.2, -43.2, -23, -48.6, -23, -65.6, -11, -68.1, -11, -76, 1.7999992, -76, 35.1, -71, 38.1, -71, 40.4, -53.6, 37, -46.8, 37, -39, 44.800003, -22.7, 45, -20.900002, 42, -18.599998, 42, -19.7, 36, -16.8, 36, -8, 44.800003, -1.0999985, 45, 1.300003, 44, 4, 44, 8, 38.800003, 12.199997, 43, 19, 43, 24, 36, 26.400002, 36, 25.099998, 29.5, 29, 28.599998, 29, 27.699997, 34.300003, 27, 49.4, 27, 61.300003, 22, 63.899994, 22, 71.899994, 13, 73.5, 13, 76, 4.799999, 76, -17.5, 54, -34, 54, -35.6, 37.199997, -39, 32.699997, -39, 26, -44.9)
+
 [node name="Right" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
 position = Vector2(735, 350)
 texture = ExtResource("4_5i65a")
 
 [node name="Oven" type="Sprite2D" parent="Right"]
+z_as_relative = false
 position = Vector2(0, -11)
 texture = ExtResource("5_0l1d5")
 
@@ -240,30 +303,36 @@ position = Vector2(22.5, 13)
 shape = SubResource("RectangleShape2D_23u02")
 
 [node name="Oven_Closed" type="Sprite2D" parent="Right/Oven/BreadCensor"]
-visible = false
 z_index = 100
+z_as_relative = false
 position = Vector2(2, 0)
 texture = ExtResource("6_qrew8")
 
 [node name="Oven_Open" type="Sprite2D" parent="Right/Oven/BreadCensor"]
+visible = false
+z_as_relative = false
 position = Vector2(-13, 205)
 texture = ExtResource("7_sgvae")
 
 [node name="Chair" type="Sprite2D" parent="Right/Oven/BreadCensor"]
 z_index = 100
+z_as_relative = false
 position = Vector2(345, 166)
 texture = ExtResource("8_23u02")
 
 [node name="Time" type="Sprite2D" parent="Right/Oven/BreadCensor"]
+z_as_relative = false
 position = Vector2(-4, -165)
 texture = ExtResource("9_rdmqm")
 
 [node name="Madeit" type="Sprite2D" parent="Right/Oven/BreadCensor"]
 visible = false
+z_as_relative = false
 position = Vector2(1, -164)
 texture = ExtResource("10_bhd8d")
 
 [node name="Tray" type="Sprite2D" parent="Right"]
+z_as_relative = false
 position = Vector2(-5, 57)
 texture = ExtResource("6_sgvae")
 
@@ -273,6 +342,7 @@ scale = Vector2(1.3168206, 0.8947952)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Shelf"]
 shape = SubResource("RectangleShape2D_sgjaw")
+one_way_collision = true
 
 [node name="Shelf2" type="StaticBody2D" parent="Right"]
 position = Vector2(1, 67)
@@ -280,6 +350,7 @@ scale = Vector2(1.3168206, 0.8947952)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Shelf2"]
 shape = SubResource("RectangleShape2D_sgjaw")
+one_way_collision = true
 
 [node name="Breadroll" type="RigidBody2D" parent="."]
 position = Vector2(128, 323)
@@ -463,7 +534,3 @@ texture = ExtResource("14_23u02")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="salt"]
 polygon = PackedVector2Array(-9.5, -32, -9.5, -30.7, -11.5, -30, -15, -30, -17, -27, -18.5, -27, -18.5, -18.2, -20.2, -14, -21.5, -14, -21.5, -5.299999, -24.3, 5, -25.5, 5, -25.5, 16.2, -23.5, 20.2, -23.5, 22.599998, -21.5, 23.599998, -21.5, 25.7, -14.5, 28.599998, -14.5, 30, -8.799999, 30, -5.799999, 32, 8.700001, 32, 15.700001, 29, 17.900002, 29, 23.900002, 24, 26.5, 24, 26.5, 22, 27.5, 22, 27.5, 6.9000015, 21.3, -20, 21.2, -21, 23.099998, -21, 21.5, -24.2, 21.5, -26.6, 14.5, -30.7, 14.5, -32)
-
-[node name="Front" type="Sprite2D" parent="."]
-position = Vector2(262, 554)
-texture = ExtResource("19_rdmqm")
