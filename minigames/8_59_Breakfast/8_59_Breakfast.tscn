@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=48 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
@@ -7,20 +7,32 @@
 [ext_resource type="Texture2D" uid="uid://dqip3nfmd8aas" path="res://minigames/8_59_Breakfast/sprites/fitsgertalt.png" id="4_bhd8d"]
 [ext_resource type="Script" uid="uid://cs1cka3qnkxl" path="res://utils/beat_sprite_2d.gd" id="4_tl0r5"]
 [ext_resource type="Texture2D" uid="uid://cll3r1qwnrmpg" path="res://minigames/8_59_Breakfast/sprites/base.png" id="5_0l1d5"]
+[ext_resource type="Texture2D" uid="uid://dw8amgimelpi" path="res://minigames/8_59_Breakfast/sprites/numbers/breads.png" id="6_c2cfo"]
 [ext_resource type="Texture2D" uid="uid://clq1alvplbg3a" path="res://minigames/8_59_Breakfast/sprites/door closed.png" id="6_qrew8"]
 [ext_resource type="Texture2D" uid="uid://dldejhyvao36v" path="res://minigames/8_59_Breakfast/sprites/trays.png" id="6_sgvae"]
+[ext_resource type="Texture2D" uid="uid://dmbrovsp26t7e" path="res://minigames/8_59_Breakfast/sprites/numbers/get.png" id="7_gh5yc"]
 [ext_resource type="Texture2D" uid="uid://da74h688wxsqd" path="res://minigames/8_59_Breakfast/sprites/door open.png" id="7_sgvae"]
 [ext_resource type="Texture2D" uid="uid://tueldydjxpen" path="res://minigames/8_59_Breakfast/sprites/freezer.png" id="8_0l1d5"]
 [ext_resource type="Texture2D" uid="uid://exac6delq2d1" path="res://minigames/8_59_Breakfast/sprites/chair.png" id="8_23u02"]
+[ext_resource type="Texture2D" uid="uid://dpws322i38syv" path="res://minigames/8_59_Breakfast/sprites/numbers/1.png" id="8_gh5yc"]
 [ext_resource type="Script" uid="uid://ccunla0trl2my" path="res://minigames/8_59_Breakfast/Breadroll.gd" id="9_nph22"]
 [ext_resource type="Texture2D" uid="uid://bcfclxim8rh0n" path="res://minigames/8_59_Breakfast/sprites/items/dkflag.png" id="9_qrew8"]
 [ext_resource type="Texture2D" uid="uid://bkc2dnlqjnqgm" path="res://minigames/8_59_Breakfast/sprites/time.png" id="9_rdmqm"]
 [ext_resource type="Texture2D" uid="uid://dgqfg6aq7bf4a" path="res://minigames/8_59_Breakfast/sprites/madeit.png" id="10_bhd8d"]
 [ext_resource type="Texture2D" uid="uid://7nfxaduaxpng" path="res://minigames/8_59_Breakfast/sprites/items/oil.png" id="11_4nth4"]
+[ext_resource type="Texture2D" uid="uid://6rf6o77oce7j" path="res://minigames/8_59_Breakfast/sprites/numbers/0.png" id="12_oe73v"]
 [ext_resource type="Texture2D" uid="uid://v65v0aw8k8cl" path="res://minigames/8_59_Breakfast/sprites/items/soya.png" id="12_tfue5"]
+[ext_resource type="Texture2D" uid="uid://bsd5ab1kn1nes" path="res://minigames/8_59_Breakfast/sprites/numbers/2.png" id="13_f2v2w"]
 [ext_resource type="Texture2D" uid="uid://dyq7q4jhfn1pc" path="res://minigames/8_59_Breakfast/sprites/items/box.png" id="13_nph22"]
 [ext_resource type="Texture2D" uid="uid://14okjcalfrtd" path="res://minigames/8_59_Breakfast/sprites/items/salt.png" id="14_23u02"]
+[ext_resource type="Texture2D" uid="uid://bke3iyyt648n8" path="res://minigames/8_59_Breakfast/sprites/numbers/3.png" id="14_i00nd"]
+[ext_resource type="Texture2D" uid="uid://dottrfxm6ukxq" path="res://minigames/8_59_Breakfast/sprites/numbers/4.png" id="15_6lrbh"]
+[ext_resource type="Texture2D" uid="uid://dlrfwqkesmhyd" path="res://minigames/8_59_Breakfast/sprites/numbers/5.png" id="16_ffedy"]
+[ext_resource type="Texture2D" uid="uid://dyey7upxd5owy" path="res://minigames/8_59_Breakfast/sprites/numbers/6.png" id="17_vn5wv"]
+[ext_resource type="Texture2D" uid="uid://dhgq8e8414u71" path="res://minigames/8_59_Breakfast/sprites/numbers/7.png" id="18_1lb7a"]
+[ext_resource type="Texture2D" uid="uid://bhcdh7v6c6byk" path="res://minigames/8_59_Breakfast/sprites/numbers/8.png" id="19_michc"]
 [ext_resource type="Texture2D" uid="uid://cpy7opd4cxc18" path="res://minigames/8_59_Breakfast/sprites/freezer_front.png" id="19_rdmqm"]
+[ext_resource type="Texture2D" uid="uid://mi2d8kum2ihd" path="res://minigames/8_59_Breakfast/sprites/numbers/9.png" id="20_d4702"]
 [ext_resource type="Texture2D" uid="uid://dtn1juiday8sk" path="res://minigames/8_59_Breakfast/sprites/details.png" id="21_b8rp8"]
 
 [sub_resource type="GDScript" id="GDScript_sgjaw"]
@@ -81,7 +93,7 @@ func start_drag(body: RigidBody2D) -> void:
 func stop_drag() -> void:
 	if held:
 		held.can_sleep = true
-		set_sprite_z(held, 0)
+		set_sprite_z(held, 1)
 	held = null
 
 func set_sprite_z(held, z):
@@ -121,6 +133,8 @@ size = Vector2(381, 180)
 resource_name = "BreadCensor"
 script/source = "extends Area2D
 
+@export var numbers : Array[Texture2D]
+
 var breadrolls_requirement = 4
 var breadrolls = []
 
@@ -142,6 +156,10 @@ func _ready() -> void:
 	await get_tree().create_timer(1.2).timeout
 	$Oven_Closed.hide()
 	$Oven_Open.show()
+
+func _process(_delta: float) -> void:
+	var breadrolls_left = clamp(breadrolls_requirement - breadrolls.size(), 0, 9)
+	$\"../../../Freezer/Number\".texture = numbers[breadrolls_left]
 	
 func _body_entered(body):
 	if body is Breadroll:
@@ -164,6 +182,9 @@ func finish():
 		
 	CurrentGame.instance.win_and_finish(.8)
 	
+	$\"../../../Freezer/Number\".hide()
+	$\"../../../Freezer/Get\".hide()
+	$\"../../../Freezer/Breads\".hide()
 	$Time.hide()
 	$Madeit.show()
 	await get_tree().create_timer(.1).timeout
@@ -292,6 +313,20 @@ script = SubResource("GDScript_bhd8d")
 position = Vector2(22.5, 13)
 shape = SubResource("RectangleShape2D_b8rp8")
 
+[node name="Breads" type="Sprite2D" parent="Freezer"]
+position = Vector2(104, -333)
+texture = ExtResource("6_c2cfo")
+
+[node name="Get" type="Sprite2D" parent="Freezer"]
+position = Vector2(-173, -333)
+scale = Vector2(1.105, 1.105)
+texture = ExtResource("7_gh5yc")
+
+[node name="Number" type="Sprite2D" parent="Freezer"]
+position = Vector2(-70, -335)
+scale = Vector2(1.155, 1.155)
+texture = ExtResource("8_gh5yc")
+
 [node name="fitzgeralt" type="RigidBody2D" parent="."]
 position = Vector2(461, 625)
 freeze_mode = 1
@@ -316,6 +351,7 @@ texture = ExtResource("5_0l1d5")
 [node name="BreadCensor" type="Area2D" parent="Right/Oven"]
 position = Vector2(0, 36)
 script = SubResource("GDScript_tfue5")
+numbers = Array[Texture2D]([ExtResource("12_oe73v"), ExtResource("8_gh5yc"), ExtResource("13_f2v2w"), ExtResource("14_i00nd"), ExtResource("15_6lrbh"), ExtResource("16_ffedy"), ExtResource("17_vn5wv"), ExtResource("18_1lb7a"), ExtResource("19_michc"), ExtResource("20_d4702")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Oven/BreadCensor"]
 position = Vector2(22.5, 13)
