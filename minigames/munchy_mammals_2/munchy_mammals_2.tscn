@@ -1,0 +1,325 @@
+[gd_scene load_steps=43 format=3 uid="uid://k1q5hf4keal6"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ku12u"]
+[ext_resource type="Texture2D" uid="uid://bi64jh2fsnxoo" path="res://minigames/munchy_mammals_2/frames/munchy0001.png" id="2_0rr5j"]
+[ext_resource type="AudioStream" uid="uid://cb0q082wubmey" path="res://minigames/munchy_mammals_2/move.wav" id="2_d0mew"]
+[ext_resource type="AudioStream" uid="uid://5n872ocrg6ok" path="res://minigames/munchy_mammals_2/scream2.wav" id="2_s6sfe"]
+[ext_resource type="Texture2D" uid="uid://da5asjs7a7goq" path="res://minigames/munchy_mammals_2/frames/munchy0002.png" id="3_lp5hj"]
+[ext_resource type="Script" uid="uid://hlymkvsb35rv" path="res://minigames/munchy_mammals_2/screen_animated_sprite_2d.gd" id="4_ctuib"]
+[ext_resource type="AudioStream" uid="uid://nebr7wt7sth2" path="res://minigames/munchy_mammals_2/scream.wav" id="4_frgx5"]
+[ext_resource type="Texture2D" uid="uid://cse3vcnfu8jqu" path="res://minigames/munchy_mammals_2/frames/munchy0003.png" id="5_ctuib"]
+[ext_resource type="Texture2D" uid="uid://bl7tquwb0qh1l" path="res://minigames/munchy_mammals_2/frames/munchy0004.png" id="6_exbxl"]
+[ext_resource type="FontFile" uid="uid://bsueqpcviwyrx" path="res://assets/upheavtt.ttf" id="6_nk3mq"]
+[ext_resource type="Texture2D" uid="uid://byd4o405lmvib" path="res://minigames/munchy_mammals_2/frames/munchy0005.png" id="7_d6pyl"]
+[ext_resource type="Texture2D" uid="uid://b1ss128mnirwo" path="res://minigames/munchy_mammals_2/frames/munchy0006.png" id="8_vjqmh"]
+[ext_resource type="Texture2D" uid="uid://bpweyfy1epl2k" path="res://minigames/munchy_mammals_2/frames/munchy0007.png" id="9_6aw3e"]
+[ext_resource type="Texture2D" uid="uid://dejjmi60s258t" path="res://minigames/munchy_mammals_2/frames/munchy0009.png" id="9_vpojc"]
+[ext_resource type="Texture2D" uid="uid://d4ekp7pl5lx02" path="res://minigames/munchy_mammals_2/frames/munchy0008.png" id="10_4y2sf"]
+[ext_resource type="Texture2D" uid="uid://dva86a8dmg0v0" path="res://minigames/munchy_mammals_2/frames/munchy0010.png" id="10_d0mew"]
+[ext_resource type="Texture2D" uid="uid://cley4vg5ormsg" path="res://minigames/munchy_mammals_2/frames/munchy0011.png" id="11_vuf7p"]
+[ext_resource type="Texture2D" uid="uid://bvkvrxm3bw6q2" path="res://minigames/munchy_mammals_2/frames/munchy0012.png" id="12_kfwy6"]
+[ext_resource type="AudioStream" uid="uid://djqgbqb7b78lw" path="res://minigames/munchy_mammals_2/munch.wav" id="15_vuf7p"]
+[ext_resource type="Texture2D" uid="uid://c6lwhjaqcsbop" path="res://minigames/munchy_mammals_2/frames/munchyup0005.png" id="15_xiypb"]
+[ext_resource type="Texture2D" uid="uid://0aliad4kid6w" path="res://minigames/munchy_mammals_2/frames/munchyup0006.png" id="16_frgx5"]
+[ext_resource type="Texture2D" uid="uid://cp37jj2a0hdw7" path="res://minigames/munchy_mammals_2/frames/munchyup0007.png" id="17_s6sfe"]
+[ext_resource type="Texture2D" uid="uid://cum3oukyed2en" path="res://minigames/munchy_mammals_2/frames/munchyup0008.png" id="18_nk3mq"]
+[ext_resource type="Texture2D" uid="uid://cu4tg3rjxq2vn" path="res://minigames/munchy_mammals_2/frames/munchyup0009.png" id="19_obu42"]
+[ext_resource type="Texture2D" uid="uid://b5kfjybxnldi3" path="res://minigames/munchy_mammals_2/frames/munchyup0010.png" id="20_t8emb"]
+[ext_resource type="Texture2D" uid="uid://bonv6eef62rfc" path="res://minigames/munchy_mammals_2/frames/munchyup0011.png" id="21_3dmo8"]
+[ext_resource type="Texture2D" uid="uid://qd3tkmxh3eq4" path="res://minigames/munchy_mammals_2/frames/munchyup0012.png" id="22_6owwf"]
+[ext_resource type="Texture2D" uid="uid://4y3bgukk03br" path="res://minigames/munchy_mammals_2/frames/munchyup0013.png" id="23_r48o0"]
+[ext_resource type="Texture2D" uid="uid://b8k02brn0vvot" path="res://minigames/munchy_mammals_2/frames/munchyup0014.png" id="24_w7m5o"]
+[ext_resource type="Texture2D" uid="uid://bahcewkhdc0o4" path="res://minigames/munchy_mammals_2/frames/munchyup0015.png" id="25_g8myc"]
+[ext_resource type="Texture2D" uid="uid://djmub85c1gh25" path="res://minigames/munchy_mammals_2/frames/munchyup0016.png" id="26_v42dm"]
+[ext_resource type="Texture2D" uid="uid://w145vjie6go6" path="res://minigames/munchy_mammals_2/frames/munchyup0017.png" id="27_eaxuy"]
+[ext_resource type="Texture2D" uid="uid://ce1i2t16u0md" path="res://minigames/munchy_mammals_2/frames/munchyup0018.png" id="28_5wpbi"]
+
+[sub_resource type="GDScript" id="GDScript_xiypb"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_munchy_animated_sprite_2d_4_activated() -> void:
+	CurrentGame.instance.clear_timer()
+
+
+func _on_munchy_animated_sprite_2d_4_frame_changed() -> void:
+	$Move.play()
+
+
+func _on_munchy_animated_sprite_2d_4_animation_finished() -> void:
+	CurrentGame.instance.finish()
+
+
+func _on_game_over_activated() -> void:
+	CurrentGame.instance.finish(1.5)
+
+func _on_win_activated() -> void:
+	CurrentGame.instance.win_and_finish(1.5)
+
+func _on_wtf() -> void:
+	CurrentGame.instance.win_and_finish(2.5)
+	await get_tree().create_timer(1.0).timeout
+	$Wtf.show()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_obu42"]
+font = ExtResource("6_nk3mq")
+font_size = 64
+outline_size = 50
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rr5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0rr5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lp5hj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgnye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ctuib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_exbxl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d0mew"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_6aw3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4y2sf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ufha4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_vpojc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_d0mew")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqq0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_vuf7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_kfwy6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpojc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_d6pyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vjqmh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j3hwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_xiypb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_frgx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_s6sfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_nk3mq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_obu42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_t8emb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3dmo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_6owwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_r48o0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_w7m5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_g8myc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_v42dm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_eaxuy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_5wpbi")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MunchyMammals2" type="Node"]
+script = ExtResource("1_ku12u")
+title = "Munch"
+keyboard = 1
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Control" type="Node" parent="."]
+script = SubResource("GDScript_xiypb")
+
+[node name="Scream2" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("2_s6sfe")
+volume_db = -10.0
+
+[node name="Munch" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("15_vuf7p")
+
+[node name="Move" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("2_d0mew")
+
+[node name="Scream" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("4_frgx5")
+volume_db = -10.0
+
+[node name="Wtf" type="Label" parent="Control"]
+visible = false
+z_index = 1
+z_as_relative = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -29.0
+offset_right = 78.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "wtf?"
+label_settings = SubResource("LabelSettings_obu42")
+horizontal_alignment = 1
+
+[node name="MunchyAnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("up", "left", "right")]
+sprite_frames = SubResource("SpriteFrames_0rr5j")
+frame_progress = 0.17594025
+centered = false
+script = ExtResource("4_ctuib")
+up = NodePath("MunchyAnimatedSprite2D4")
+left = NodePath("MunchyAnimatedSprite2D3")
+right = NodePath("MunchyAnimatedSprite2D2")
+is_first = true
+play_on_start = false
+metadata/_custom_type_script = "uid://hlymkvsb35rv"
+
+[node name="MunchyAnimatedSprite2D2" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D" node_paths=PackedStringArray("up", "right", "down", "sound")]
+sprite_frames = SubResource("SpriteFrames_cgnye")
+centered = false
+script = ExtResource("4_ctuib")
+up = NodePath("MunchyAnimatedSprite2D4")
+right = NodePath("MunchyAnimatedSprite2D")
+down = NodePath("MunchyAnimatedSprite2D2")
+sound = NodePath("../../Control/Munch")
+metadata/_custom_type_script = "uid://hlymkvsb35rv"
+
+[node name="MunchyAnimatedSprite2D4" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D2" node_paths=PackedStringArray("sound")]
+sprite_frames = SubResource("SpriteFrames_d0mew")
+centered = false
+script = ExtResource("4_ctuib")
+sound = NodePath("../../../Control/Munch")
+metadata/_custom_type_script = "uid://hlymkvsb35rv"
+
+[node name="MunchyAnimatedSprite2D" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D2" node_paths=PackedStringArray("sound")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_ufha4")
+centered = false
+script = ExtResource("4_ctuib")
+sound = NodePath("../../../Control/Scream")
+metadata/_custom_type_script = "uid://hlymkvsb35rv"
+
+[node name="MunchyAnimatedSprite2D2" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D2" node_paths=PackedStringArray("sound")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_dqq0w")
+frame_progress = 0.8027217
+centered = false
+script = ExtResource("4_ctuib")
+sound = NodePath("../../../Control/Munch")
+metadata/_custom_type_script = "uid://hlymkvsb35rv"
+
+[node name="MunchyAnimatedSprite2D3" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D" node_paths=PackedStringArray("sound")]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vpojc")
+centered = false
+script = ExtResource("4_ctuib")
+sound = NodePath("../../Control/Scream2")
+metadata/_custom_type_script = "uid://hlymkvsb35rv"
+
+[node name="MunchyAnimatedSprite2D4" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_j3hwe")
+centered = false
+script = ExtResource("4_ctuib")
+play_on_start = false
+metadata/_custom_type_script = "uid://hlymkvsb35rv"
+
+[connection signal="activated" from="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D2/MunchyAnimatedSprite2D4" to="Control" method="_on_wtf"]
+[connection signal="activated" from="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D2/MunchyAnimatedSprite2D" to="Control" method="_on_game_over_activated"]
+[connection signal="activated" from="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D2/MunchyAnimatedSprite2D2" to="Control" method="_on_win_activated"]
+[connection signal="activated" from="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D3" to="Control" method="_on_game_over_activated"]
+[connection signal="activated" from="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D4" to="Control" method="_on_munchy_animated_sprite_2d_4_activated"]
+[connection signal="animation_finished" from="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D4" to="Control" method="_on_munchy_animated_sprite_2d_4_animation_finished"]
+[connection signal="frame_changed" from="MunchyAnimatedSprite2D/MunchyAnimatedSprite2D4" to="Control" method="_on_munchy_animated_sprite_2d_4_frame_changed"]

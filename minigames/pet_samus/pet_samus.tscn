@@ -226,7 +226,7 @@ animations = [{
 script/source = "extends Node2D
 
 @export_range(0, 90, 1.0, \"radians_as_degrees\") var move_sprite_angle: float
-@export var target_screen_distance = 8.0 # Multiple of screen
+@export var target_screen_distance = 16.0 # Multiple of screen
 
 @export var pet_target: CanvasItem
 @export var pet_target_done: CanvasItem
@@ -340,7 +340,7 @@ visible = false
 position = Vector2(477, 360)
 sprite_frames = SubResource("SpriteFrames_kgnhq")
 autoplay = "default"
-frame_progress = 0.51548207
+frame_progress = 0.8141876
 
 [node name="HandNode" type="Node2D" parent="." node_paths=PackedStringArray("pet_target", "pet_target_done", "animation_player")]
 position = Vector2(787, 596)

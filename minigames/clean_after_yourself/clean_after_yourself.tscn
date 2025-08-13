@@ -26,6 +26,7 @@ size = Vector2(27.785728, 32.054382)
 
 [node name="CleanAfterYourself" type="Node"]
 script = ExtResource("1_7gtll")
+title = "Clean"
 mouse = 3
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 

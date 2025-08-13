@@ -46,7 +46,7 @@ func finish(wait_seconds: float = 0.0):
 	is_finished = true
 	clear_timer()
 	
-	if wait_seconds > 0.0:
+	if wait_seconds > 0.0 and is_inside_tree():
 		await get_tree().create_timer(wait_seconds).timeout
 	game_finished.emit()
 	

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://00o2b0rjos0q"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_dauho"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dauho"]
+
+[node name="IcaRun" type="Node"]
+script = ExtResource("1_dauho")
+viewport_texture_filter = false
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_left = -17.0
+offset_top = -7.0
+offset_right = 131.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.35686275, 0.43137255, 0.88235295, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 1)
+anchor_mode = 0
+zoom = Vector2(8, 8)
+
+[node name="Node2D" type="Node2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+sprite_frames = SubResource("SpriteFrames_dauho")
