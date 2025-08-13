@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=30 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://v65v0aw8k8cl" path="res://minigames/8_59_Breakfast/sprites/items/soya.png" id="12_tfue5"]
 [ext_resource type="Texture2D" uid="uid://dyq7q4jhfn1pc" path="res://minigames/8_59_Breakfast/sprites/items/box.png" id="13_nph22"]
 [ext_resource type="Texture2D" uid="uid://14okjcalfrtd" path="res://minigames/8_59_Breakfast/sprites/items/salt.png" id="14_23u02"]
+[ext_resource type="Texture2D" uid="uid://cpy7opd4cxc18" path="res://minigames/8_59_Breakfast/sprites/freezer_front.png" id="19_rdmqm"]
 
 [sub_resource type="GDScript" id="GDScript_sgjaw"]
 script/source = "extends Node2D
@@ -282,6 +283,7 @@ shape = SubResource("RectangleShape2D_sgjaw")
 
 [node name="Breadroll" type="RigidBody2D" parent="."]
 position = Vector2(128, 323)
+rotation = 1.9250151
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
 script = ExtResource("9_nph22")
 
@@ -298,6 +300,7 @@ texture = ExtResource("3_vgw02")
 
 [node name="Breadroll2" type="RigidBody2D" parent="."]
 position = Vector2(104, 424)
+rotation = 1.3832674
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
 script = ExtResource("9_nph22")
 
@@ -330,6 +333,7 @@ texture = ExtResource("3_vgw02")
 
 [node name="Breadroll4" type="RigidBody2D" parent="."]
 position = Vector2(300, 412)
+rotation = 2.1933846
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
 script = ExtResource("9_nph22")
 
@@ -346,6 +350,7 @@ texture = ExtResource("3_vgw02")
 
 [node name="Breadroll5" type="RigidBody2D" parent="."]
 position = Vector2(391, 414)
+rotation = 2.2599695
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
 script = ExtResource("9_nph22")
 
@@ -361,7 +366,8 @@ shape = SubResource("CircleShape2D_0l1d5")
 texture = ExtResource("3_vgw02")
 
 [node name="Breadroll6" type="RigidBody2D" parent="."]
-position = Vector2(322, 315)
+position = Vector2(293, 308)
+rotation = 2.3002586
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
 script = ExtResource("9_nph22")
 
@@ -377,7 +383,7 @@ shape = SubResource("CircleShape2D_0l1d5")
 texture = ExtResource("3_vgw02")
 
 [node name="Breadroll7" type="RigidBody2D" parent="."]
-position = Vector2(224, 310)
+position = Vector2(212, 307)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
 script = ExtResource("9_nph22")
 
@@ -393,7 +399,7 @@ shape = SubResource("CircleShape2D_0l1d5")
 texture = ExtResource("3_vgw02")
 
 [node name="Breadroll8" type="RigidBody2D" parent="."]
-position = Vector2(264, 186)
+position = Vector2(380, 311)
 physics_material_override = SubResource("PhysicsMaterial_qrew8")
 script = ExtResource("9_nph22")
 
@@ -457,3 +463,7 @@ texture = ExtResource("14_23u02")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="salt"]
 polygon = PackedVector2Array(-9.5, -32, -9.5, -30.7, -11.5, -30, -15, -30, -17, -27, -18.5, -27, -18.5, -18.2, -20.2, -14, -21.5, -14, -21.5, -5.299999, -24.3, 5, -25.5, 5, -25.5, 16.2, -23.5, 20.2, -23.5, 22.599998, -21.5, 23.599998, -21.5, 25.7, -14.5, 28.599998, -14.5, 30, -8.799999, 30, -5.799999, 32, 8.700001, 32, 15.700001, 29, 17.900002, 29, 23.900002, 24, 26.5, 24, 26.5, 22, 27.5, 22, 27.5, 6.9000015, 21.3, -20, 21.2, -21, 23.099998, -21, 21.5, -24.2, 21.5, -26.6, 14.5, -30.7, 14.5, -32)
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(262, 554)
+texture = ExtResource("19_rdmqm")
