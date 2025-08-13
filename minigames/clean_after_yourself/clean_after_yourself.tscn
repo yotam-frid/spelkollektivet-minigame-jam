@@ -1,0 +1,202 @@
+[gd_scene load_steps=17 format=3 uid="uid://cutyrr5yo3vx0"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_7gtll"]
+[ext_resource type="Texture2D" uid="uid://cul88g5ip5v6o" path="res://minigames/clean_after_yourself/sprites/ToiletTransparent.png" id="2_awiwb"]
+[ext_resource type="Texture2D" uid="uid://dmp6oh7hu4kvu" path="res://minigames/clean_after_yourself/sprites/Poop1.png" id="3_uu7kg"]
+[ext_resource type="Texture2D" uid="uid://duxt7ntt26ueb" path="res://minigames/clean_after_yourself/sprites/Poop2.png" id="4_o17pv"]
+[ext_resource type="Texture2D" uid="uid://cugy3axudcbi4" path="res://minigames/clean_after_yourself/sprites/Poop.png" id="5_uymtp"]
+[ext_resource type="Texture2D" uid="uid://csvkvie8u6ll0" path="res://minigames/clean_after_yourself/sprites/Plate.png" id="6_77atb"]
+[ext_resource type="Texture2D" uid="uid://ca5u6jeugqcqe" path="res://minigames/clean_after_yourself/sprites/Brush.png" id="7_dkw0v"]
+[ext_resource type="Script" uid="uid://bsepq3kad58q8" path="res://minigames/clean_after_yourself/cleaning_utensil.gd" id="7_uu7kg"]
+[ext_resource type="Texture2D" uid="uid://cmpijkin8ws4n" path="res://minigames/clean_after_yourself/sprites/Hand clean.png" id="8_nkmjy"]
+[ext_resource type="Texture2D" uid="uid://b16eo16ycyywa" path="res://minigames/clean_after_yourself/sprites/Hand dirty.png" id="9_xx5ec"]
+[ext_resource type="Texture2D" uid="uid://c418ct2iqkqta" path="res://minigames/clean_after_yourself/sprites/Sponge.png" id="10_yw4uj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rdo1m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uu7kg"]
+height = 31.102356
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu7kg"]
+size = Vector2(27.785728, 32.054382)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o17pv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uu7kg"]
+
+[node name="CleanAfterYourself" type="Node"]
+script = ExtResource("1_7gtll")
+mouse = 3
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="ToiletTransparent" type="Sprite2D" parent="."]
+position = Vector2(503, 334)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_awiwb")
+
+[node name="Poop1" type="Sprite2D" parent="ToiletTransparent" groups=["Poop"]]
+position = Vector2(-235, 227.49994)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_uu7kg")
+
+[node name="Area2D" type="Area2D" parent="ToiletTransparent/Poop1" groups=["Poop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToiletTransparent/Poop1/Area2D"]
+position = Vector2(5.0000005, -7.499924)
+scale = Vector2(4.87, 4.87)
+shape = SubResource("CircleShape2D_rdo1m")
+
+[node name="Poop2" type="Sprite2D" parent="ToiletTransparent" groups=["Poop"]]
+position = Vector2(195, -67.5)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_o17pv")
+
+[node name="Area2D" type="Area2D" parent="ToiletTransparent/Poop2" groups=["Poop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToiletTransparent/Poop2/Area2D"]
+position = Vector2(-2.5000005, 2.5000005)
+scale = Vector2(5.76, 5.76)
+shape = SubResource("CircleShape2D_rdo1m")
+
+[node name="Poop" type="Sprite2D" parent="ToiletTransparent" groups=["Poop"]]
+position = Vector2(-165, -130)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_uymtp")
+
+[node name="Area2D" type="Area2D" parent="ToiletTransparent/Poop" groups=["Poop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToiletTransparent/Poop/Area2D"]
+position = Vector2(-5.0000014, 7.5000024)
+scale = Vector2(5.96, 5.96)
+shape = SubResource("CircleShape2D_rdo1m")
+
+[node name="Poop3" type="Sprite2D" parent="ToiletTransparent" groups=["Poop"]]
+position = Vector2(65, 482.5)
+rotation = 1.4346607
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_uu7kg")
+
+[node name="Area2D" type="Area2D" parent="ToiletTransparent/Poop3" groups=["Poop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToiletTransparent/Poop3/Area2D"]
+position = Vector2(5.0000005, -7.499924)
+scale = Vector2(4.87, 4.87)
+shape = SubResource("CircleShape2D_rdo1m")
+
+[node name="Poop4" type="Sprite2D" parent="ToiletTransparent" groups=["Poop"]]
+position = Vector2(-32.5, -317.5)
+rotation = -0.71733034
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_o17pv")
+
+[node name="Area2D" type="Area2D" parent="ToiletTransparent/Poop4" groups=["Poop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToiletTransparent/Poop4/Area2D"]
+position = Vector2(-2.5000005, 2.5000005)
+scale = Vector2(5.76, 5.76)
+shape = SubResource("CircleShape2D_rdo1m")
+
+[node name="Poop5" type="Sprite2D" parent="ToiletTransparent" groups=["Poop"]]
+position = Vector2(345, 175)
+rotation = 1.0035644
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_uymtp")
+
+[node name="Area2D" type="Area2D" parent="ToiletTransparent/Poop5" groups=["Poop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToiletTransparent/Poop5/Area2D"]
+position = Vector2(-5.0000014, 7.5000024)
+scale = Vector2(5.96, 5.96)
+shape = SubResource("CircleShape2D_rdo1m")
+
+[node name="Plate" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(484, 364)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_77atb")
+
+[node name="CleaningUtensil" type="Node2D" parent="." node_paths=PackedStringArray("toilet", "plate", "brush", "hand", "handDirty", "sponge", "mouseDetectionQuickFix")]
+script = ExtResource("7_uu7kg")
+toilet = NodePath("../ToiletTransparent")
+plate = NodePath("../Plate")
+brush = NodePath("Brush")
+hand = NodePath("HandClean")
+handDirty = NodePath("HandDirty")
+sponge = NodePath("Sponge")
+mouseDetectionQuickFix = NodePath("../MouseDetectionQuickFix")
+
+[node name="Brush" type="Sprite2D" parent="CleaningUtensil"]
+position = Vector2(823, 505)
+rotation = -1.2740904
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_dkw0v")
+
+[node name="Area2D" type="Area2D" parent="CleaningUtensil/Brush"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleaningUtensil/Brush/Area2D"]
+position = Vector2(224.99998, -182.49998)
+rotation = -2.1642082
+scale = Vector2(16.76, 11.9)
+shape = SubResource("CapsuleShape2D_uu7kg")
+
+[node name="MouseHoldArea" type="Area2D" parent="CleaningUtensil/Brush" groups=["Handle"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleaningUtensil/Brush/MouseHoldArea"]
+position = Vector2(-76.23033, 75.59049)
+rotation = -0.71558505
+scale = Vector2(27.189999, 3.2000003)
+shape = SubResource("RectangleShape2D_uu7kg")
+
+[node name="HandClean" type="Sprite2D" parent="CleaningUtensil"]
+position = Vector2(-224, 523)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_nkmjy")
+
+[node name="HandArea2D" type="Area2D" parent="CleaningUtensil/HandClean"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleaningUtensil/HandClean/HandArea2D"]
+position = Vector2(-1.5735626e-05, -87.5)
+rotation = -0.017453292
+scale = Vector2(25.83, 31.82)
+shape = SubResource("CircleShape2D_o17pv")
+
+[node name="HandDirty" type="Sprite2D" parent="CleaningUtensil"]
+position = Vector2(-363, 524)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_xx5ec")
+
+[node name="HandDirtyArea2D" type="Area2D" parent="CleaningUtensil/HandDirty"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleaningUtensil/HandDirty/HandDirtyArea2D"]
+position = Vector2(-1.5735626e-05, -87.5)
+rotation = -0.017453292
+scale = Vector2(25.83, 31.82)
+shape = SubResource("CircleShape2D_o17pv")
+
+[node name="Sponge" type="Sprite2D" parent="CleaningUtensil"]
+position = Vector2(-516, 303)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_yw4uj")
+
+[node name="Area2D" type="Area2D" parent="CleaningUtensil/Sponge"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CleaningUtensil/Sponge/Area2D"]
+position = Vector2(-2.5000153, 2.5)
+rotation = -2.1642082
+scale = Vector2(16.76, 11.9)
+shape = SubResource("CapsuleShape2D_uu7kg")
+
+[node name="MouseDetectionQuickFix" type="Node2D" parent="."]
+
+[node name="MouseDetectionQuickFix" type="Area2D" parent="MouseDetectionQuickFix"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetectionQuickFix/MouseDetectionQuickFix"]
+shape = SubResource("CircleShape2D_uu7kg")
+
+[connection signal="area_entered" from="CleaningUtensil/Brush/Area2D" to="CleaningUtensil" method="_on_mouse_hold_area_area_entered"]
+[connection signal="mouse_entered" from="CleaningUtensil/Brush/MouseHoldArea" to="CleaningUtensil" method="_on_mouse_hold_area_mouse_entered"]
+[connection signal="mouse_exited" from="CleaningUtensil/Brush/MouseHoldArea" to="CleaningUtensil" method="_on_mouse_hold_area_mouse_exited"]
+[connection signal="area_entered" from="CleaningUtensil/HandClean/HandArea2D" to="CleaningUtensil" method="_on_hand_area_2d_area_entered"]
+[connection signal="area_entered" from="CleaningUtensil/HandDirty/HandDirtyArea2D" to="CleaningUtensil" method="_on_hand_area_2d_area_entered"]
+[connection signal="area_entered" from="MouseDetectionQuickFix/MouseDetectionQuickFix" to="CleaningUtensil" method="_on_mouse_detection_quick_fix_area_entered"]
+[connection signal="area_exited" from="MouseDetectionQuickFix/MouseDetectionQuickFix" to="CleaningUtensil" method="_on_mouse_detection_quick_fix_area_exited"]
