@@ -149,12 +149,15 @@ func _show_controls(minigame: Minigame):
 	var kbd_spacebar = minigame.keyboard & 2
 	var kbd_full = minigame.keyboard & 4
 	
-	if kbd_directionals:
-		%IntroDirectionals.animate_show()
-	if kbd_spacebar:
-		%IntroSpacebar.animate_show()
-	if kbd_full:
-		%IntroFullKeyboard.animate_show()
+	if kbd_directionals and kbd_spacebar:
+		%IntroArrowsAndSpace.animate_show()
+	else:
+		if kbd_directionals:
+			%IntroDirectionals.animate_show()
+		if kbd_spacebar:
+			%IntroSpacebar.animate_show()
+		if kbd_full:
+			%IntroFullKeyboard.animate_show()
 		
 	# Reset sprite animations
 	for n: Control in %IntroControls.get_children():

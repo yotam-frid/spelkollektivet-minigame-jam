@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bk8s5wu05xdmr"]
+[gd_scene load_steps=30 format=3 uid="uid://bk8s5wu05xdmr"]
 
 [ext_resource type="FontFile" uid="uid://bsueqpcviwyrx" path="res://assets/upheavtt.ttf" id="1_ay4pc"]
 [ext_resource type="Script" uid="uid://djtc0jl710y1" path="res://ui/ui.gd" id="1_nb4k0"]
@@ -15,8 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://bt0nmjecahqs4" path="res://ui/images/arrowkeys0002.png" id="10_ju45i"]
 [ext_resource type="Texture2D" uid="uid://cls212mq25q0e" path="res://ui/images/Spacebar0001.png" id="11_74toj"]
 [ext_resource type="Texture2D" uid="uid://dm1simdx64e0w" path="res://ui/images/Spacebar0002.png" id="12_co7pv"]
+[ext_resource type="Texture2D" uid="uid://c5otwecjcge5j" path="res://ui/images/arrowandspace0001.png" id="13_3lbto"]
 [ext_resource type="Texture2D" uid="uid://6m7gogvy2x8c" path="res://ui/images/keyboard0001.png" id="13_x7nxp"]
 [ext_resource type="Texture2D" uid="uid://0ox2d4r7rlsi" path="res://ui/images/keyboard0002.png" id="14_3lbto"]
+[ext_resource type="Texture2D" uid="uid://b5xc6r4a1b37o" path="res://ui/images/arrowandspace0002.png" id="14_c3fg2"]
 [ext_resource type="Script" uid="uid://b7gviuacbfo8p" path="res://ui/lives.gd" id="17_ju45i"]
 [ext_resource type="PackedScene" uid="uid://cha3eeymyhg4j" path="res://ui/life_indicator.tscn" id="19_co7pv"]
 
@@ -98,6 +100,20 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_bw7v0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_3lbto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_c3fg2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x7jpl"]
 animations = [{
 "frames": [{
@@ -160,9 +176,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -441.0
-offset_top = -106.0
-offset_right = 451.0
+offset_left = -547.0
+offset_top = -106.000015
+offset_right = 589.0
 offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -210,10 +226,26 @@ script = ExtResource("2_vkava")
 metadata/_custom_type_script = "uid://bvjck5jjycgm4"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroSpacebar"]
-position = Vector2(90, 14)
+position = Vector2(104.20001, 13.650002)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_bi8hs")
 autoplay = "default"
+
+[node name="IntroArrowsAndSpace" type="Control" parent="IntroControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_vkava")
+metadata/_custom_type_script = "uid://bvjck5jjycgm4"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroArrowsAndSpace"]
+position = Vector2(107.69997, 12.400002)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_bw7v0")
+autoplay = "default"
+frame_progress = 0.17354919
 
 [node name="IntroFullKeyboard" type="Control" parent="IntroControls"]
 unique_name_in_owner = true
@@ -230,6 +262,7 @@ sprite_frames = SubResource("SpriteFrames_x7jpl")
 autoplay = "default"
 
 [node name="MainSceneForeground" parent="." instance=ExtResource("7_pa1oa")]
+visible = false
 layout_mode = 1
 
 [node name="IntroText" type="Control" parent="."]

@@ -1,0 +1,158 @@
+[gd_scene load_steps=11 format=3 uid="uid://e218c2400ymi"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ahhux"]
+[ext_resource type="Texture2D" uid="uid://c7wiwn4k7e00v" path="res://minigames/orb_game/orbscene0001.png" id="2_c8ix4"]
+[ext_resource type="Texture2D" uid="uid://cue646of0rbo7" path="res://minigames/orb_game/orbscene0002.png" id="3_5xsxx"]
+[ext_resource type="Texture2D" uid="uid://bh4b647gjr0pq" path="res://minigames/orb_game/orbscene0003.png" id="4_515tk"]
+[ext_resource type="Texture2D" uid="uid://c88cuc7cci0oo" path="res://minigames/orb_game/prayhand.png" id="5_5xsxx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxfw8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c8ix4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5xsxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_515tk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_5xsxx"]
+script/source = "extends Node
+
+@export var hand_left: Node2D
+@export var hand_right: Node2D
+
+@onready var hand_right_max_x = hand_right.position.x
+@onready var hand_left_min_x = hand_left.position.x
+@onready var animation_player: AnimationPlayer = $\"../AnimationPlayer\"
+@export var speed: float = 20.0
+
+var target_x = 480.0
+var meet_offset = 8
+
+var is_won = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.'
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_pressed(\"left\"):
+		hand_right.position.x = clampf(hand_right.position.x - speed * delta, target_x - meet_offset, hand_right_max_x)
+	if Input.is_action_pressed(\"right\"):
+		hand_left.position.x = clampf(hand_left.position.x + speed * delta, hand_left_min_x, target_x + meet_offset)
+
+	var is_meeting = hand_right.position.x <= target_x and hand_left.position.x >= target_x
+	
+	if is_meeting and not is_won:
+		is_won = true
+		CurrentGame.instance.win()
+		animation_player.play(\"meet\")
+"
+
+[sub_resource type="Animation" id="Animation_5xsxx"]
+resource_name = "meet"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PrayHand2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 1), Vector2(-1, 1.05), Vector2(-1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PrayHand1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_515tk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PrayHand2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PrayHand1:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_515tk"]
+_data = {
+&"RESET": SubResource("Animation_515tk"),
+&"meet": SubResource("Animation_5xsxx")
+}
+
+[node name="OrbGame" type="Node"]
+script = ExtResource("1_ahhux")
+title = "Worship"
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oxfw8")
+autoplay = "default"
+frame_progress = 0.9465351
+centered = false
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("hand_left", "hand_right")]
+script = SubResource("GDScript_5xsxx")
+hand_left = NodePath("../PrayHand2")
+hand_right = NodePath("../PrayHand1")
+speed = 200.0
+
+[node name="PrayHand1" type="Node2D" parent="."]
+position = Vector2(828, 619)
+
+[node name="Sprite" type="Sprite2D" parent="PrayHand1"]
+position = Vector2(201, -42.5)
+texture = ExtResource("5_5xsxx")
+
+[node name="PrayHand2" type="Node2D" parent="."]
+position = Vector2(136, 619)
+scale = Vector2(-1, 1)
+
+[node name="Sprite" type="Sprite2D" parent="PrayHand2"]
+position = Vector2(201, -42.5)
+texture = ExtResource("5_5xsxx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_515tk")
+}
