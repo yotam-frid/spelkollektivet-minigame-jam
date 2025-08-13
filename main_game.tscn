@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8f0m3qivw0b3"]
+[gd_scene load_steps=11 format=3 uid="uid://c8f0m3qivw0b3"]
 
 [ext_resource type="Script" uid="uid://dnebk85oo17s6" path="res://game_manager.gd" id="1_1oj5k"]
 [ext_resource type="PackedScene" uid="uid://dma744e4ntbm2" path="res://minigames/meatball_picker/meatball_picker.tscn" id="2_ykeeq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkk3ele4jbpob" path="res://minigames/lasagna_seconds/lasagna.tscn" id="6_f52ns"]
 [ext_resource type="PackedScene" uid="uid://cgtfc8j83f0u4" path="res://minigames/suika/suika.tscn" id="7_l5ukw"]
 [ext_resource type="PackedScene" uid="uid://dyc0e0g0bd7vp" path="res://minigames/steam_wishlist/steam_wishlist.tscn" id="8_4srsv"]
+[ext_resource type="PackedScene" uid="uid://bv4ht8mgdetr8" path="res://minigames/8_59_Breakfast/8_59_Breakfast.tscn" id="9_mf81u"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -21,7 +22,7 @@ grow_vertical = 2
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui")]
 script = ExtResource("1_1oj5k")
 ui = NodePath("../UI")
-minigame_scenes = Array[PackedScene]([ExtResource("2_ykeeq"), ExtResource("3_6bm6p"), ExtResource("4_2pltu"), ExtResource("5_f52ns"), ExtResource("6_f52ns"), ExtResource("7_l5ukw"), ExtResource("8_4srsv")])
+minigame_scenes = Array[PackedScene]([ExtResource("9_mf81u"), ExtResource("2_ykeeq"), ExtResource("3_6bm6p"), ExtResource("4_2pltu"), ExtResource("5_f52ns"), ExtResource("6_f52ns"), ExtResource("7_l5ukw"), ExtResource("8_4srsv")])
 
 [node name="UI" parent="." instance=ExtResource("3_ykeeq")]
 layout_mode = 1

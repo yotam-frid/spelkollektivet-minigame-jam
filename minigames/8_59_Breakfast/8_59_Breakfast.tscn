@@ -153,7 +153,7 @@ func _ready() -> void:
 	
 	$Oven_Closed.show()
 	$Oven_Open.hide()
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(.2).timeout
 	$Oven_Closed.hide()
 	$Oven_Open.show()
 
@@ -381,7 +381,7 @@ position = Vector2(-4, -165)
 texture = ExtResource("9_rdmqm")
 script = ExtResource("4_tl0r5")
 beat_scale_target = Vector2(1.5, 1.5)
-beat_delay = 0.020000000004074536
+beat_delay = 0.02000000000407453
 
 [node name="Madeit" type="Sprite2D" parent="Right/Oven/BreadCensor"]
 visible = false
@@ -390,7 +390,7 @@ position = Vector2(1, -164)
 texture = ExtResource("10_bhd8d")
 script = ExtResource("4_tl0r5")
 beat_scale_target = Vector2(1.5, 1.5)
-beat_delay = 0.020000000004074536
+beat_delay = 0.02000000000407453
 
 [node name="Tray" type="Sprite2D" parent="Right"]
 z_as_relative = false
