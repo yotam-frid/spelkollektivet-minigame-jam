@@ -119,9 +119,12 @@ size = Vector2(381, 180)
 resource_name = "BreadCensor"
 script/source = "extends Area2D
 
+var breadrolls_requirement = 4
 var breadrolls = []
 
 func _ready() -> void:
+	set_difficulty()
+	
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
 	
@@ -143,7 +146,7 @@ func _body_entered(body):
 		breadrolls.append(body)
 		print(\"breadrolls: \", breadrolls.size())
 		
-		if breadrolls.size() == 2:
+		if breadrolls.size() == breadrolls_requirement:
 			finish()
 	
 func _body_exited(body):
@@ -168,6 +171,9 @@ func finish():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Chair, \"position\", Vector2(15, 166), .24)
 	tween.set_ease(Tween.EASE_OUT)
+	
+func set_difficulty():
+	breadrolls_requirement = 3 + CurrentGame.instance.difficulty * 2
 	
 "
 
