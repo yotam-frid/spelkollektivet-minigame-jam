@@ -13,10 +13,12 @@ var minigame_won = false
 @onready var lives_reset_pos = lives.position
 
 signal minigame_zoomed_in
+signal minigame_zoomed_out
+signal ready_for_next_minigame
 
 var current_minigame: Minigame = null
 var minigame_zoomed_out_scale = Vector2.ONE / 3.5
-var minigame_zoom_duration = 0.2
+var minigame_zoom_duration = 0.5
 
 func _ready() -> void:
 	_hide_controls(false)
@@ -24,20 +26,33 @@ func _ready() -> void:
 	lives.init_lives(4)
 	_center_pivot(minigame_viewport_container)
 
-func show_minigame_intro(minigame: Minigame):
-	main_scene_foreground.show_intro()
-	
+func show_minigame_intro(minigame: Minigame):	
+	_hide_lives()
 	_show_controls(minigame)
-	await _create_ui_timer(1.5)
-	
-	_show_text(minigame.title)
+	main_scene_foreground.open()
+	await main_scene_foreground.opened
 	await _create_ui_timer(1.0)
 	
-func hide_minigame_intro():
-	_hide_lives()
-	await get_tree().create_timer(1.0).timeout
+func start_game(minigame: Minigame):
 	_hide_controls(true)
+	await _create_ui_timer(0.5)
+	show_minigame_viewport(minigame)
+	_show_text(minigame.title)
+	zoom_in_on_game(minigame)
+	await _create_ui_timer(1.5)
 	_hide_text(true)
+	
+func finish_game(minigame: Minigame, won: bool):
+	set_won(won)
+	_show_lives()
+	await hide_minigame_viewport()
+	clear_viewport()
+	# Emits to the manager we can safely unload the minigame
+	minigame_zoomed_out.emit()
+	
+	await inbetween()
+	
+	ready_for_next_minigame.emit()
 	
 func show_minigame_viewport(minigame: Minigame):
 	# Load minigame into viewport
@@ -55,10 +70,7 @@ func show_minigame_viewport(minigame: Minigame):
 	minigame_viewport_container.show()
 	minigame_viewport_container.scale = minigame_zoomed_out_scale # This should fit in the viewport
 	
-	main_scene_foreground.open()
-	
-	await main_scene_foreground.zoomed
-	
+func zoom_in_on_game(minigame: Minigame):
 	# Re-enable minigame process
 	minigame.process_mode = Node.PROCESS_MODE_INHERIT
 	# Show ingame UI and zoom in
@@ -70,6 +82,8 @@ func show_minigame_viewport(minigame: Minigame):
 	tween.tween_callback(func():
 		minigame_zoomed_in.emit()
 	)
+	
+	main_scene_foreground.zoom()
 	
 	
 func hide_minigame_viewport():
@@ -90,11 +104,15 @@ func set_won(won: bool):
 ## Downtime between games
 func inbetween():
 	main_scene_foreground.show_post_game(minigame_won)
+	
 	_show_lives()
+	if not minigame_won:
+		lives.lose_life()
 		
-	await GlobalSong.beat
+	await _create_ui_timer(1.0)
+		
 	main_scene_foreground.reset()
-	await _create_ui_timer(2.0)
+	await _create_ui_timer(1.0)
 	
 	
 func clear_viewport():

@@ -27,11 +27,7 @@ func next_minigame():
 	
 	print("Showing intro")
 	await ui.show_minigame_intro(current_minigame)
-	print("Hiding intro")
-	ui.hide_minigame_intro()
-	
-	print("Showing game")
-	ui.show_minigame_viewport(current_minigame)
+	ui.start_game(current_minigame)
 	
 	await get_tree().process_frame
 	await ui.minigame_zoomed_in
@@ -42,14 +38,10 @@ func on_minigame_finished():
 	await get_tree().process_frame
 	
 	print("Game finished, won: " + str(current_minigame_won))
-	await ui.hide_minigame_viewport()
-	
-	print("Unloading game")
-	ui.clear_viewport()
+	ui.finish_game(current_minigame, current_minigame_won)
+	await ui.minigame_zoomed_out
 	unload_current_minigame()
-	
-	print("Showing inbetween")
-	await ui.inbetween()
+	await ui.ready_for_next_minigame
 	next_minigame()
 	
 func on_minigame_timer_started():

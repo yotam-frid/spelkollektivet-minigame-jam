@@ -20,10 +20,10 @@ func animate_show():
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(target_node, "scale", target_scale, 0.3)
+	tween.tween_property(target_node, "scale", target_scale, 0.2)
 	
 func animate_hide():
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(target_node, "scale", Vector2.ZERO, 0.3)
+	tween.tween_property(target_node, "scale", Vector2.ZERO, 0.2)
 	tween.tween_callback(func(): visible = false)

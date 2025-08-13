@@ -183,6 +183,7 @@ stream = ExtResource("2_ov85x")
 environment = SubResource("Environment_rqjyf")
 script = SubResource("GDScript_hatlx")
 colors = Array[Color]([Color(0.56511205, 0.683812, 1, 1), Color(0.44716036, 0.9406256, 0.6225694, 1), Color(0.95936316, 0.70554876, 0.50891274, 1), Color(0.908007, 0.59294635, 0.84292954, 1), Color(0.39554167, 0.77321, 0.89911044, 1), Color(0.7818174, 0.79453737, 0.3281131, 1), Color(0.9584314, 0.67001086, 0.74368566, 1)])
+duration_per_color = 1.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.6704949, 0.7383408, -0.072727606, 0.06341317, 0.040635556, 0.9971597, 0.73919904, -0.6732025, -0.01957461, 0, 9, 0)

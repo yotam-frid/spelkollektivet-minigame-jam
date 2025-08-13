@@ -178,7 +178,7 @@ tracks/12/keys = {
 
 [sub_resource type="Animation" id="Animation_s2liu"]
 resource_name = "open"
-length = 2.0
+length = 1.45
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -187,7 +187,7 @@ tracks/0/path = NodePath("Rightcurtainback:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.9),
 "transitions": PackedFloat32Array(-2, 1),
 "update": 0,
 "values": [Vector2(724.5, 304.5), Vector2(1307, 305)]
@@ -235,8 +235,8 @@ tracks/4/path = NodePath("Leftcurtainback:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(-2, 1),
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(-2, 2),
 "update": 0,
 "values": [Vector2(212.5, 305.5), Vector2(-345, 306)]
 }
@@ -271,11 +271,14 @@ tracks/7/path = NodePath(".")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.95, 1.45),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
 "method": &"_on_close"
+}, {
+"args": [],
+"method": &"_on_curtains_opened"
 }, {
 "args": [],
 "method": &"_on_tv_zoom"
@@ -288,8 +291,8 @@ tracks/8/path = NodePath("TvBack:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 1.4, 2),
-"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"times": PackedFloat32Array(0, 1, 1.45),
+"transitions": PackedFloat32Array(0.5, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1), Vector2(5, 5)]
 }
@@ -377,7 +380,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_snv73"]
 resource_name = "happy"
-length = 0.2
+length = 0.1
+loop_mode = 2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -386,7 +390,7 @@ tracks/0/path = NodePath("LogoFace/SpelFace:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 0),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -40)]
@@ -449,31 +453,26 @@ texture = ExtResource("2_pu8t4")
 position = Vector2(212.5, 305.5)
 texture = ExtResource("2_s2liu")
 script = ExtResource("10_pu8t4")
-beat_position_add = Vector2(5, 0)
 
 [node name="Rightcurtainback" type="Sprite2D" parent="."]
 position = Vector2(724.5, 304.5)
 texture = ExtResource("3_0d34j")
 script = ExtResource("10_pu8t4")
-beat_position_add = Vector2(-5, 0)
 
 [node name="Leftcurtain" type="Sprite2D" parent="."]
 position = Vector2(95, 344)
 texture = ExtResource("3_s2liu")
 script = ExtResource("10_pu8t4")
-beat_position_add = Vector2(0, 5)
 
 [node name="Rightcurtain" type="Sprite2D" parent="."]
 position = Vector2(866, 350)
 texture = ExtResource("4_0d34j")
 script = ExtResource("10_pu8t4")
-beat_position_add = Vector2(0, 5)
 
 [node name="Topcurtain" type="Sprite2D" parent="."]
 position = Vector2(484, 40)
 texture = ExtResource("4_sqbdq")
 script = ExtResource("10_pu8t4")
-beat_position_add = Vector2(0, 10)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -511,8 +510,7 @@ beat_position_add = Vector2(0, 15)
 beat_scale_target = Vector2(1.1, 0.9)
 
 [node name="LogoFace" type="Node2D" parent="."]
-visible = false
-position = Vector2(468, 290)
+position = Vector2(468, 262)
 script = ExtResource("12_koq84")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="LogoFace"]
