@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv4ht8mgdetr8"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
+[ext_resource type="Texture2D" uid="uid://cebomdgf074v0" path="res://icon.svg" id="2_sgjaw"]
+
+[sub_resource type="GDScript" id="GDScript_sgjaw"]
+script/source = "extends Node2D
+
+var held_object: RigidBody2D = null
+var was_frozen := false
+
+func _process(_delta):
+	var mouse_pos = get_viewport().get_mouse_position()
+	var space_state = get_world_2d().direct_space_state
+
+	if Input.is_action_just_pressed(\"left_click\") and held_object == null:
+		var query = PhysicsPointQueryParameters2D.new()
+		query.position = mouse_pos
+		query.collide_with_areas = true
+		query.collide_with_bodies = true
+
+		var results = space_state.intersect_point(query, 1)
+		for result in results:
+			if result.collider is RigidBody2D:
+				held_object = result.collider
+				was_frozen = held_object.freeze
+				held_object.freeze = true 
+				break
+
+	if Input.is_action_just_released(\"left_click\") and held_object != null:
+		held_object.freeze = was_frozen 
+		held_object.linear_velocity = Vector2.ZERO
+		held_object.angular_velocity = 0
+		held_object = null
+
+	if held_object:
+		held_object.global_position = get_global_mouse_position()
+"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sgjaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgjaw"]
+size = Vector2(266, 10)
+
+[sub_resource type="GDScript" id="GDScript_ewha7"]
+resource_name = "Breadroll"
+script/source = "extends RigidBody2D
+"
+
+[node name="8_59_Breakfast" type="Node"]
+script = ExtResource("1_ioj25")
+title = "8:59 Breakfast"
+viewport_zoom = 4
+mouse = 2
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Controller" type="Node2D" parent="."]
+script = SubResource("GDScript_sgjaw")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(487, 716)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_sgjaw")
+
+[node name="Shelf" type="StaticBody2D" parent="."]
+position = Vector2(723, 382)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelf"]
+shape = SubResource("RectangleShape2D_sgjaw")
+
+[node name="Breadroll" type="RigidBody2D" parent="."]
+position = Vector2(217, 155)
+script = SubResource("GDScript_ewha7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Breadroll"]
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Breadroll"]
+texture = ExtResource("2_sgjaw")

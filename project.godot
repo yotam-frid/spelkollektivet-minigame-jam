@@ -78,6 +78,10 @@ skip={
 ]
 }
 
+[physics]
+
+2d/default_gravity=1190.0510000000004
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
