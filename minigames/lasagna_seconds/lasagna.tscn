@@ -1,16 +1,890 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkk3ele4jbpob"]
+[gd_scene load_steps=194 format=3 uid="uid://dkk3ele4jbpob"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_6tker"]
 [ext_resource type="Script" uid="uid://r6b7lw3lfar8" path="res://minigames/lasagna_seconds/lasagna_gamemanager.gd" id="2_t7q41"]
+[ext_resource type="Texture2D" uid="uid://jiqkpv8o3fo7" path="res://minigames/lasagna_seconds/lasagnaAssets/EndingAnim/Sprite-0001-Sheet.png" id="2_xohit"]
+[ext_resource type="Texture2D" uid="uid://o2fp25v1qo8v" path="res://minigames/lasagna_seconds/lasagnaAssets/0001.png" id="3_xohit"]
+[ext_resource type="Texture2D" uid="uid://caebfvnnmj0us" path="res://minigames/lasagna_seconds/lasagnaAssets/0002.png" id="4_231e7"]
+[ext_resource type="Texture2D" uid="uid://hv0pgan06hmc" path="res://minigames/lasagna_seconds/lasagnaAssets/0003.png" id="5_3d7wm"]
+[ext_resource type="Texture2D" uid="uid://fi3f4kkbyuu1" path="res://minigames/lasagna_seconds/lasagnaAssets/0004.png" id="6_oh5gf"]
+[ext_resource type="Texture2D" uid="uid://d01nujiu375rb" path="res://minigames/lasagna_seconds/lasagnaAssets/0005.png" id="7_moevo"]
+[ext_resource type="Texture2D" uid="uid://bajvas72n7kmc" path="res://minigames/lasagna_seconds/lasagnaAssets/0006.png" id="8_g1crv"]
+[ext_resource type="Texture2D" uid="uid://bx0x4hi2ivvmh" path="res://minigames/lasagna_seconds/lasagnaAssets/0007.png" id="9_a1flt"]
+[ext_resource type="Texture2D" uid="uid://n4dsrtda5hiv" path="res://minigames/lasagna_seconds/lasagnaAssets/0008.png" id="10_g2d6w"]
+[ext_resource type="Texture2D" uid="uid://ch8o7vwixgdca" path="res://minigames/lasagna_seconds/lasagnaAssets/0009.png" id="11_1vi23"]
+[ext_resource type="Texture2D" uid="uid://12kstggjsf6a" path="res://minigames/lasagna_seconds/lasagnaAssets/0010.png" id="12_7jre8"]
+[ext_resource type="Texture2D" uid="uid://d25gjlytndim3" path="res://minigames/lasagna_seconds/lasagnaAssets/0011.png" id="13_304uy"]
+[ext_resource type="Texture2D" uid="uid://c207pn1tvbg2" path="res://minigames/lasagna_seconds/lasagnaAssets/0012.png" id="14_4teq6"]
+[ext_resource type="Texture2D" uid="uid://dtqtffoe8j5ya" path="res://minigames/lasagna_seconds/lasagnaAssets/0013.png" id="15_tu32x"]
+[ext_resource type="Texture2D" uid="uid://8524t1ejpyp1" path="res://minigames/lasagna_seconds/lasagnaAssets/0014.png" id="16_amci4"]
+[ext_resource type="Texture2D" uid="uid://l6uamepn1neb" path="res://minigames/lasagna_seconds/lasagnaAssets/0015.png" id="17_48nke"]
+[ext_resource type="Texture2D" uid="uid://cdq1p506aqkxh" path="res://minigames/lasagna_seconds/lasagnaAssets/0016.png" id="18_cmlel"]
+[ext_resource type="Texture2D" uid="uid://dwu0b77qo083j" path="res://minigames/lasagna_seconds/lasagnaAssets/0017.png" id="19_e31cv"]
+[ext_resource type="Texture2D" uid="uid://dtqpaxtb4o3ta" path="res://minigames/lasagna_seconds/lasagnaAssets/0018.png" id="20_jv4vp"]
+[ext_resource type="Texture2D" uid="uid://b8chhjpfyn61x" path="res://minigames/lasagna_seconds/lasagnaAssets/0019.png" id="21_t6q3c"]
+[ext_resource type="Texture2D" uid="uid://doghbjqwff328" path="res://minigames/lasagna_seconds/lasagnaAssets/0020.png" id="22_iw7ax"]
+[ext_resource type="Texture2D" uid="uid://bt07yi455v3o4" path="res://minigames/lasagna_seconds/lasagnaAssets/0021.png" id="23_82y0k"]
+[ext_resource type="Texture2D" uid="uid://bbt71auhf20ru" path="res://minigames/lasagna_seconds/lasagnaAssets/0022.png" id="24_8mdlr"]
+[ext_resource type="Texture2D" uid="uid://dsppxh8xis7rg" path="res://minigames/lasagna_seconds/lasagnaAssets/0023.png" id="25_4xv3f"]
+[ext_resource type="Texture2D" uid="uid://be8q36q6fvuwh" path="res://minigames/lasagna_seconds/lasagnaAssets/0024.png" id="26_86qmv"]
+[ext_resource type="Texture2D" uid="uid://dpqqjtf18estl" path="res://minigames/lasagna_seconds/lasagnaAssets/0025.png" id="27_ae4by"]
+[ext_resource type="Texture2D" uid="uid://bulujoii3o1s1" path="res://minigames/lasagna_seconds/lasagnaAssets/0026.png" id="28_vstxg"]
+[ext_resource type="Texture2D" uid="uid://co1pwvr75x5an" path="res://minigames/lasagna_seconds/lasagnaAssets/0027.png" id="29_2e1wd"]
+[ext_resource type="Texture2D" uid="uid://chkqgndac2y5b" path="res://minigames/lasagna_seconds/lasagnaAssets/0028.png" id="30_gvfe0"]
+[ext_resource type="Texture2D" uid="uid://d3ip1incmr7x2" path="res://minigames/lasagna_seconds/lasagnaAssets/0029.png" id="31_xx8jp"]
+[ext_resource type="Texture2D" uid="uid://clh54r1aeb5q" path="res://minigames/lasagna_seconds/lasagnaAssets/0030.png" id="32_jnea0"]
+[ext_resource type="Texture2D" uid="uid://8bd78oy1bxvo" path="res://minigames/lasagna_seconds/lasagnaAssets/0031.png" id="33_b72gf"]
+[ext_resource type="Texture2D" uid="uid://oeoneukqf5gk" path="res://minigames/lasagna_seconds/lasagnaAssets/0032.png" id="34_q837b"]
+[ext_resource type="Texture2D" uid="uid://dsj3088f4bo1f" path="res://minigames/lasagna_seconds/lasagnaAssets/0033.png" id="35_40630"]
+[ext_resource type="Texture2D" uid="uid://qcuc7bm1gu4j" path="res://minigames/lasagna_seconds/lasagnaAssets/0034.png" id="36_ofnmh"]
+[ext_resource type="Texture2D" uid="uid://dfnuqtfbxoarx" path="res://minigames/lasagna_seconds/lasagnaAssets/0035.png" id="37_sjcot"]
+[ext_resource type="Texture2D" uid="uid://04qoom8f4jqc" path="res://minigames/lasagna_seconds/lasagnaAssets/0036.png" id="38_h5a0r"]
+[ext_resource type="Texture2D" uid="uid://bgumvkohxhw1h" path="res://minigames/lasagna_seconds/lasagnaAssets/0037.png" id="39_7i8gb"]
+[ext_resource type="Texture2D" uid="uid://bw0x5ft4158v6" path="res://minigames/lasagna_seconds/lasagnaAssets/0038.png" id="40_xh7jq"]
+[ext_resource type="Texture2D" uid="uid://bc72h7bjipp4g" path="res://minigames/lasagna_seconds/lasagnaAssets/0039.png" id="41_x6mmh"]
+[ext_resource type="Texture2D" uid="uid://c4x8nysjxmsyf" path="res://minigames/lasagna_seconds/lasagnaAssets/0040.png" id="42_d3sw0"]
+[ext_resource type="Texture2D" uid="uid://dd6dyvcw2n48r" path="res://minigames/lasagna_seconds/lasagnaAssets/0041.png" id="43_ku41m"]
+[ext_resource type="Texture2D" uid="uid://bedessoip47ab" path="res://minigames/lasagna_seconds/lasagnaAssets/0042.png" id="44_wjmgr"]
+[ext_resource type="Texture2D" uid="uid://b4hrb3rmlhsms" path="res://minigames/lasagna_seconds/lasagnaAssets/0043.png" id="45_badqe"]
+[ext_resource type="Texture2D" uid="uid://4uc1bifltt47" path="res://minigames/lasagna_seconds/lasagnaAssets/0044.png" id="46_hxheu"]
+[ext_resource type="Texture2D" uid="uid://b1pb0cllxv8a8" path="res://minigames/lasagna_seconds/lasagnaAssets/0045.png" id="47_yjn0m"]
+[ext_resource type="Texture2D" uid="uid://cgrj81gy8nnu0" path="res://minigames/lasagna_seconds/lasagnaAssets/0046.png" id="48_l6r8k"]
+[ext_resource type="Texture2D" uid="uid://d2u8s67mgows2" path="res://minigames/lasagna_seconds/lasagnaAssets/0047.png" id="49_ar4nj"]
+[ext_resource type="Texture2D" uid="uid://ckad3capoe2ql" path="res://minigames/lasagna_seconds/lasagnaAssets/0048.png" id="50_s0jff"]
+[ext_resource type="Texture2D" uid="uid://binuyqqd32ruv" path="res://minigames/lasagna_seconds/lasagnaAssets/0049.png" id="51_isc7a"]
+[ext_resource type="Texture2D" uid="uid://d2ajjq33e0h65" path="res://minigames/lasagna_seconds/lasagnaAssets/0050.png" id="52_d1n3p"]
+[ext_resource type="Texture2D" uid="uid://3t7kxq08pofj" path="res://minigames/lasagna_seconds/lasagnaAssets/0051.png" id="53_7io6a"]
+[ext_resource type="Texture2D" uid="uid://dfnik3is006pb" path="res://minigames/lasagna_seconds/lasagnaAssets/0052.png" id="54_gqddi"]
+[ext_resource type="Texture2D" uid="uid://cga8a52ib6eff" path="res://minigames/lasagna_seconds/lasagnaAssets/0053.png" id="55_bnlkd"]
+[ext_resource type="Texture2D" uid="uid://cb7c013k3ni35" path="res://minigames/lasagna_seconds/lasagnaAssets/0054.png" id="56_0ybr1"]
+[ext_resource type="Texture2D" uid="uid://cqfv3t3675r76" path="res://minigames/lasagna_seconds/lasagnaAssets/0055.png" id="57_vg8gn"]
+[ext_resource type="Texture2D" uid="uid://cmmttvstbohwu" path="res://minigames/lasagna_seconds/lasagnaAssets/0056.png" id="58_cfnvc"]
+[ext_resource type="Texture2D" uid="uid://dao8krd2hqshk" path="res://minigames/lasagna_seconds/lasagnaAssets/0057.png" id="59_8s343"]
+[ext_resource type="Texture2D" uid="uid://bdmn68qaf3ra" path="res://minigames/lasagna_seconds/lasagnaAssets/0058.png" id="60_yt0kj"]
+[ext_resource type="Texture2D" uid="uid://clm001uhke3oe" path="res://minigames/lasagna_seconds/lasagnaAssets/0059.png" id="61_7igod"]
+[ext_resource type="Texture2D" uid="uid://4405mjobdcg5" path="res://minigames/lasagna_seconds/lasagnaAssets/0060.png" id="62_srn2f"]
+[ext_resource type="Texture2D" uid="uid://32mtkylxa4nb" path="res://minigames/lasagna_seconds/lasagnaAssets/0061.png" id="63_8bydw"]
+[ext_resource type="Texture2D" uid="uid://ms6acl53xf2p" path="res://minigames/lasagna_seconds/lasagnaAssets/0062.png" id="64_net6b"]
+[ext_resource type="Texture2D" uid="uid://c31m88605b2r1" path="res://minigames/lasagna_seconds/lasagnaAssets/0063.png" id="65_nq7uf"]
+[ext_resource type="Texture2D" uid="uid://e2m4b5m7ylrm" path="res://minigames/lasagna_seconds/lasagnaAssets/0064.png" id="66_f4x31"]
+[ext_resource type="Texture2D" uid="uid://beb0gl7bab47h" path="res://minigames/lasagna_seconds/lasagnaAssets/0065.png" id="67_yi6rm"]
+[ext_resource type="Texture2D" uid="uid://f7aywgq5r76x" path="res://minigames/lasagna_seconds/lasagnaAssets/0066.png" id="68_dglk1"]
+[ext_resource type="Texture2D" uid="uid://5bw1essudrt4" path="res://minigames/lasagna_seconds/lasagnaAssets/0067.png" id="69_mm1b8"]
+[ext_resource type="Texture2D" uid="uid://bsgblsub32ck" path="res://minigames/lasagna_seconds/lasagnaAssets/0068.png" id="70_2xpx7"]
+[ext_resource type="Texture2D" uid="uid://2hploa0bit22" path="res://minigames/lasagna_seconds/lasagnaAssets/0069.png" id="71_0tile"]
+[ext_resource type="Texture2D" uid="uid://dqsdl72l447gx" path="res://minigames/lasagna_seconds/lasagnaAssets/0070.png" id="72_8pjq8"]
+[ext_resource type="Texture2D" uid="uid://c66718qjdern6" path="res://minigames/lasagna_seconds/lasagnaAssets/0071.png" id="73_6ms2m"]
+[ext_resource type="Texture2D" uid="uid://bg782ivhib4kq" path="res://minigames/lasagna_seconds/lasagnaAssets/0072.png" id="74_khamu"]
+[ext_resource type="Texture2D" uid="uid://e8uorreqrqcu" path="res://minigames/lasagna_seconds/lasagnaAssets/0073.png" id="75_dx0bi"]
+[ext_resource type="Texture2D" uid="uid://dt1b66blmoqil" path="res://minigames/lasagna_seconds/lasagnaAssets/0074.png" id="76_22nbj"]
+[ext_resource type="Texture2D" uid="uid://dujkqkgqnmc5o" path="res://minigames/lasagna_seconds/lasagnaAssets/0075.png" id="77_a4oeu"]
+[ext_resource type="Texture2D" uid="uid://cr2urh1blydmm" path="res://minigames/lasagna_seconds/lasagnaAssets/0076.png" id="78_t6jxq"]
+[ext_resource type="Texture2D" uid="uid://broswe4sqc8pr" path="res://minigames/lasagna_seconds/lasagnaAssets/0077.png" id="79_hqwvs"]
+[ext_resource type="Texture2D" uid="uid://g7m68lfewj6u" path="res://minigames/lasagna_seconds/lasagnaAssets/0078.png" id="80_dghu4"]
+[ext_resource type="Texture2D" uid="uid://dabte4qpkxsw3" path="res://minigames/lasagna_seconds/lasagnaAssets/0079.png" id="81_1c6kx"]
+[ext_resource type="Texture2D" uid="uid://dkb6dk5fwtbvt" path="res://minigames/lasagna_seconds/lasagnaAssets/0080.png" id="82_71622"]
+[ext_resource type="Texture2D" uid="uid://dyhjui4okrgv4" path="res://minigames/lasagna_seconds/lasagnaAssets/0081.png" id="83_b12fo"]
+[ext_resource type="Texture2D" uid="uid://b77e0vp1qmdqw" path="res://minigames/lasagna_seconds/lasagnaAssets/0082.png" id="84_mkvuf"]
+[ext_resource type="Texture2D" uid="uid://m1b0iartxey0" path="res://minigames/lasagna_seconds/lasagnaAssets/0083.png" id="85_sosug"]
+[ext_resource type="Texture2D" uid="uid://rocdxvbguct5" path="res://minigames/lasagna_seconds/lasagnaAssets/0084.png" id="86_wnuho"]
+[ext_resource type="Texture2D" uid="uid://bfyi4e7q5f0ba" path="res://minigames/lasagna_seconds/lasagnaAssets/0085.png" id="87_xxyqx"]
+[ext_resource type="Texture2D" uid="uid://ejgslcn52b2y" path="res://minigames/lasagna_seconds/lasagnaAssets/0086.png" id="88_e8qt0"]
+[ext_resource type="Texture2D" uid="uid://65i63gc2tiy7" path="res://minigames/lasagna_seconds/lasagnaAssets/0087.png" id="89_4w0ek"]
+[ext_resource type="Texture2D" uid="uid://dl60j28rvsksn" path="res://minigames/lasagna_seconds/lasagnaAssets/0088.png" id="90_k3gwd"]
+[ext_resource type="Texture2D" uid="uid://nqw3affchnol" path="res://minigames/lasagna_seconds/lasagnaAssets/0089.png" id="91_on1bg"]
+[ext_resource type="Texture2D" uid="uid://c7vba8uq8xw5f" path="res://minigames/lasagna_seconds/lasagnaAssets/0090.png" id="92_oe6pr"]
+[ext_resource type="Texture2D" uid="uid://ceh8y70444igj" path="res://minigames/lasagna_seconds/lasagnaAssets/0091.png" id="93_qwvdi"]
+[ext_resource type="Texture2D" uid="uid://dhaag5grinih0" path="res://minigames/lasagna_seconds/lasagnaAssets/0092.png" id="94_egd0i"]
+[ext_resource type="Texture2D" uid="uid://cekyhu4d578ho" path="res://minigames/lasagna_seconds/lasagnaAssets/0093.png" id="95_qpulq"]
+[ext_resource type="Texture2D" uid="uid://bkmlowh0x8yeg" path="res://minigames/lasagna_seconds/lasagnaAssets/0094.png" id="96_7w0gf"]
+[ext_resource type="Texture2D" uid="uid://bkowt2l8cg1if" path="res://minigames/lasagna_seconds/lasagnaAssets/0095.png" id="97_fij1v"]
+[ext_resource type="Texture2D" uid="uid://dllsanrcf2khc" path="res://minigames/lasagna_seconds/lasagnaAssets/0096.png" id="98_84n5f"]
+[ext_resource type="Texture2D" uid="uid://we7s6xfqeaam" path="res://minigames/lasagna_seconds/lasagnaAssets/0097.png" id="99_oroqb"]
+[ext_resource type="Texture2D" uid="uid://cgr67eeots16u" path="res://minigames/lasagna_seconds/lasagnaAssets/0098.png" id="100_40kur"]
+[ext_resource type="Texture2D" uid="uid://be3l0cuy2g084" path="res://minigames/lasagna_seconds/lasagnaAssets/0099.png" id="101_pejui"]
+[ext_resource type="Texture2D" uid="uid://bn0n7vjwgcn1s" path="res://minigames/lasagna_seconds/lasagnaAssets/0100.png" id="102_ei85e"]
+[ext_resource type="Texture2D" uid="uid://bapew375802xq" path="res://minigames/lasagna_seconds/lasagnaAssets/0101.png" id="103_mpyle"]
+[ext_resource type="Texture2D" uid="uid://b5ohattuocoxy" path="res://minigames/lasagna_seconds/lasagnaAssets/0102.png" id="104_ktuqh"]
+[ext_resource type="Texture2D" uid="uid://n38o7tayjtd7" path="res://minigames/lasagna_seconds/lasagnaAssets/0103.png" id="105_dpyo6"]
+[ext_resource type="Texture2D" uid="uid://byti2jcuw3ghi" path="res://minigames/lasagna_seconds/lasagnaAssets/0104.png" id="106_ijh4j"]
+[ext_resource type="Texture2D" uid="uid://dp810wr3sfmdg" path="res://minigames/lasagna_seconds/lasagnaAssets/0105.png" id="107_qhke7"]
+[ext_resource type="Texture2D" uid="uid://td23rtbpveat" path="res://minigames/lasagna_seconds/lasagnaAssets/0106.png" id="108_jq5wg"]
+[ext_resource type="Texture2D" uid="uid://pveiq6u0svk" path="res://minigames/lasagna_seconds/lasagnaAssets/0107.png" id="109_1usg5"]
+[ext_resource type="Texture2D" uid="uid://b7vbr2gw3mm1p" path="res://minigames/lasagna_seconds/lasagnaAssets/0108.png" id="110_gcbbv"]
+[ext_resource type="Texture2D" uid="uid://dm1t4bbujsag4" path="res://minigames/lasagna_seconds/lasagnaAssets/0109.png" id="111_w0fq4"]
+[ext_resource type="Texture2D" uid="uid://cdkwjb1m7xdqd" path="res://minigames/lasagna_seconds/lasagnaAssets/0110.png" id="112_dcm2n"]
+[ext_resource type="Texture2D" uid="uid://dw2hqm0b0yb5d" path="res://minigames/lasagna_seconds/lasagnaAssets/0111.png" id="113_o20y5"]
+[ext_resource type="Texture2D" uid="uid://d0r40h43midsq" path="res://minigames/lasagna_seconds/lasagnaAssets/0112.png" id="114_x2w5y"]
+[ext_resource type="Texture2D" uid="uid://bsoph4w1fruvy" path="res://minigames/lasagna_seconds/lasagnaAssets/0113.png" id="115_darqi"]
+[ext_resource type="Texture2D" uid="uid://bjv6jk06v2lpc" path="res://minigames/lasagna_seconds/lasagnaAssets/0114.png" id="116_fq28s"]
+[ext_resource type="Texture2D" uid="uid://c4deun4plhq8w" path="res://minigames/lasagna_seconds/lasagnaAssets/0115.png" id="117_54n2j"]
+[ext_resource type="Texture2D" uid="uid://bu3qklmgxmgs" path="res://minigames/lasagna_seconds/lasagnaAssets/0116.png" id="118_ldf76"]
+[ext_resource type="Texture2D" uid="uid://8fubolyythcn" path="res://minigames/lasagna_seconds/lasagnaAssets/0117.png" id="119_aml5y"]
+[ext_resource type="Texture2D" uid="uid://di4phfl8qcg3v" path="res://minigames/lasagna_seconds/lasagnaAssets/0118.png" id="120_2hup7"]
+[ext_resource type="Texture2D" uid="uid://c6uh8acm0y88b" path="res://minigames/lasagna_seconds/lasagnaAssets/0119.png" id="121_j1ke4"]
+[ext_resource type="Texture2D" uid="uid://c0gyow3attade" path="res://minigames/lasagna_seconds/lasagnaAssets/0120.png" id="122_2okfn"]
+[ext_resource type="Texture2D" uid="uid://duu1ki72i4yvu" path="res://minigames/lasagna_seconds/lasagnaAssets/0121.png" id="123_ekjw0"]
+[ext_resource type="Texture2D" uid="uid://c7gks2upkmqca" path="res://minigames/lasagna_seconds/lasagnaAssets/0122.png" id="124_f5v7g"]
+[ext_resource type="Texture2D" uid="uid://hnnhonqnb6wp" path="res://minigames/lasagna_seconds/lasagnaAssets/0123.png" id="125_ycny7"]
+[ext_resource type="Texture2D" uid="uid://dvslue22dfdl0" path="res://minigames/lasagna_seconds/lasagnaAssets/0124.png" id="126_gn0y7"]
+[ext_resource type="Texture2D" uid="uid://bmrna863m0rx6" path="res://minigames/lasagna_seconds/lasagnaAssets/0125.png" id="127_w1ba0"]
+[ext_resource type="Texture2D" uid="uid://dgiu0oeyyyoa1" path="res://minigames/lasagna_seconds/lasagnaAssets/0126.png" id="128_oe5ww"]
+[ext_resource type="Texture2D" uid="uid://g6cmyvppma5x" path="res://minigames/lasagna_seconds/lasagnaAssets/0127.png" id="129_eviqj"]
+[ext_resource type="Texture2D" uid="uid://bb8r71gd1d5hq" path="res://minigames/lasagna_seconds/lasagnaAssets/0128.png" id="130_ui1r4"]
+[ext_resource type="Texture2D" uid="uid://hid1nd2ioudm" path="res://minigames/lasagna_seconds/lasagnaAssets/0129.png" id="131_byxxm"]
+[ext_resource type="Texture2D" uid="uid://c873lvgcsko20" path="res://minigames/lasagna_seconds/lasagnaAssets/0130.png" id="132_u3adk"]
+[ext_resource type="Texture2D" uid="uid://b63tiyd6ulqxp" path="res://minigames/lasagna_seconds/lasagnaAssets/0131.png" id="133_srbip"]
+[ext_resource type="Texture2D" uid="uid://mp56v1o48v8h" path="res://minigames/lasagna_seconds/lasagnaAssets/0132.png" id="134_nloa3"]
+[ext_resource type="Texture2D" uid="uid://d4iohmih1xnbj" path="res://minigames/lasagna_seconds/lasagnaAssets/0133.png" id="135_r0r72"]
+[ext_resource type="Texture2D" uid="uid://pnjehklbyviq" path="res://minigames/lasagna_seconds/lasagnaAssets/0134.png" id="136_ecrg0"]
+[ext_resource type="Texture2D" uid="uid://daoncm70hcs2b" path="res://minigames/lasagna_seconds/lasagnaAssets/0135.png" id="137_3edv6"]
+[ext_resource type="Texture2D" uid="uid://ca4ruq6fn0hu6" path="res://minigames/lasagna_seconds/lasagnaAssets/0136.png" id="138_3etda"]
+[ext_resource type="Texture2D" uid="uid://pp1ktxde11wf" path="res://minigames/lasagna_seconds/lasagnaAssets/0137.png" id="139_0jhhv"]
+[ext_resource type="Texture2D" uid="uid://e5l6mgd2rej0" path="res://minigames/lasagna_seconds/lasagnaAssets/0138.png" id="140_3ngae"]
+[ext_resource type="Texture2D" uid="uid://cavy15qlixkvh" path="res://minigames/lasagna_seconds/lasagnaAssets/0139.png" id="141_qpbyk"]
+[ext_resource type="Texture2D" uid="uid://g35j6ec4cnlf" path="res://minigames/lasagna_seconds/lasagnaAssets/0140.png" id="142_ddf65"]
+[ext_resource type="Texture2D" uid="uid://pp0klhiq8xqb" path="res://minigames/lasagna_seconds/lasagnaAssets/0141.png" id="143_2y0b1"]
+[ext_resource type="Texture2D" uid="uid://da2xa35kgvifr" path="res://minigames/lasagna_seconds/lasagnaAssets/0142.png" id="144_enu4w"]
+[ext_resource type="Texture2D" uid="uid://b82gnkashluqt" path="res://minigames/lasagna_seconds/lasagnaAssets/0143.png" id="145_t41ow"]
+[ext_resource type="Texture2D" uid="uid://c7mxs5rung6i" path="res://minigames/lasagna_seconds/lasagnaAssets/0144.png" id="146_24wee"]
+[ext_resource type="Texture2D" uid="uid://d05o0hgqbiit" path="res://minigames/lasagna_seconds/lasagnaAssets/0145.png" id="147_o8oiu"]
+[ext_resource type="Texture2D" uid="uid://yx3tgmwielij" path="res://minigames/lasagna_seconds/lasagnaAssets/0146.png" id="148_51u1o"]
+[ext_resource type="Texture2D" uid="uid://1akvjnxh47im" path="res://minigames/lasagna_seconds/lasagnaAssets/0147.png" id="149_2yaep"]
+[ext_resource type="Texture2D" uid="uid://bxnf3ivb5ilgt" path="res://minigames/lasagna_seconds/lasagnaAssets/0148.png" id="150_273gq"]
+[ext_resource type="Texture2D" uid="uid://q1l4xi484q68" path="res://minigames/lasagna_seconds/lasagnaAssets/0149.png" id="151_ck0gi"]
+[ext_resource type="Texture2D" uid="uid://d10qfkchmqnq5" path="res://minigames/lasagna_seconds/lasagnaAssets/0150.png" id="152_o4csm"]
+[ext_resource type="Texture2D" uid="uid://wtxed6o2y2ik" path="res://minigames/lasagna_seconds/lasagnaAssets/0151.png" id="153_4d1j7"]
+[ext_resource type="Texture2D" uid="uid://o274g3b0nusk" path="res://minigames/lasagna_seconds/lasagnaAssets/0152.png" id="154_me2fk"]
+[ext_resource type="Texture2D" uid="uid://bnx2u1tetxu65" path="res://minigames/lasagna_seconds/lasagnaAssets/0153.png" id="155_jx75y"]
+[ext_resource type="Texture2D" uid="uid://bii1qejtfgsji" path="res://minigames/lasagna_seconds/lasagnaAssets/0154.png" id="156_uw82k"]
+[ext_resource type="Texture2D" uid="uid://dyi5f5po21ljc" path="res://minigames/lasagna_seconds/lasagnaAssets/0155.png" id="157_2fpix"]
+[ext_resource type="Texture2D" uid="uid://dfcl8tmaiomjo" path="res://minigames/lasagna_seconds/lasagnaAssets/0156.png" id="158_kw3qs"]
+[ext_resource type="Texture2D" uid="uid://b6v66h5bcuikv" path="res://minigames/lasagna_seconds/lasagnaAssets/0157.png" id="159_65ecs"]
+[ext_resource type="Texture2D" uid="uid://cgymbstsvawrd" path="res://minigames/lasagna_seconds/lasagnaAssets/0158.png" id="160_0x7sg"]
+[ext_resource type="Texture2D" uid="uid://trk08yn7n2f5" path="res://minigames/lasagna_seconds/lasagnaAssets/0159.png" id="161_rx07m"]
+[ext_resource type="Texture2D" uid="uid://b7rhjmn3e5ad" path="res://minigames/lasagna_seconds/lasagnaAssets/0160.png" id="162_3qqfu"]
+[ext_resource type="Texture2D" uid="uid://bkgmvwl77ucg3" path="res://minigames/lasagna_seconds/lasagnaAssets/0161.png" id="163_gjmwr"]
+[ext_resource type="Texture2D" uid="uid://drg0so6b8fk8n" path="res://minigames/lasagna_seconds/lasagnaAssets/0162.png" id="164_hfgnf"]
+[ext_resource type="Texture2D" uid="uid://dvmi2ep1v5755" path="res://minigames/lasagna_seconds/lasagnaAssets/0163.png" id="165_wpq6a"]
+[ext_resource type="Texture2D" uid="uid://cb16jrtn5je7c" path="res://minigames/lasagna_seconds/lasagnaAssets/0164.png" id="166_08nl5"]
+[ext_resource type="Texture2D" uid="uid://d4ehvrj503mq4" path="res://minigames/lasagna_seconds/lasagnaAssets/0165.png" id="167_81bxw"]
+[ext_resource type="Texture2D" uid="uid://dfugeiq4lsai5" path="res://minigames/lasagna_seconds/lasagnaAssets/0166.png" id="168_wsm1i"]
+[ext_resource type="Texture2D" uid="uid://oomntpmk21bm" path="res://minigames/lasagna_seconds/lasagnaAssets/0167.png" id="169_oa5rx"]
+[ext_resource type="Texture2D" uid="uid://vfd67jl78vf0" path="res://minigames/lasagna_seconds/lasagnaAssets/0168.png" id="170_e3b62"]
+[ext_resource type="Texture2D" uid="uid://cdxea8i2iciq3" path="res://minigames/lasagna_seconds/lasagnaAssets/0169.png" id="171_8488y"]
+[ext_resource type="Texture2D" uid="uid://dnvjcapvqn1q8" path="res://minigames/lasagna_seconds/lasagnaAssets/0170.png" id="172_vtuuy"]
+[ext_resource type="Texture2D" uid="uid://cr8xbo5fn8h8g" path="res://minigames/lasagna_seconds/lasagnaAssets/0171.png" id="173_c6des"]
+[ext_resource type="Texture2D" uid="uid://bbaf4wdsl4bpr" path="res://minigames/lasagna_seconds/lasagnaAssets/0172.png" id="174_uanuo"]
+[ext_resource type="Texture2D" uid="uid://c7iwr4usehigq" path="res://minigames/lasagna_seconds/lasagnaAssets/0173.png" id="175_e6jj4"]
+[ext_resource type="Texture2D" uid="uid://chceev80233l2" path="res://minigames/lasagna_seconds/lasagnaAssets/0174.png" id="176_64wwm"]
+[ext_resource type="Texture2D" uid="uid://ft7psln6b8ga" path="res://minigames/lasagna_seconds/lasagnaAssets/0175.png" id="177_d8btm"]
+[ext_resource type="Texture2D" uid="uid://dgliqnvdik7in" path="res://minigames/lasagna_seconds/lasagnaAssets/0176.png" id="178_vwcla"]
+[ext_resource type="Texture2D" uid="uid://dppij1adu854i" path="res://minigames/lasagna_seconds/lasagnaAssets/0177.png" id="179_pxyyq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_231e7"]
+atlas = ExtResource("2_xohit")
+region = Rect2(0, 0, 240, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d7wm"]
+atlas = ExtResource("2_xohit")
+region = Rect2(240, 0, 240, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh5gf"]
+atlas = ExtResource("2_xohit")
+region = Rect2(960, 0, 240, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moevo"]
+atlas = ExtResource("2_xohit")
+region = Rect2(1200, 0, 240, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1crv"]
+atlas = ExtResource("2_xohit")
+region = Rect2(480, 0, 240, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1flt"]
+atlas = ExtResource("2_xohit")
+region = Rect2(720, 0, 240, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2d6w"]
+atlas = ExtResource("2_xohit")
+region = Rect2(1440, 0, 240, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x466j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_231e7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d7wm")
+}],
+"loop": true,
+"name": &"1230",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh5gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moevo")
+}],
+"loop": true,
+"name": &"Lost",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1crv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1flt")
+}],
+"loop": true,
+"name": &"Lost_pre",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2d6w")
+}],
+"loop": true,
+"name": &"Won",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xohit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_231e7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3d7wm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oh5gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_moevo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g1crv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_a1flt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_g2d6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1vi23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7jre8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_304uy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4teq6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tu32x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_amci4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_48nke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_cmlel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_e31cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_jv4vp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_t6q3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_iw7ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_82y0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8mdlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4xv3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_86qmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ae4by")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_vstxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_2e1wd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_gvfe0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_xx8jp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_jnea0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_b72gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_q837b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_40630")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_ofnmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_sjcot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_h5a0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_7i8gb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_xh7jq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_x6mmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_d3sw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_ku41m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_wjmgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_badqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_hxheu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_yjn0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_l6r8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_ar4nj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_s0jff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_isc7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_d1n3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_7io6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_gqddi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_bnlkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_0ybr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_vg8gn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_cfnvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_8s343")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_yt0kj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_7igod")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_srn2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_8bydw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_net6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_nq7uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_f4x31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_yi6rm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_dglk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_mm1b8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_2xpx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_0tile")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_8pjq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_6ms2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_khamu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_dx0bi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_22nbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_a4oeu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_t6jxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_hqwvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_dghu4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_1c6kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_71622")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_b12fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_mkvuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_sosug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_wnuho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_xxyqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_e8qt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_4w0ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_k3gwd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_on1bg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_oe6pr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_qwvdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_egd0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_qpulq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_7w0gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_fij1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_84n5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_oroqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_40kur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_pejui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_ei85e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_mpyle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_ktuqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_dpyo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_ijh4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_qhke7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_jq5wg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_1usg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_gcbbv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_w0fq4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_dcm2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_o20y5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_x2w5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_darqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_fq28s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_54n2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_ldf76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_aml5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_2hup7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_j1ke4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_2okfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_ekjw0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_f5v7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_ycny7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_gn0y7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_w1ba0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_oe5ww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_eviqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_ui1r4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_byxxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_u3adk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_srbip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_nloa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_r0r72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_ecrg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_3edv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_3etda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_0jhhv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_3ngae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_qpbyk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_ddf65")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_2y0b1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_enu4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_t41ow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_24wee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_o8oiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_51u1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_2yaep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_273gq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_ck0gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_o4csm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_4d1j7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_me2fk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_jx75y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_uw82k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_2fpix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_kw3qs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_65ecs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_0x7sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_rx07m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_3qqfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_gjmwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_hfgnf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_wpq6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_08nl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_81bxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_wsm1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_oa5rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_e3b62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_8488y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_vtuuy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_c6des")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_uanuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_e6jj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_64wwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_d8btm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_vwcla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_pxyyq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xohit"]
+font_size = 91
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_xohit"]
+resource_name = "Seconds_trigger"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_231e7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(480.00003, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3d7wm"]
+resource_name = "win_camara"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(1.16, 1.16), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3d7wm"]
+_data = {
+&"RESET": SubResource("Animation_231e7"),
+&"Seconds_trigger": SubResource("Animation_xohit"),
+&"win_camara": SubResource("Animation_3d7wm")
+}
 
 [node name="Lasagna" type="Node"]
 script = ExtResource("1_6tker")
-title = "Lasagna"
-mouse = 2
+title = "Grab Seconds!"
+keyboard = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 
 [node name="LasagnaGamemanager" type="Node2D" parent="."]
 script = ExtResource("2_t7q41")
+reaction_window = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="LasagnaGamemanager"]
+position = Vector2(480.00003, 360)
+scale = Vector2(1.145479, 1.145479)
+
+[node name="signal_timer" type="Timer" parent="LasagnaGamemanager"]
+one_shot = true
+
+[node name="window_timer" type="Timer" parent="LasagnaGamemanager"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LasagnaGamemanager"]
+texture_filter = 1
+scale = Vector2(1.1038169, 1.1038167)
+sprite_frames = SubResource("SpriteFrames_x466j")
+animation = &"Lost_pre"
+autoplay = "default"
+centered = false
 
 [node name="Label" type="Label" parent="LasagnaGamemanager"]
 anchors_preset = -1
@@ -18,18 +892,19 @@ anchor_left = 0.42600003
 anchor_top = 0.374
 anchor_right = 0.72
 anchor_bottom = 0.544
-offset_left = 409.0
-offset_top = 269.0
-offset_right = 526.0
-offset_bottom = 292.0
+offset_left = 155.0
+offset_top = 292.0
+offset_right = 818.0
+offset_bottom = 417.0
 text = "TAKE SECONDS"
+label_settings = SubResource("LabelSettings_xohit")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="signal_timer" type="Timer" parent="LasagnaGamemanager"]
-one_shot = true
-
-[node name="window_timer" type="Timer" parent="LasagnaGamemanager"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LasagnaGamemanager"]
+libraries = {
+&"": SubResource("AnimationLibrary_3d7wm")
+}
 
 [connection signal="timeout" from="LasagnaGamemanager/signal_timer" to="LasagnaGamemanager" method="_on_signal_timer_timeout"]
 [connection signal="timeout" from="LasagnaGamemanager/window_timer" to="LasagnaGamemanager" method="_on_window_timer_timeout"]
