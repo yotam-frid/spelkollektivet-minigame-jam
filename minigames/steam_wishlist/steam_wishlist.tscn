@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyc0e0g0bd7vp"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_qdm3e"]
+[ext_resource type="Texture2D" uid="uid://cl50xgcvjrj4e" path="res://minigames/steam_wishlist/steam_screenshot.png" id="2_v4cxt"]
+[ext_resource type="Texture2D" uid="uid://b2qowepg5l1pc" path="res://minigames/steam_wishlist/hover.png" id="3_i1lgl"]
+[ext_resource type="Texture2D" uid="uid://seudaso5ofy5" path="res://minigames/steam_wishlist/wishlisted.png" id="4_87c52"]
+[ext_resource type="AudioStream" uid="uid://4v2kmc1x6har" path="res://minigames/steam_wishlist/click.wav" id="5_87c52"]
+
+[sub_resource type="GDScript" id="GDScript_i1lgl"]
+script/source = "extends Button
+
+@export var hover_sprite: Sprite2D
+@export var done_sprite: Sprite2D
+
+var done = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_mouse_entered() -> void:
+	if done:
+		return
+		
+	hover_sprite.show()
+
+
+func _on_mouse_exited() -> void:
+	hover_sprite.hide()
+
+
+func _on_pressed() -> void:
+	if done:
+		return
+		
+	$Click.play()
+	done = true
+	hover_sprite.hide()
+	done_sprite.show()
+	CurrentGame.instance.win()
+"
+
+[node name="SteamWishlist" type="Node"]
+script = ExtResource("1_qdm3e")
+title = "Wishlist"
+mouse = 2
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="SteamScreenshot" type="Sprite2D" parent="."]
+position = Vector2(492, 492)
+scale = Vector2(0.76558894, 0.76558894)
+texture = ExtResource("2_v4cxt")
+
+[node name="Hover" type="Sprite2D" parent="SteamScreenshot"]
+visible = false
+position = Vector2(-398, 37.306)
+texture = ExtResource("3_i1lgl")
+
+[node name="Wishlisted" type="Sprite2D" parent="SteamScreenshot"]
+visible = false
+position = Vector2(-27, 87)
+texture = ExtResource("4_87c52")
+
+[node name="WishlistButton" type="Button" parent="." node_paths=PackedStringArray("hover_sprite", "done_sprite")]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+offset_left = 41.0
+offset_top = 524.0
+offset_right = 196.0
+offset_bottom = 555.0
+script = SubResource("GDScript_i1lgl")
+hover_sprite = NodePath("../SteamScreenshot/Hover")
+done_sprite = NodePath("../SteamScreenshot/Wishlisted")
+
+[node name="Click" type="AudioStreamPlayer" parent="WishlistButton"]
+stream = ExtResource("5_87c52")
+
+[connection signal="mouse_entered" from="WishlistButton" to="WishlistButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="WishlistButton" to="WishlistButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="WishlistButton" to="WishlistButton" method="_on_pressed"]

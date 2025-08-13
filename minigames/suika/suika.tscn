@@ -127,6 +127,7 @@ shader_parameter/color_tint_b = 1.0000000074506001
 [node name="Suika" type="Node"]
 script = ExtResource("1_4ywqq")
 title = "Merge"
+duration = 6
 viewport_texture_filter = false
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
