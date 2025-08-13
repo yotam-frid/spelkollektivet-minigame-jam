@@ -27,26 +27,25 @@ func next_minigame():
 	
 	print("Showing intro")
 	await ui.show_minigame_intro(current_minigame)
-	print("Hiding intro")
-	ui.hide_minigame_intro()
+	ui.start_game(current_minigame)
 	
-	print("Showing game")
-	ui.show_minigame_viewport(current_minigame)
+	await get_tree().process_frame
+	await ui.minigame_zoomed_in
+	current_minigame.start_timer()
 	
 func on_minigame_finished():
 	# Wait 1 frame to let any logic run
 	await get_tree().process_frame
 	
 	print("Game finished, won: " + str(current_minigame_won))
-	await ui.hide_minigame_viewport()
-	
-	print("Unloading game")
-	ui.clear_viewport()
+	ui.finish_game(current_minigame, current_minigame_won)
+	await ui.minigame_zoomed_out
 	unload_current_minigame()
-	
-	print("Showing inbetween")
-	await ui.inbetween()
+	await ui.ready_for_next_minigame
 	next_minigame()
+	
+func on_minigame_timer_started():
+	ui.show_ingame_ui(current_minigame)
 	
 func on_minigame_timer_cleared():
 	print("Timer cleared")
@@ -69,6 +68,7 @@ func prepare_next_minigame():
 	current_minigame = minigame_queue.pop_front().instantiate()
 	current_minigame.game_won.connect(on_minigame_won)
 	current_minigame.game_finished.connect(on_minigame_finished)
+	current_minigame.timer_started.connect(on_minigame_timer_started)
 	current_minigame.timer_cleared.connect(on_minigame_timer_cleared)
 	
 	# Expose game on the global scope

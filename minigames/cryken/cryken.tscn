@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbtk0fry8mt2i"]
+[gd_scene load_steps=18 format=3 uid="uid://dbtk0fry8mt2i"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_jj3yu"]
-[ext_resource type="PackedScene" uid="uid://dkmkn1qfl3e2p" path="res://minigames/cryken/test.blend" id="2_gq332"]
 [ext_resource type="AudioStream" uid="uid://ymm1phgn227k" path="res://minigames/cryken/victory.wav" id="2_ov85x"]
 [ext_resource type="Texture2D" uid="uid://b85wgoxwmm2l3" path="res://minigames/cryken/eyes.png" id="3_rqjyf"]
 [ext_resource type="PackedScene" uid="uid://b8rfgbrhbt4ec" path="res://minigames/cryken/crystal_6.fbx" id="4_gc8ni"]
@@ -135,6 +134,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 "
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hatlx"]
+albedo_color = Color(0.87734634, 3.8745256e-06, 1.2513996e-06, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hatlx"]
+material = SubResource("StandardMaterial3D_hatlx")
+radius = 1.0
+height = 2.0
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rqjyf"]
 radius = 1.0112305
 height = 2.022461
@@ -176,6 +183,7 @@ stream = ExtResource("2_ov85x")
 environment = SubResource("Environment_rqjyf")
 script = SubResource("GDScript_hatlx")
 colors = Array[Color]([Color(0.56511205, 0.683812, 1, 1), Color(0.44716036, 0.9406256, 0.6225694, 1), Color(0.95936316, 0.70554876, 0.50891274, 1), Color(0.908007, 0.59294635, 0.84292954, 1), Color(0.39554167, 0.77321, 0.89911044, 1), Color(0.7818174, 0.79453737, 0.3281131, 1), Color(0.9584314, 0.67001086, 0.74368566, 1)])
+duration_per_color = 1.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.6704949, 0.7383408, -0.072727606, 0.06341317, 0.040635556, 0.9971597, 0.73919904, -0.6732025, -0.01957461, 0, 9, 0)
@@ -223,11 +231,12 @@ gravity = 70.0
 [node name="Model" type="Node3D" parent="Player"]
 transform = Transform3D(0.7071067, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071067, 0, 0, 0)
 
-[node name="test" parent="Player/Model" instance=ExtResource("2_gq332")]
-
 [node name="Sprite3D" type="Sprite3D" parent="Player/Model"]
 transform = Transform3D(0.4842223, 0, 0, 0, 0.4842223, 0, 0, 0, 1, 0.015593648, 0.25288534, 1.0061438)
 texture = ExtResource("3_rqjyf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/Model"]
+mesh = SubResource("SphereMesh_hatlx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_rqjyf")

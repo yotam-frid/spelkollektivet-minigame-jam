@@ -1,43 +1,36 @@
-[gd_scene load_steps=28 format=3 uid="uid://bk8s5wu05xdmr"]
+[gd_scene load_steps=27 format=3 uid="uid://bk8s5wu05xdmr"]
 
 [ext_resource type="FontFile" uid="uid://bsueqpcviwyrx" path="res://assets/upheavtt.ttf" id="1_ay4pc"]
 [ext_resource type="Script" uid="uid://djtc0jl710y1" path="res://ui/ui.gd" id="1_nb4k0"]
 [ext_resource type="Texture2D" uid="uid://bvnxk3iit6t5u" path="res://assets/brown-and-red-horse-running-in-a-field-of-green-grass-desktop-wallpaper-hd-wallpaper-preview-1428625403.jpg" id="2_ks8t7"]
 [ext_resource type="Script" uid="uid://bvjck5jjycgm4" path="res://ui/grow_shrink_ui.gd" id="2_vkava"]
-[ext_resource type="Texture2D" uid="uid://bpb4xf4ikq7gx" path="res://assets/mouse_sheet.png" id="3_vkava"]
-[ext_resource type="Texture2D" uid="uid://d1gwx4vtregis" path="res://assets/directionals.png" id="4_bo1jx"]
-[ext_resource type="Texture2D" uid="uid://dlcqo3k6qk6ml" path="res://assets/spacebar.png" id="4_tf0e0"]
-[ext_resource type="Texture2D" uid="uid://om8ril5xmkp7" path="res://assets/keyboard.png" id="5_obcwv"]
+[ext_resource type="Texture2D" uid="uid://cp61kaaury0wx" path="res://ui/images/Mouse0001.png" id="5_hrmpd"]
+[ext_resource type="Texture2D" uid="uid://daq01jqu6j73l" path="res://ui/images/Mouse0006.png" id="6_74toj"]
+[ext_resource type="Texture2D" uid="uid://b3lyxdtoad2vh" path="res://ui/images/Mouse0004.png" id="6_x7jpl"]
 [ext_resource type="Script" uid="uid://bkpsdrc4rcq5o" path="res://ui/ingame_ui.gd" id="7_gycre"]
 [ext_resource type="PackedScene" uid="uid://dbdd47v83s3pd" path="res://ui/ui_main_scene_foreground.tscn" id="7_pa1oa"]
+[ext_resource type="Texture2D" uid="uid://d12ekkpm48wfk" path="res://ui/images/Mouse0002.png" id="7_x7jpl"]
+[ext_resource type="Texture2D" uid="uid://byxs8c4s818nw" path="res://ui/images/Mouse0003.png" id="8_os0ka"]
+[ext_resource type="Texture2D" uid="uid://dd4sf0h7oo67b" path="res://ui/images/arrowkeys0001.png" id="9_mf2ns"]
+[ext_resource type="Texture2D" uid="uid://bt0nmjecahqs4" path="res://ui/images/arrowkeys0002.png" id="10_ju45i"]
+[ext_resource type="Texture2D" uid="uid://cls212mq25q0e" path="res://ui/images/Spacebar0001.png" id="11_74toj"]
+[ext_resource type="Texture2D" uid="uid://dm1simdx64e0w" path="res://ui/images/Spacebar0002.png" id="12_co7pv"]
+[ext_resource type="Texture2D" uid="uid://6m7gogvy2x8c" path="res://ui/images/keyboard0001.png" id="13_x7nxp"]
+[ext_resource type="Texture2D" uid="uid://0ox2d4r7rlsi" path="res://ui/images/keyboard0002.png" id="14_3lbto"]
+[ext_resource type="Script" uid="uid://b7gviuacbfo8p" path="res://ui/lives.gd" id="17_ju45i"]
+[ext_resource type="PackedScene" uid="uid://cha3eeymyhg4j" path="res://ui/life_indicator.tscn" id="19_co7pv"]
 
 [sub_resource type="Theme" id="Theme_pa1oa"]
 default_font = ExtResource("1_ay4pc")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tf0e0"]
-atlas = ExtResource("3_vkava")
-region = Rect2(0, 0, 161, 145)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gycre"]
-atlas = ExtResource("3_vkava")
-region = Rect2(0, 145, 161, 145)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_obcwv"]
-atlas = ExtResource("3_vkava")
-region = Rect2(161, 0, 161, 145)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bo1jx"]
-atlas = ExtResource("3_vkava")
-region = Rect2(322, 0, 161, 145)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vkava"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tf0e0")
+"texture": ExtResource("5_hrmpd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gycre")
+"texture": ExtResource("6_x7jpl")
 }],
 "loop": true,
 "name": &"both",
@@ -45,7 +38,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tf0e0")
+"texture": ExtResource("5_hrmpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_74toj")
 }],
 "loop": true,
 "name": &"default",
@@ -53,10 +49,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tf0e0")
+"texture": ExtResource("5_hrmpd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_obcwv")
+"texture": ExtResource("7_x7jpl")
 }],
 "loop": true,
 "name": &"left_click",
@@ -64,76 +60,52 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tf0e0")
+"texture": ExtResource("5_hrmpd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bo1jx")
+"texture": ExtResource("8_os0ka")
 }],
 "loop": true,
 "name": &"right_click",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x7jpl"]
-atlas = ExtResource("4_bo1jx")
-region = Rect2(0, 0, 101, 68)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_os0ka"]
-atlas = ExtResource("4_bo1jx")
-region = Rect2(0, 68, 101, 68)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_diyc5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x7jpl")
+"texture": ExtResource("9_mf2ns")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_os0ka")
+"texture": ExtResource("10_ju45i")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pa1oa"]
-atlas = ExtResource("4_tf0e0")
-region = Rect2(0, 0, 119, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ay4pc"]
-atlas = ExtResource("4_tf0e0")
-region = Rect2(0, 57, 119, 57)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bi8hs"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pa1oa")
+"texture": ExtResource("11_74toj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ay4pc")
+"texture": ExtResource("12_co7pv")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bi8hs"]
-atlas = ExtResource("5_obcwv")
-region = Rect2(0, 0, 205, 117)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrmpd"]
-atlas = ExtResource("5_obcwv")
-region = Rect2(205, 0, 205, 117)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_x7jpl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bi8hs")
+"texture": ExtResource("13_x7nxp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hrmpd")
+"texture": ExtResource("14_3lbto")
 }],
 "loop": true,
 "name": &"default",
@@ -180,17 +152,22 @@ handle_input_locally = false
 size = Vector2i(240, 180)
 render_target_update_mode = 4
 
-[node name="MainSceneForeground" parent="." instance=ExtResource("7_pa1oa")]
-layout_mode = 1
-
 [node name="IntroControls" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -441.0
+offset_top = -106.0
+offset_right = 451.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(450, 100)
 alignment = 1
 
 [node name="IntroMouse" type="Control" parent="IntroControls"]
@@ -205,26 +182,27 @@ metadata/_custom_type_script = "uid://bvjck5jjycgm4"
 [node name="IntroMouseSprite" type="AnimatedSprite2D" parent="IntroControls/IntroMouse"]
 unique_name_in_owner = true
 position = Vector2(104, 100)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_vkava")
-animation = &"both"
 autoplay = "default"
 
 [node name="IntroDirectionals" type="Control" parent="IntroControls"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(110, 0)
+custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
 size_flags_vertical = 4
 script = ExtResource("2_vkava")
 metadata/_custom_type_script = "uid://bvjck5jjycgm4"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroDirectionals"]
-position = Vector2(47, -1)
+position = Vector2(96, -1)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_diyc5")
 autoplay = "default"
 
 [node name="IntroSpacebar" type="Control" parent="IntroControls"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(130, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -232,7 +210,8 @@ script = ExtResource("2_vkava")
 metadata/_custom_type_script = "uid://bvjck5jjycgm4"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroSpacebar"]
-position = Vector2(62, -2)
+position = Vector2(90, 14)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_bi8hs")
 autoplay = "default"
 
@@ -246,8 +225,12 @@ metadata/_custom_type_script = "uid://bvjck5jjycgm4"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="IntroControls/IntroFullKeyboard"]
 position = Vector2(100, -8)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_x7jpl")
 autoplay = "default"
+
+[node name="MainSceneForeground" parent="." instance=ExtResource("7_pa1oa")]
+layout_mode = 1
 
 [node name="IntroText" type="Control" parent="."]
 unique_name_in_owner = true
@@ -257,9 +240,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -32.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_vkava")
@@ -348,6 +331,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ks8t7")
+
+[node name="Lives" type="Control" parent="." node_paths=PackedStringArray("pain_overlay")]
+anchors_preset = 0
+offset_left = 469.0
+offset_top = 401.0
+offset_right = 509.0
+offset_bottom = 441.0
+script = ExtResource("17_ju45i")
+pain_overlay = NodePath("../Pain")
+
+[node name="LifeIndicator" parent="Lives" instance=ExtResource("19_co7pv")]
+position = Vector2(-281, 196)
+
+[node name="LifeIndicator2" parent="Lives" instance=ExtResource("19_co7pv")]
+position = Vector2(-94, 196)
+
+[node name="LifeIndicator3" parent="Lives" instance=ExtResource("19_co7pv")]
+position = Vector2(99, 196)
+
+[node name="LifeIndicator4" parent="Lives" instance=ExtResource("19_co7pv")]
+position = Vector2(286, 196)
+
+[node name="Pain" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.49803922)
 
 [connection signal="visibility_changed" from="IngameUI" to="IngameUI" method="_on_visibility_changed"]
 [connection signal="timeout" from="IngameUI/Timer" to="IngameUI" method="_on_timer_timeout"]

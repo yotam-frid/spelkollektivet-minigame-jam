@@ -2,7 +2,7 @@ extends Node
 
 signal beat
 
-var bpm = 134.0
+var bpm = 128
 var beat_timer: Timer
 
 var node_tweens: Dictionary[Node, Array]
@@ -39,10 +39,13 @@ func animate_on_beat(target: Node, property: NodePath, animate_value: Variant, r
 	var clear_callable = _on_animated_node_exit_tree.bind(target)
 	target.tree_exiting.connect(clear_callable)
 	
-func _on_animated_node_exit_tree(node: Node):
-	if node_tweens.has(node):
+func clear_animations(target: Node):
+	if node_tweens.has(target):
 		# Erase all animation definitions for this node
-		node_tweens.erase(node)
+		node_tweens.erase(target)
+	
+func _on_animated_node_exit_tree(node: Node):
+	clear_animations(node)
 
 func _on_beat_timer_timeout() -> void:
 	_animate_registered_nodes()
