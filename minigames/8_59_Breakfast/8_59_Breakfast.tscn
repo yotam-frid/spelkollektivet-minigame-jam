@@ -132,6 +132,12 @@ func _ready() -> void:
 	tween.tween_property($Time, \"scale\", Vector2(1.0, 1.0), .1)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	
+	$Oven_Closed.show()
+	$Oven_Open.hide()
+	await get_tree().create_timer(1.2).timeout
+	$Oven_Closed.hide()
+	$Oven_Open.show()
+	
 func _body_entered(body):
 	if body is Breadroll:
 		breadrolls.append(body)
@@ -150,7 +156,6 @@ func finish():
 		var sprite = breadroll.get_node(\"Sprite2D\")
 		if sprite != null:
 			sprite.reparent(self)
-		
 		
 	CurrentGame.instance.win_and_finish(.8)
 	
@@ -193,6 +198,7 @@ script = SubResource("GDScript_sgjaw")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
+z_as_relative = false
 position = Vector2(480, 360)
 texture = ExtResource("3_ewha7")
 
