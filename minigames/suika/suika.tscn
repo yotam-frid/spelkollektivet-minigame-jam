@@ -1,0 +1,206 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgtfc8j83f0u4"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_4ywqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ywqq"]
+size = Vector2(139.5, 719.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7lbb"]
+size = Vector2(225.75, 182.75)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o7lbb"]
+bounce = 0.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6bmg"]
+radius = 32.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ywqq"]
+bounce = 0.34
+
+[sub_resource type="GDScript" id="GDScript_4ywqq"]
+script/source = "extends RigidBody2D
+
+@export var merge_result: RigidBody2D
+@export var merge_target: Area2D
+
+var dropped = false
+var merged = false
+
+var min_x = 386
+var max_x = 569
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	freeze = true
+	merge_target.body_entered.connect(_on_area_entered)
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"left_click\"):
+		drop()
+
+func drop():
+	dropped = true
+	freeze = false
+	
+func merge():
+	if merged:
+		return
+		
+	CurrentGame.instance.win()
+	merged = true
+	merge_result.show()
+	merge_result.sleeping = false
+	
+	var midpoint = (global_position + merge_target.global_position) / 2.0
+	merge_result.global_position = midpoint
+	global_position = Vector2.ZERO
+	freeze = true
+	
+	hide()
+	merge_target.hide()
+	
+	merge_result.freeze = false
+		# Wait a few physics frames to ensure the body is fully active
+
+	merge_result.apply_central_impulse(Vector2.UP * 200)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if not dropped:
+		var mouse_pos = get_viewport().get_mouse_position()
+		global_position.x = clampf(mouse_pos.x, min_x, max_x)
+
+func _on_area_entered(_body: Node2D):
+	call_deferred(\"merge\")
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ywqq"]
+radius = 23.194826
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7lbb"]
+radius = 28.0
+
+[node name="Suika" type="Node"]
+script = ExtResource("1_4ywqq")
+title = "Merge"
+viewport_texture_filter = false
+mouse = 2
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="BG" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" parent="BG"]
+texture_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 227.0
+offset_right = 366.0
+offset_bottom = 720.0
+
+[node name="ColorRect3" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 589.0
+offset_right = 728.0
+offset_bottom = 720.0
+
+[node name="ColorRect4" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 537.0
+offset_right = 589.0
+offset_bottom = 720.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(312, 267)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-16, 92)
+shape = SubResource("RectangleShape2D_4ywqq")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(676, 267)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-16, 92)
+shape = SubResource("RectangleShape2D_4ywqq")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(676, 267)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-196.875, 361.375)
+shape = SubResource("RectangleShape2D_o7lbb")
+metadata/_edit_lock_ = true
+
+[node name="MergeResult" type="RigidBody2D" parent="."]
+position = Vector2(34, -76)
+physics_material_override = SubResource("PhysicsMaterial_o7lbb")
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MergeResult"]
+shape = SubResource("CircleShape2D_m6bmg")
+
+[node name="ColorRect" type="ColorRect" parent="MergeResult"]
+anchors_preset = -1
+offset_left = -28.0
+offset_top = -30.0
+offset_right = 29.0
+offset_bottom = 30.0
+color = Color(1, 0, 0, 1)
+
+[node name="DropFrog" type="RigidBody2D" parent="." node_paths=PackedStringArray("merge_result", "merge_target")]
+position = Vector2(479, 51)
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_4ywqq")
+script = SubResource("GDScript_4ywqq")
+merge_result = NodePath("../MergeResult")
+merge_target = NodePath("../Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropFrog"]
+shape = SubResource("CircleShape2D_4ywqq")
+
+[node name="ColorRect" type="ColorRect" parent="DropFrog"]
+anchors_preset = -1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0, 1, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(432, 453)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_o7lbb")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+anchors_preset = -1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0, 1, 1, 1)
