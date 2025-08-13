@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=36 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
 [ext_resource type="Texture2D" uid="uid://tovxpsg41m8m" path="res://minigames/8_59_Breakfast/sprites/breadroll.png" id="3_vgw02"]
 [ext_resource type="Texture2D" uid="uid://gdltb20nan27" path="res://minigames/8_59_Breakfast/sprites/bottomarea.png" id="4_5i65a"]
 [ext_resource type="Texture2D" uid="uid://dqip3nfmd8aas" path="res://minigames/8_59_Breakfast/sprites/fitsgertalt.png" id="4_bhd8d"]
+[ext_resource type="Script" uid="uid://cs1cka3qnkxl" path="res://utils/beat_sprite_2d.gd" id="4_tl0r5"]
 [ext_resource type="Texture2D" uid="uid://cll3r1qwnrmpg" path="res://minigames/8_59_Breakfast/sprites/base.png" id="5_0l1d5"]
 [ext_resource type="Texture2D" uid="uid://clq1alvplbg3a" path="res://minigames/8_59_Breakfast/sprites/door closed.png" id="6_qrew8"]
 [ext_resource type="Texture2D" uid="uid://dldejhyvao36v" path="res://minigames/8_59_Breakfast/sprites/trays.png" id="6_sgvae"]
@@ -20,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dyq7q4jhfn1pc" path="res://minigames/8_59_Breakfast/sprites/items/box.png" id="13_nph22"]
 [ext_resource type="Texture2D" uid="uid://14okjcalfrtd" path="res://minigames/8_59_Breakfast/sprites/items/salt.png" id="14_23u02"]
 [ext_resource type="Texture2D" uid="uid://cpy7opd4cxc18" path="res://minigames/8_59_Breakfast/sprites/freezer_front.png" id="19_rdmqm"]
+[ext_resource type="Texture2D" uid="uid://dtn1juiday8sk" path="res://minigames/8_59_Breakfast/sprites/details.png" id="21_b8rp8"]
 
 [sub_resource type="GDScript" id="GDScript_sgjaw"]
 script/source = "extends Node2D
@@ -128,12 +130,12 @@ func _ready() -> void:
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
 	
-	var tween = get_tree().create_tween().set_loops()
-	tween.tween_property($Time, \"scale\", Vector2(1.5, 1.5), .1)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_interval(.1)
-	tween.tween_property($Time, \"scale\", Vector2(1.0, 1.0), .1)
-	tween.set_ease(Tween.EASE_IN_OUT)
+	#var tween = get_tree().create_tween().set_loops()
+	#tween.tween_property($Time, \"scale\", Vector2(1.5, 1.5), .1)
+	#tween.set_ease(Tween.EASE_IN_OUT)
+	#tween.tween_interval(.1)
+	#tween.tween_property($Time, \"scale\", Vector2(1.0, 1.0), .1)
+	#tween.set_ease(Tween.EASE_IN_OUT)
 	
 	$Oven_Closed.show()
 	$Oven_Open.hide()
@@ -246,6 +248,9 @@ shape = SubResource("RectangleShape2D_bhd8d")
 [node name="Freezer" type="Sprite2D" parent="."]
 position = Vector2(262, 422)
 texture = ExtResource("8_0l1d5")
+script = ExtResource("4_tl0r5")
+beat_position_add = Vector2(0, 1)
+beat_scale_target = Vector2(1.07, 1.07)
 
 [node name="Bottom" type="StaticBody2D" parent="Freezer"]
 position = Vector2(-5, 55)
@@ -276,6 +281,8 @@ shape = SubResource("RectangleShape2D_nph22")
 z_index = 4
 position = Vector2(0, 132)
 texture = ExtResource("19_rdmqm")
+script = ExtResource("4_tl0r5")
+beat_scale_target = Vector2(1.1, 1.1)
 
 [node name="FreezerCensor" type="Area2D" parent="Freezer"]
 position = Vector2(-14, 64)
@@ -336,12 +343,18 @@ texture = ExtResource("8_23u02")
 z_as_relative = false
 position = Vector2(-4, -165)
 texture = ExtResource("9_rdmqm")
+script = ExtResource("4_tl0r5")
+beat_scale_target = Vector2(1.5, 1.5)
+beat_delay = 0.020000000004074536
 
 [node name="Madeit" type="Sprite2D" parent="Right/Oven/BreadCensor"]
 visible = false
 z_as_relative = false
 position = Vector2(1, -164)
 texture = ExtResource("10_bhd8d")
+script = ExtResource("4_tl0r5")
+beat_scale_target = Vector2(1.5, 1.5)
+beat_delay = 0.020000000004074536
 
 [node name="Tray" type="Sprite2D" parent="Right"]
 z_as_relative = false
@@ -546,3 +559,9 @@ texture = ExtResource("14_23u02")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="salt"]
 polygon = PackedVector2Array(-9.5, -32, -9.5, -30.7, -11.5, -30, -15, -30, -17, -27, -18.5, -27, -18.5, -18.2, -20.2, -14, -21.5, -14, -21.5, -5.299999, -24.3, 5, -25.5, 5, -25.5, 16.2, -23.5, 20.2, -23.5, 22.599998, -21.5, 23.599998, -21.5, 25.7, -14.5, 28.599998, -14.5, 30, -8.799999, 30, -5.799999, 32, 8.700001, 32, 15.700001, 29, 17.900002, 29, 23.900002, 24, 26.5, 24, 26.5, 22, 27.5, 22, 27.5, 6.9000015, 21.3, -20, 21.2, -21, 23.099998, -21, 21.5, -24.2, 21.5, -26.6, 14.5, -30.7, 14.5, -32)
+
+[node name="Details" type="Sprite2D" parent="."]
+z_index = -99
+z_as_relative = false
+position = Vector2(729, 384)
+texture = ExtResource("21_b8rp8")
