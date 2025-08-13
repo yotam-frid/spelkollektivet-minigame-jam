@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bv4ht8mgdetr8"]
+[gd_scene load_steps=29 format=3 uid="uid://bv4ht8mgdetr8"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_ioj25"]
 [ext_resource type="Texture2D" uid="uid://bipj3bslg003i" path="res://minigames/8_59_Breakfast/sprites/background.png" id="3_ewha7"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bcfclxim8rh0n" path="res://minigames/8_59_Breakfast/sprites/items/dkflag.png" id="9_qrew8"]
 [ext_resource type="Texture2D" uid="uid://bkc2dnlqjnqgm" path="res://minigames/8_59_Breakfast/sprites/time.png" id="9_rdmqm"]
 [ext_resource type="Texture2D" uid="uid://dgqfg6aq7bf4a" path="res://minigames/8_59_Breakfast/sprites/madeit.png" id="10_bhd8d"]
-[ext_resource type="Script" uid="uid://danr73imcxxst" path="res://minigames/8_59_Breakfast/Item.gd" id="10_tfue5"]
 [ext_resource type="Texture2D" uid="uid://7nfxaduaxpng" path="res://minigames/8_59_Breakfast/sprites/items/oil.png" id="11_4nth4"]
 [ext_resource type="Texture2D" uid="uid://v65v0aw8k8cl" path="res://minigames/8_59_Breakfast/sprites/items/soya.png" id="12_tfue5"]
 [ext_resource type="Texture2D" uid="uid://dyq7q4jhfn1pc" path="res://minigames/8_59_Breakfast/sprites/items/box.png" id="13_nph22"]
@@ -23,59 +22,60 @@
 [sub_resource type="GDScript" id="GDScript_sgjaw"]
 script/source = "extends Node2D
 
-var hovered_object : RigidBody2D = null
-var held_object : RigidBody2D = null
+var hovered: RigidBody2D
+var held: RigidBody2D
 
-func _input(event: InputEvent) -> void:
-	var mouse_event = event as InputEventMouseButton
-	if event is InputEventMouseButton:
-		if mouse_event.button_index != MOUSE_BUTTON_LEFT:
-			return
-	else:
-		return
-		
-	if mouse_event.pressed and hovered_object != null: 
-		held_object = hovered_object
-		held_object.freeze = true
-	elif held_object != null: 
-		held_object.global_position = get_global_mouse_position()
-		#var mouse_speed = (get_global_mouse_position() - held_object.global_position) / get_physics_process_delta_time()
-		#held_object.linear_velocity = mouse_speed
-		#held_object.angular_velocity = 0
-		held_object.freeze = false
-		held_object = null
-		
+var spring_k := 2500.0
+var damping_d := 80.0
+var max_pull_force := 80000.0
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			if hovered:
+				start_drag(hovered)
+		else:
+			if held:
+				stop_drag()
+
 func _physics_process(_delta: float) -> void:
-	if held_object == null:
+	if held:
+		var target := get_global_mouse_position()
+		var pos := held.global_position
+		var vel := held.linear_velocity
+		var force := (target - pos) * spring_k - vel * damping_d
+
+		if force.length() > max_pull_force:
+			force = force.normalized() * max_pull_force
+
+		held.apply_force(force)
+		held.angular_velocity *= 0.9
+		held.can_sleep = false 
+	else:
 		picking()
-	else: 
-		holding()
-	
-func picking():
-	var mouse_pos = get_viewport().get_mouse_position()
-	var space_state = get_world_2d().direct_space_state
 
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = mouse_pos
-	query.collide_with_areas = true
-	query.collide_with_bodies = true
+func picking() -> void:
+	var params := PhysicsPointQueryParameters2D.new()
+	params.position = get_global_mouse_position()
+	params.collide_with_bodies = true
+	params.collide_with_areas = false
 
-	var results = space_state.intersect_point(query, 1)
-	
-	for result in results:
-		if result.collider is RigidBody2D:
-			hovered_object = result.collider
-			return
-	hovered_object = null
-	
-func holding():
-	var target_pos = get_global_mouse_position()
-	var motion = target_pos - held_object.global_position
-	var follow_speed = 20.0
-	held_object.linear_velocity = motion * follow_speed
-	held_object.angular_velocity = 0
-	#held_object.move_and_collide(motion) 
-	
+	var results := get_world_2d().direct_space_state.intersect_point(params, 8)
+	hovered = null
+	for r in results:
+		var c = r.collider
+		if c is RigidBody2D:
+			hovered = c
+			break
+
+func start_drag(body: RigidBody2D) -> void:
+	held = body
+	held.can_sleep = false
+
+func stop_drag() -> void:
+	if held:
+		held.can_sleep = true
+	held = null
 "
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sgjaw"]
@@ -121,9 +121,11 @@ func _body_exited(body):
 func finish():
 	for breadroll in breadrolls:
 		var sprite = breadroll.get_node(\"Sprite2D\")
-		sprite.reparent(self)
+		if sprite != null:
+			sprite.reparent(self)
 		
-	CurrentGame.instance.win_and_finish(1.0)
+		
+	CurrentGame.instance.win_and_finish(.8)
 	
 	$Time.hide()
 	$Madeit.show()
@@ -138,7 +140,7 @@ func finish():
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23u02"]
-size = Vector2(348, 248)
+size = Vector2(303, 180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgjaw"]
 size = Vector2(296.16785, 8.940582)
@@ -159,7 +161,7 @@ title = "8:59 Breakfast"
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 
-[node name="Controller" type="Node2D" parent="."]
+[node name="Interaction" type="Node2D" parent="."]
 script = SubResource("GDScript_sgjaw")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -235,6 +237,7 @@ position = Vector2(0, 36)
 script = SubResource("GDScript_tfue5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Oven/BreadCensor"]
+position = Vector2(22.5, 13)
 shape = SubResource("RectangleShape2D_23u02")
 
 [node name="Oven_Closed" type="Sprite2D" parent="Right/Oven/BreadCensor"]
@@ -410,7 +413,6 @@ texture = ExtResource("3_vgw02")
 [node name="DKflag" type="RigidBody2D" parent="."]
 position = Vector2(839, 81)
 freeze_mode = 1
-script = ExtResource("10_tfue5")
 
 [node name="Sprite2D" type="Sprite2D" parent="DKflag"]
 texture = ExtResource("9_qrew8")
@@ -421,7 +423,6 @@ polygon = PackedVector2Array(-19.5, -46, -28.5, -46, -28.5, -43, -29.4, -35, -30
 [node name="oil" type="RigidBody2D" parent="."]
 position = Vector2(658, 90)
 freeze_mode = 1
-script = ExtResource("10_tfue5")
 
 [node name="Sprite2D" type="Sprite2D" parent="oil"]
 texture = ExtResource("11_4nth4")
@@ -432,7 +433,6 @@ polygon = PackedVector2Array(9, -45.3, 2.1000004, -46.5, 1, -46.5, 1, -45.2, -1,
 [node name="soya" type="RigidBody2D" parent="."]
 position = Vector2(595, 95)
 freeze_mode = 1
-script = ExtResource("10_tfue5")
 
 [node name="Sprite2D" type="Sprite2D" parent="soya"]
 texture = ExtResource("12_tfue5")
@@ -443,7 +443,6 @@ polygon = PackedVector2Array(5.5, -48.3, -0.5, -49.5, -1.5, -49.5, -1.5, -48.5, 
 [node name="box" type="RigidBody2D" parent="."]
 position = Vector2(805, 113)
 freeze_mode = 1
-script = ExtResource("10_tfue5")
 
 [node name="Sprite2D" type="Sprite2D" parent="box"]
 texture = ExtResource("13_nph22")
@@ -454,7 +453,6 @@ polygon = PackedVector2Array(14, -34, -13, -35, -13, -34, -15.4, -34, -18.4, -31
 [node name="salt" type="RigidBody2D" parent="."]
 position = Vector2(754, 110)
 freeze_mode = 1
-script = ExtResource("10_tfue5")
 
 [node name="Sprite2D" type="Sprite2D" parent="salt"]
 texture = ExtResource("14_23u02")
