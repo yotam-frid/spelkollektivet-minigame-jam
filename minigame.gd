@@ -3,6 +3,7 @@ class_name Minigame
 
 signal game_won
 signal game_finished
+signal timer_started
 signal timer_cleared
 
 ## Instruction text shown before the game starts.
@@ -70,6 +71,7 @@ func clear_timer():
 	timer_cleared.emit()
 	
 func start_timer():
+	timer_started.emit()
 	await get_tree().create_timer(duration).timeout
 	if not _timer_cleared:
 		finish()
