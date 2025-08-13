@@ -1,84 +1,128 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgtfc8j83f0u4"]
+[gd_scene load_steps=40 format=3 uid="uid://cgtfc8j83f0u4"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_4ywqq"]
+[ext_resource type="Texture2D" uid="uid://bxdpf3dmgnesc" path="res://minigames/suika/bg.png" id="2_m6bmg"]
+[ext_resource type="Texture2D" uid="uid://e4oi2u3xsy38" path="res://minigames/suika/spr_portrait.png" id="2_o7lbb"]
+[ext_resource type="Texture2D" uid="uid://c7pronu4ccb2w" path="res://minigames/suika/frogs/frog09.png" id="4_40rnt"]
+[ext_resource type="Texture2D" uid="uid://p1jvq0ikgg7b" path="res://minigames/suika/frogs/frog08.png" id="5_06ikk"]
+[ext_resource type="Script" uid="uid://ghcglf53bqdo" path="res://minigames/suika/player_drop_frog.gd" id="5_lnffg"]
+[ext_resource type="Texture2D" uid="uid://cc8ryrq7tm2l2" path="res://minigames/suika/frogs/frog06.png" id="6_lnffg"]
+[ext_resource type="AudioStream" uid="uid://siaedbkwe87a" path="res://minigames/suika/snd_drop.wav" id="7_ammk5"]
+[ext_resource type="Texture2D" uid="uid://gyeuavkvkdmx" path="res://minigames/suika/frogs/frog03.png" id="7_gji8f"]
+[ext_resource type="Texture2D" uid="uid://c202sepcmiwwa" path="res://minigames/suika/frogs/frog00.png" id="8_ammk5"]
+[ext_resource type="Texture2D" uid="uid://c6wwdumrp01" path="res://minigames/suika/frogs/frog02.png" id="9_5nr66"]
+[ext_resource type="AudioStream" uid="uid://dhmyaeu005ctp" path="res://minigames/suika/snd_merge.wav" id="9_a1gvi"]
+[ext_resource type="Texture2D" uid="uid://i8l4gvfgns5c" path="res://minigames/suika/frogs/frog01.png" id="10_a1gvi"]
+[ext_resource type="Texture2D" uid="uid://cf1g1s6gvovr5" path="res://minigames/suika/frogs/frog05.png" id="11_rfbk4"]
+[ext_resource type="Texture2D" uid="uid://cdd5o77ljymxy" path="res://minigames/suika/frogs/frog07.png" id="12_51vjm"]
+[ext_resource type="Script" uid="uid://b4bfoj6hmn05r" path="res://minigames/suika/dashed_line_2d.gd" id="16_5nr66"]
+[ext_resource type="FontFile" uid="uid://bk2er1igd0rg8" path="res://minigames/suika/Tiny5-Regular.ttf" id="17_a1gvi"]
+[ext_resource type="Texture2D" uid="uid://dkxx7n32npcwt" path="res://minigames/suika/line.png" id="17_rfbk4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ywqq"]
 size = Vector2(139.5, 719.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o7lbb"]
-size = Vector2(225.75, 182.75)
+size = Vector2(345.75, 133)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o7lbb"]
 bounce = 0.25
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m6bmg"]
-radius = 32.0
+radius = 16.124516
+
+[sub_resource type="Gradient" id="Gradient_rfbk4"]
+offsets = PackedFloat32Array(0, 0.6855895, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_51vjm"]
+gradient = SubResource("Gradient_rfbk4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_51vjm"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 75.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.49803922)
+color_ramp = SubResource("GradientTexture1D_51vjm")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ywqq"]
 bounce = 0.34
 
-[sub_resource type="GDScript" id="GDScript_4ywqq"]
-script/source = "extends RigidBody2D
-
-@export var merge_result: RigidBody2D
-@export var merge_target: Area2D
-
-var dropped = false
-var merged = false
-
-var min_x = 386
-var max_x = 569
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	freeze = true
-	merge_target.body_entered.connect(_on_area_entered)
-	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(\"left_click\"):
-		drop()
-
-func drop():
-	dropped = true
-	freeze = false
-	
-func merge():
-	if merged:
-		return
-		
-	CurrentGame.instance.win()
-	merged = true
-	merge_result.show()
-	merge_result.sleeping = false
-	
-	var midpoint = (global_position + merge_target.global_position) / 2.0
-	merge_result.global_position = midpoint
-	global_position = Vector2.ZERO
-	freeze = true
-	
-	hide()
-	merge_target.hide()
-	
-	merge_result.freeze = false
-		# Wait a few physics frames to ensure the body is fully active
-
-	merge_result.apply_central_impulse(Vector2.UP * 200)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if not dropped:
-		var mouse_pos = get_viewport().get_mouse_position()
-		global_position.x = clampf(mouse_pos.x, min_x, max_x)
-
-func _on_area_entered(_body: Node2D):
-	call_deferred(\"merge\")
-"
+[sub_resource type="CircleShape2D" id="CircleShape2D_lnffg"]
+radius = 9.055386
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ywqq"]
-radius = 23.194826
+radius = 12.165525
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o7lbb"]
-radius = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnffg"]
+size = Vector2(29, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1gvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gji8f"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ammk5"]
+radius = 33.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5nr66"]
+radius = 48.09366
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfbk4"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_51vjm"]
+radius = 18.110771
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8wwc"]
+radius = 14.035668
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfbk4"]
+font = ExtResource("17_a1gvi")
+font_size = 20
+
+[sub_resource type="Shader" id="Shader_5nr66"]
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float aberration_strength : hint_range(0.0, 0.01, 0.001) = 0.002;
+uniform float scanline_intensity : hint_range(0.0, 1.0, 0.1) = 0.3;
+uniform float scanline_frequency : hint_range(100.0, 2000.0, 50.0) = 800.0;
+uniform float color_tint_r : hint_range(0.5, 1.5, 0.1) = 0.95;
+uniform float color_tint_g : hint_range(0.5, 1.5, 0.1) = 1.05;
+uniform float color_tint_b : hint_range(0.5, 1.5, 0.1) = 0.95;
+
+void fragment() {
+    vec2 uv = SCREEN_UV;
+    
+    // Chromatic aberration - offset each color channel slightly
+    float r = texture(SCREEN_TEXTURE, uv + vec2(aberration_strength, 0.0)).r;
+    float g = texture(SCREEN_TEXTURE, uv).g;
+    float b = texture(SCREEN_TEXTURE, uv - vec2(aberration_strength, 0.0)).b;
+    
+    vec3 col = vec3(r, g, b);
+    
+    // Add vintage color tinting
+    col *= vec3(color_tint_r, color_tint_g, color_tint_b);
+    
+    // VERTICAL scanlines (using x coordinate for vertical lines)
+    float scanlines = clamp(0.5 + 0.5 * sin(uv.x * scanline_frequency), 0.0, 1.0);
+    col = mix(col, col * scanlines, scanline_intensity);
+    
+    COLOR = vec4(col, 1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1gvi"]
+shader = SubResource("Shader_5nr66")
+shader_parameter/aberration_strength = 0.002000000095
+shader_parameter/scanline_intensity = 0.20000000298024
+shader_parameter/scanline_frequency = 1500.0
+shader_parameter/color_tint_r = 1.0000000074506001
+shader_parameter/color_tint_g = 1.05
+shader_parameter/color_tint_b = 1.0000000074506001
 
 [node name="Suika" type="Node"]
 script = ExtResource("1_4ywqq")
@@ -95,6 +139,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
 layout_mode = 1
@@ -104,103 +149,385 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
-[node name="Node2D" type="Node2D" parent="BG"]
-texture_filter = 1
+[node name="TextureRect2" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 180.0
+offset_right = 1335.0
+offset_bottom = 720.0
+texture = ExtResource("2_m6bmg")
+stretch_mode = 4
 
 [node name="ColorRect2" type="ColorRect" parent="BG"]
+visible = false
 layout_mode = 0
 offset_left = 227.0
 offset_right = 366.0
 offset_bottom = 720.0
+metadata/_edit_lock_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="BG"]
+visible = false
 layout_mode = 0
 offset_left = 589.0
 offset_right = 728.0
 offset_bottom = 720.0
+metadata/_edit_lock_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="BG"]
+visible = false
 layout_mode = 0
 offset_left = 366.0
 offset_top = 537.0
 offset_right = 589.0
 offset_bottom = 720.0
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(312, 267)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="TextureRect" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 77.0
+offset_right = 957.0
+offset_bottom = 797.0
+texture = ExtResource("2_o7lbb")
+stretch_mode = 4
+
+[node name="Node2D" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="Wall1" type="StaticBody2D" parent="Node2D"]
+position = Vector2(252, 271)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall1"]
 position = Vector2(-16, 92)
 shape = SubResource("RectangleShape2D_4ywqq")
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(676, 267)
-metadata/_edit_lock_ = true
+[node name="Wall2" type="StaticBody2D" parent="Node2D"]
+position = Vector2(738, 269)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall2"]
 position = Vector2(-16, 92)
 shape = SubResource("RectangleShape2D_4ywqq")
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(676, 267)
-metadata/_edit_lock_ = true
+[node name="Wall3" type="StaticBody2D" parent="Node2D"]
+position = Vector2(616, 329)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(-196.875, 361.375)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Wall3"]
+position = Vector2(-136.875, 330.5)
 shape = SubResource("RectangleShape2D_o7lbb")
-metadata/_edit_lock_ = true
 
-[node name="MergeResult" type="RigidBody2D" parent="."]
+[node name="MergeResult" type="RigidBody2D" parent="Node2D"]
 position = Vector2(34, -76)
 physics_material_override = SubResource("PhysicsMaterial_o7lbb")
+gravity_scale = 0.8
 freeze = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MergeResult"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/MergeResult"]
 shape = SubResource("CircleShape2D_m6bmg")
 
-[node name="ColorRect" type="ColorRect" parent="MergeResult"]
-anchors_preset = -1
-offset_left = -28.0
-offset_top = -30.0
-offset_right = 29.0
-offset_bottom = 30.0
-color = Color(1, 0, 0, 1)
+[node name="Frog12" type="Sprite2D" parent="Node2D/MergeResult"]
+texture = ExtResource("9_5nr66")
 
-[node name="DropFrog" type="RigidBody2D" parent="." node_paths=PackedStringArray("merge_result", "merge_target")]
-position = Vector2(479, 51)
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Node2D/MergeResult"]
+emitting = false
+amount = 16
+texture = ExtResource("17_rfbk4")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_51vjm")
+
+[node name="FrogsLevel" type="Node2D" parent="Node2D"]
+
+[node name="Frog25" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(567, 532)
+rotation = 0.23919426
+texture = ExtResource("11_rfbk4")
+
+[node name="Frog07" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(339.99997, 486.99997)
+rotation = -0.46110708
+texture = ExtResource("6_lnffg")
+
+[node name="Frog06" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(527.10504, 436.105)
+rotation = -0.041813135
+texture = ExtResource("6_lnffg")
+
+[node name="Frog11" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(602, 422.00003)
+rotation = 0.7035004
+texture = ExtResource("9_5nr66")
+
+[node name="Frog09" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(480.00003, 491)
+rotation = 0.37598082
+texture = ExtResource("4_40rnt")
+
+[node name="Frog10" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(613, 556)
+rotation = 0.22137405
+texture = ExtResource("6_lnffg")
+
+[node name="Frog03" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(571, 573)
+rotation = -0.2999661
+texture = ExtResource("7_gji8f")
+
+[node name="Frog04" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(471, 574.00006)
+rotation = -0.19320494
+texture = ExtResource("7_gji8f")
+
+[node name="Frog05" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(410, 574)
+rotation = 0.13864683
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("7_gji8f")
+
+[node name="Frog02" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(439, 539)
+rotation = -2.66088
+texture = ExtResource("9_5nr66")
+
+[node name="Frog01" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(540, 581.99994)
+rotation = 0.14352609
+texture = ExtResource("10_a1gvi")
+
+[node name="Frog12" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(641, 581.99994)
+rotation = -0.37352556
+texture = ExtResource("10_a1gvi")
+
+[node name="Frog15" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(641, 581.99994)
+rotation = -0.37352556
+texture = ExtResource("10_a1gvi")
+
+[node name="Frog21" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(500, 581.99994)
+rotation = -0.42953098
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("10_a1gvi")
+
+[node name="Frog13" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(441.99997, 582)
+rotation = -0.7991582
+texture = ExtResource("10_a1gvi")
+
+[node name="Frog14" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(397.00003, 548)
+rotation = 0.29546353
+scale = Vector2(0.9999999, 0.9999999)
+texture = ExtResource("10_a1gvi")
+
+[node name="Frog17" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(398, 497.99997)
+rotation = -0.26767704
+texture = ExtResource("12_51vjm")
+
+[node name="Frog08" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(348, 551.00006)
+rotation = 0.7818819
+texture = ExtResource("5_06ikk")
+
+[node name="Frog16" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(520, 552)
+rotation = -0.78450733
+texture = ExtResource("11_rfbk4")
+
+[node name="Frog18" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(436.99994, 561.99994)
+rotation = 0.23508726
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("8_ammk5")
+
+[node name="Frog26" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(642.99994, 491.99997)
+rotation = -0.8324536
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("8_ammk5")
+
+[node name="Frog19" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(534, 522.00006)
+rotation = 0.65284085
+texture = ExtResource("8_ammk5")
+
+[node name="Frog20" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(605, 522)
+rotation = -1.3228959
+texture = ExtResource("8_ammk5")
+
+[node name="Frog22" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(627, 512)
+rotation = 0.2130228
+texture = ExtResource("7_gji8f")
+
+[node name="Frog24" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(632, 435)
+rotation = -0.67395955
+texture = ExtResource("7_gji8f")
+
+[node name="Frog23" type="Sprite2D" parent="Node2D/FrogsLevel"]
+position = Vector2(582, 469)
+texture = ExtResource("5_06ikk")
+
+[node name="DropFrog" type="RigidBody2D" parent="Node2D" node_paths=PackedStringArray("merge_result", "merge_target", "next_frog", "next_frog_indicator", "end_label")]
+position = Vector2(340, 121)
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_4ywqq")
-script = SubResource("GDScript_4ywqq")
+gravity_scale = 0.8
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("5_lnffg")
 merge_result = NodePath("../MergeResult")
-merge_target = NodePath("../Area2D")
+merge_target = NodePath("../DropFrogTarget")
+next_frog = NodePath("../DropFrog2")
+next_frog_indicator = NodePath("../NextFrogIndicator")
+end_label = NodePath("../Label")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DropFrog"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DropFrog"]
+shape = SubResource("CircleShape2D_lnffg")
+
+[node name="Line" type="Line2D" parent="Node2D/DropFrog"]
+points = PackedVector2Array(0, -7, 0, 471)
+width = 1.0
+script = ExtResource("16_5nr66")
+dash_width = 15.0
+gap_width = 15.0
+
+[node name="Frog00" type="Sprite2D" parent="Node2D/DropFrog"]
+texture = ExtResource("8_ammk5")
+
+[node name="SndDrop" type="AudioStreamPlayer" parent="Node2D/DropFrog"]
+stream = ExtResource("7_ammk5")
+
+[node name="DropFrog2" type="RigidBody2D" parent="Node2D" node_paths=PackedStringArray("merge_result", "merge_target")]
+position = Vector2(38, 121)
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_4ywqq")
+gravity_scale = 0.8
+script = ExtResource("5_lnffg")
+merge_result = NodePath("../MergeResult")
+merge_target = NodePath("../DropFrogTarget")
+can_merge = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DropFrog2"]
 shape = SubResource("CircleShape2D_4ywqq")
 
-[node name="ColorRect" type="ColorRect" parent="DropFrog"]
-anchors_preset = -1
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-color = Color(0, 1, 1, 1)
+[node name="Frog01" type="Sprite2D" parent="Node2D/DropFrog2"]
+texture = ExtResource("10_a1gvi")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(432, 453)
+[node name="SndDrop" type="AudioStreamPlayer" parent="Node2D/DropFrog2"]
+stream = ExtResource("7_ammk5")
+
+[node name="SndMerge" type="AudioStreamPlayer" parent="Node2D/DropFrog2"]
+stream = ExtResource("9_a1gvi")
+
+[node name="Line" type="Line2D" parent="Node2D/DropFrog2"]
+points = PackedVector2Array(0, -7, 0, 471)
+width = 1.0
+script = ExtResource("16_5nr66")
+dash_width = 15.0
+gap_width = 15.0
+
+[node name="DropFrogTarget" type="Area2D" parent="Node2D"]
+position = Vector2(375, 462)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_o7lbb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DropFrogTarget"]
+position = Vector2(-2, -5)
+shape = SubResource("RectangleShape2D_lnffg")
+debug_color = Color(1.732707e-06, 0.6287622, 0.4923306, 0.41960785)
 
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
+[node name="Frog01" type="Sprite2D" parent="Node2D/DropFrogTarget"]
+position = Vector2(-4, 4)
+rotation = 0.22822855
+texture = ExtResource("10_a1gvi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D/DropFrogTarget"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DropFrogTarget/StaticBody2D"]
+position = Vector2(-4, 4)
+shape = SubResource("CircleShape2D_a1gvi")
+
+[node name="Line2D" type="Line2D" parent="Node2D"]
+position = Vector2(306, 154)
+points = PackedVector2Array(0, 0, 346, 0)
+width = 1.0
+script = ExtResource("16_5nr66")
+dash_width = 10.0
+gap_width = 15.0
+
+[node name="Collider" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Collider"]
+position = Vector2(340, 487)
+shape = SubResource("CircleShape2D_gji8f")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Collider"]
+position = Vector2(527.10516, 436.10498)
+shape = SubResource("CircleShape2D_gji8f")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/Collider"]
+position = Vector2(399, 499)
+shape = SubResource("CircleShape2D_ammk5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Collider"]
+position = Vector2(479, 493)
+shape = SubResource("CircleShape2D_5nr66")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node2D/Collider"]
+position = Vector2(582, 472)
+shape = SubResource("CircleShape2D_rfbk4")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node2D/Collider"]
+position = Vector2(632, 435)
+shape = SubResource("CircleShape2D_51vjm")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Node2D/Collider"]
+position = Vector2(603, 423)
+shape = SubResource("CircleShape2D_e8wwc")
+
+[node name="NextFrogIndicator" type="Sprite2D" parent="Node2D"]
+position = Vector2(151, 261)
+texture = ExtResource("10_a1gvi")
+
+[node name="Label" type="Label" parent="Node2D"]
+visible = false
 anchors_preset = -1
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-color = Color(0, 1, 1, 1)
+offset_left = 84.0
+offset_top = 251.0
+offset_right = 219.0
+offset_bottom = 274.0
+text = "no more frogs :)"
+label_settings = SubResource("LabelSettings_rfbk4")
+
+[node name="Label2" type="Label" parent="Node2D"]
+anchors_preset = -1
+offset_left = 131.0
+offset_top = 132.0
+offset_right = 239.0
+offset_bottom = 155.0
+text = "69420"
+label_settings = SubResource("LabelSettings_rfbk4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_a1gvi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Node2D/DropFrog" to="Node2D/DropFrog" method="_on_body_entered"]

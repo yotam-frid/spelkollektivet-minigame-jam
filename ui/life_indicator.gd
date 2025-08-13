@@ -36,13 +36,16 @@ func _process(delta: float):
 	if shake_amount > 0.0:
 		shake_amount = max(shake_amount-delta, 0.0)
 		sprite.position = sprite_reset_pos + \
-			Vector2(randf_range(-1, 1), randf_range(-.2, 2)) * 5.0
+			Vector2(randf_range(-1, 1), randf_range(-.2, 2)) * (5.0 if not dead else 10.0)
+
+func shake(amount: float):
+	shake_amount = amount
 
 func lose_life():
 	if dead:
 		return
 	
-	shake_amount = 0.4
+	shake(0.4)
 	dead = true
 	crack.show()
 	GlobalSong.clear_animations(self)

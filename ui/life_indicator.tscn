@@ -44,6 +44,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_0mxwb"]
 resource_name = "break"
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,10 +52,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0, 0.1, 0.4, 1),
+"transitions": PackedFloat32Array(0.5, 2, 1, 1),
 "update": 0,
-"values": [Vector2(-7, -35), Vector2(-7, 595)]
+"values": [Vector2(-7, -35), Vector2(-7, -84), Vector2(-7, 595), Vector2(-7, 595)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mj0hv"]
@@ -144,6 +145,7 @@ animations = [{
 }]
 
 [node name="LifeIndicator" type="Node2D"]
+position = Vector2(0, -47)
 script = ExtResource("1_ollid")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

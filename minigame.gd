@@ -75,3 +75,7 @@ func start_timer():
 	await get_tree().create_timer(duration).timeout
 	if not _timer_cleared:
 		finish()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("skip"):
+		finish()
