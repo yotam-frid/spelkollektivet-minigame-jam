@@ -52,3 +52,7 @@ func lose_life():
 	rotate_to(-4)
 	await get_tree().create_timer(0.5).timeout
 	animation_player.play("fall")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	hide()
