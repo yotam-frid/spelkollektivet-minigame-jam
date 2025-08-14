@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://iuohk8gamjwl"]
+
+[ext_resource type="Script" uid="uid://behrqoheofx24" path="res://minigames/hello_world/hw_key.gd" id="1_rj5xn"]
+
+[node name="HW_Key" type="Button"]
+script = ExtResource("1_rj5xn")
+
+[node name="HW_KeyText" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
