@@ -14,6 +14,7 @@ var can_click = false
 
 func _ready():
 	CurrentGame.instance.clear_timer()
+	CurrentGame.instance.mute_music()
 	start_waiting()
 	GlobalSong.animate_on_beat($Label, "position", Vector2.DOWN * 10, true)
 	
