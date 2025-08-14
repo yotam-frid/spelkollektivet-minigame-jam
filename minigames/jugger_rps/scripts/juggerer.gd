@@ -100,6 +100,7 @@ func _on_hitbox_sword_area_entered(area: Area2D) -> void:
 			clash_state = true
 			sounds.stream = win_sound
 			sounds.play()
+
 			
 			
 		if clash_state == false && area.name == "HitboxSword":

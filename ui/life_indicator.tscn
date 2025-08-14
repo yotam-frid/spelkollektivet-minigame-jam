@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cha3eeymyhg4j"]
+[gd_scene load_steps=35 format=3 uid="uid://cha3eeymyhg4j"]
 
 [ext_resource type="Script" uid="uid://d2ps0qmpu3h4s" path="res://ui/life_indicator.gd" id="1_ollid"]
 [ext_resource type="Texture2D" uid="uid://cjaekrs4cmb21" path="res://ui/wall_photos/Frame0003.png" id="2_07ofo"]
@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://b23ku83hn2udl" path="res://ui/wall_photos/Frame0026.png" id="24_4wh0x"]
 [ext_resource type="Texture2D" uid="uid://b3i71t0sq2sth" path="res://ui/wall_photos/Frame0027.png" id="25_chxtl"]
 [ext_resource type="Texture2D" uid="uid://dr2kr8aw6ajky" path="res://ui/wall_photos/Frame0029.png" id="27_i0tsa"]
+[ext_resource type="Texture2D" uid="uid://da2rk7t1482t6" path="res://ui/wall_photos/Frame0030.png" id="28_m17fl"]
+[ext_resource type="Texture2D" uid="uid://kw560yf8s1ds" path="res://ui/wall_photos/Frame0031.png" id="29_jw8sf"]
 
 [sub_resource type="Animation" id="Animation_iexbk"]
 length = 0.001
@@ -146,6 +148,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("27_i0tsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_m17fl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_jw8sf")
 }],
 "loop": false,
 "name": &"default",

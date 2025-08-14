@@ -2,6 +2,10 @@ extends Node
 
 var instance: Minigame = null
 
+# Putting some global state here  because I'm lazy as hell
+var score = 0
+var lost = false
+
 func _init():
 	var default_instance: Minigame = Minigame.new()
 	default_instance.difficulty = 1
@@ -18,3 +22,7 @@ func set_instance(minigame: Minigame):
 	
 func clear_instance():
 	instance = null
+
+func reset():
+	score = 0
+	lost = false

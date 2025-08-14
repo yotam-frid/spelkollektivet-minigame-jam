@@ -5,7 +5,7 @@ class_name LivesUI
 
 const SCENE = preload("res://ui/life_indicator.tscn")
 
-const TOTAL_HOMIES = 26
+const TOTAL_HOMIES = 28
 var amount_left: int = -1
 
 var indicators: Array[LifeIndicator]

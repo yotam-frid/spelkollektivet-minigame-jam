@@ -11,7 +11,6 @@
 script = ExtResource("1_gs8j7")
 layers = [NodePath("TrollLayer1"), NodePath("TrollLayer2"), NodePath("TrollLayer3")]
 title = "Click It"
-viewport_zoom = 4
 mouse = 2
 metadata/_custom_type_script = "uid://bajhxofytc8oh"
 

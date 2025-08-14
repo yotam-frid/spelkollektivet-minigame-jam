@@ -15,6 +15,7 @@ var is_current_minigame_in_tree = false
 
 var music_volume: float = 0.3
 var level = 1
+var lives = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,11 +31,17 @@ func _ready() -> void:
 ## Game Loop ##
 ###############
 func next_minigame():
+	if minigame_queue.size() == 0:
+		CurrentGame.lost = false
+		await screen_game_over()
+		return
+		
 	current_minigame_won = false # Reset state
 	
 	print("Preparing next minigame")
 	await prepare_next_minigame()
 	ui.set_won(false)
+	
 	
 	print("Showing intro")
 	await ui.show_minigame_intro(current_minigame)
@@ -47,14 +54,32 @@ func next_minigame():
 func on_minigame_finished():
 	# Wait 1 frame to let any logic run
 	await get_tree().process_frame
-	music_restore()
 	
+	if not current_minigame_won:
+		lives -= 1
+	else:
+		CurrentGame.score += 1
+		
+	var lost = lives == 0
 	print("Game finished, won: " + str(current_minigame_won))
 	ui.finish_game(current_minigame, current_minigame_won)
+	if not lost:
+		music_restore()
+	
 	await ui.minigame_zoomed_out
 	unload_current_minigame()
 	await ui.ready_for_next_minigame
-	next_minigame()
+	
+	if not lost:
+		next_minigame()
+	else:
+		CurrentGame.lost = true
+		await screen_game_over()
+		
+func screen_game_over():
+	music_mute()
+	await get_tree().create_timer(1.0).timeout
+	get_tree().change_scene_to_file("res://win.tscn")
 	
 func on_minigame_timer_started():
 	ui.show_ingame_ui(current_minigame)
@@ -79,8 +104,11 @@ func create_new_minigame_queue():
 	
 func prepare_next_minigame():
 	if minigame_queue.size() == 0:
-		if level == 1:
-			await increase_level()
+		CurrentGame.lost = true
+		await screen_game_over()
+		return
+		#if level == 1:
+			#await increase_level()
 		create_new_minigame_queue()
 		
 	
@@ -139,4 +167,4 @@ func increase_level():
 	await ui._create_ui_timer(2.0)
 	
 func finish_game():
-	print("The end!")
+	print("The end!") 

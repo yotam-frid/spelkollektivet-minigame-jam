@@ -55,7 +55,6 @@ func start_game():
 	var tween = create_tween()
 	tween.tween_property(fade_out, \"modulate:a\", 1.0, 2.0)
 	$Intro.stop()
-	$Bassdrop.play()
 	$Confirm.play()
 	await get_tree().create_timer(3.0).timeout
 	get_tree().change_scene_to_packed(GAME)
