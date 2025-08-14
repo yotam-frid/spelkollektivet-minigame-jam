@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://dc4i0fvyofl34"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_25anf"]
+[ext_resource type="Script" uid="uid://d3cgpu46tg0wi" path="res://minigames/wrap_it_up/manager.gd" id="2_eefly"]
+[ext_resource type="Texture2D" uid="uid://cmkbpg6y2wywo" path="res://minigames/wrap_it_up/background.png" id="2_w7vms"]
+[ext_resource type="Texture2D" uid="uid://c2rgx8f8g2b38" path="res://minigames/wrap_it_up/slides/s1.png" id="3_w7vms"]
+[ext_resource type="Texture2D" uid="uid://dwe4ffnovv1r2" path="res://minigames/wrap_it_up/presenter_1.png" id="4_4v4uy"]
+[ext_resource type="Texture2D" uid="uid://q3plpsvdea1r" path="res://minigames/wrap_it_up/slides/s2.png" id="4_dsemc"]
+[ext_resource type="Script" uid="uid://cs1cka3qnkxl" path="res://utils/beat_sprite_2d.gd" id="5_m0qq8"]
+[ext_resource type="Texture2D" uid="uid://ds0ji1xnwo4fg" path="res://minigames/wrap_it_up/slides/s3.png" id="5_ppyp1"]
+
+[node name="WrapItUpMinigame" type="Node"]
+script = ExtResource("1_25anf")
+title = "WRAP IT UP!"
+duration = 6
+keyboard = 2
+
+[node name="MANAGER" type="Node" parent="." node_paths=PackedStringArray("slide_rects")]
+script = ExtResource("2_eefly")
+slides = Array[Texture2D]([ExtResource("3_w7vms"), ExtResource("4_dsemc"), ExtResource("5_ppyp1")])
+slide_queue = null
+slide_rects = [NodePath("../UI/container/slot_1"), NodePath("../UI/container/slot_2"), NodePath("../UI/container/slot_3"), NodePath("../UI/container/slot_4"), NodePath("../UI/container/slot_5")]
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(482, 356)
+texture = ExtResource("2_w7vms")
+
+[node name="slide" type="Sprite2D" parent="."]
+position = Vector2(583, 247.49998)
+scale = Vector2(1.1465517, 1.0324074)
+texture = ExtResource("3_w7vms")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="container" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 376.0
+offset_right = 845.0
+offset_bottom = 424.0
+alignment = 1
+
+[node name="slot_1" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_2" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_3" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_4" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_5" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="BeatSprite2D" type="Sprite2D" parent="."]
+position = Vector2(188, 710)
+texture = ExtResource("4_4v4uy")
+centered = false
+offset = Vector2(-177, -483.91)
+script = ExtResource("5_m0qq8")
+beat_scale_target = Vector2(1, 0.9)
+metadata/_custom_type_script = "uid://cs1cka3qnkxl"
