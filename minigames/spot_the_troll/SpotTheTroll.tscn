@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctxd1xjowly3m"]
+
+[ext_resource type="Script" uid="uid://d3uchdcc2mbp5" path="res://minigames/spot_the_troll/troll_minigame.gd" id="1_gs8j7"]
+[ext_resource type="Texture2D" uid="uid://c8jvguxnbgy3q" path="res://minigames/spot_the_troll/assets/forest_background.png" id="2_q8eou"]
+[ext_resource type="Texture2D" uid="uid://1jqfg8btt373" path="res://minigames/spot_the_troll/assets/forest_midground.png" id="3_gs8j7"]
+[ext_resource type="Texture2D" uid="uid://crrmq5sgk16xw" path="res://minigames/spot_the_troll/assets/forest_foreground.png" id="4_ebdpa"]
+[ext_resource type="Script" uid="uid://c7a5quushhjgu" path="res://minigames/spot_the_troll/troll_layer.gd" id="5_ebdpa"]
+[ext_resource type="Texture2D" uid="uid://jbe8x18wrlnb" path="res://minigames/spot_the_troll/assets/fake_troll2.png" id="6_ebdpa"]
+
+[node name="Spot The Troll" type="Node" node_paths=PackedStringArray("layers")]
+script = ExtResource("1_gs8j7")
+layers = [NodePath("TrollLayer1"), NodePath("TrollLayer2"), NodePath("TrollLayer3")]
+title = "Click It"
+viewport_zoom = 4
+mouse = 2
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Background" type="TextureRect" parent="Background"]
+mouse_filter = 2
+texture = ExtResource("2_q8eou")
+
+[node name="Midground" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Midground" type="TextureRect" parent="Midground"]
+mouse_filter = 2
+texture = ExtResource("3_gs8j7")
+
+[node name="Foreground" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Foreground" type="TextureRect" parent="Foreground"]
+mouse_filter = 2
+texture = ExtResource("4_ebdpa")
+
+[node name="TrollLayer1" type="CanvasLayer" parent="."]
+layer = 12
+script = ExtResource("5_ebdpa")
+screen_bounds = Vector2i(960, 670)
+
+[node name="TrollLayer2" type="CanvasLayer" parent="."]
+layer = 7
+script = ExtResource("5_ebdpa")
+screen_bounds = Vector2i(960, 520)
+
+[node name="TrollLayer3" type="CanvasLayer" parent="."]
+layer = 2
+script = ExtResource("5_ebdpa")
+screen_bounds = Vector2i(960, 380)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(54, 388)
+texture = ExtResource("6_ebdpa")
