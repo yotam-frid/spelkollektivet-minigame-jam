@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c6eixn4ndxs2r"
+path="res://.godot/imported/lose audio.ogg-037c929f33822d851b3f8ace43ece8d7.oggvorbisstr"
+
+[deps]
+
+source_file="res://minigames/wrap_it_up/lose audio.ogg"
+dest_files=["res://.godot/imported/lose audio.ogg-037c929f33822d851b3f8ace43ece8d7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
