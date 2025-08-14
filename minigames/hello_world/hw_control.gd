@@ -62,7 +62,7 @@ func _ready():
 	
 	set_text("HW_CodePreviewLabel", code_x, code_y, code_preview_string, code_preview_color)
 	create_keyboard()
-	CurrentGame.instance.duration = 4 + (0.5 * code_preview_string.length()) - (0.25 * difficulty)
+	CurrentGame.instance.duration = 3 + (0.5 * code_preview_string.length()) - (0.25 * difficulty)
 
 func _process(delta):
 	hue += delta * hue_speed  # speed of hue change

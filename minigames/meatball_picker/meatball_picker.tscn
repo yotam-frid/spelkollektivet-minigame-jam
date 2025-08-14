@@ -317,6 +317,7 @@ stream = ExtResource("9_7tn0r")
 
 [node name="LoseSfx" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("10_1npu6")
+volume_db = -10.0
 
 [node name="JordanSwearing" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("11_xfwwi")

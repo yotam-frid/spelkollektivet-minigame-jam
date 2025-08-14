@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://2qlx03ld0s26"]
+
+[ext_resource type="Texture2D" uid="uid://bxbp78e0cov27" path="res://minigames/jugger_rps/Sprites/XMarker.png" id="1_x8x83"]
+[ext_resource type="Script" uid="uid://862224u8m74" path="res://minigames/jugger_rps/popup_ui.gd" id="2_6l8f0"]
+[ext_resource type="Texture2D" uid="uid://x7yk6pxpxsf1" path="res://minigames/jugger_rps/Sprites/YouWinMarker.png" id="3_js6jk"]
+
+[sub_resource type="Animation" id="Animation_4soqs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_x8x83")]
+}
+
+[sub_resource type="Animation" id="Animation_dnvsx"]
+resource_name = "ui_elements"
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_x8x83"), ExtResource("3_js6jk")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gsr1u"]
+_data = {
+&"RESET": SubResource("Animation_4soqs"),
+&"ui_elements": SubResource("Animation_dnvsx")
+}
+
+[node name="PopupUI" type="Sprite2D" node_paths=PackedStringArray("ani_player")]
+texture = ExtResource("1_x8x83")
+hframes = 3
+script = ExtResource("2_6l8f0")
+ani_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gsr1u")
+}
+autoplay = "ui_elements"
+speed_scale = 0.0

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bgmusic.ogg-ec12ee07370f3c124097202eda07a1d4.
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=0.0
 bpm=128.0
 beat_count=0
 bar_beats=4

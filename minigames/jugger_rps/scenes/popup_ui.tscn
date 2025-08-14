@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://2qlx03ld0s26"]
+
+[ext_resource type="Texture2D" uid="uid://bxbp78e0cov27" path="res://minigames/jugger_rps/sprites/XMarker.png" id="1_r5ben"]
+[ext_resource type="Script" uid="uid://862224u8m74" path="res://minigames/jugger_rps/scripts/popup_ui.gd" id="2_l1633"]
+[ext_resource type="Texture2D" uid="uid://dqiqtyq22p4up" path="res://minigames/jugger_rps/sprites/YouLoseMarker.png" id="3_v1rkg"]
+[ext_resource type="Texture2D" uid="uid://x7yk6pxpxsf1" path="res://minigames/jugger_rps/sprites/YouWinMarker.png" id="4_p8qnv"]
+
+[sub_resource type="Animation" id="Animation_4soqs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_r5ben")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6l8f0"]
+resource_name = "x_marker"
+length = 0.3750125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_r5ben")]
+}
+
+[sub_resource type="Animation" id="Animation_gsr1u"]
+resource_name = "you_lose"
+length = 0.3750125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_v1rkg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_js6jk"]
+resource_name = "you_win"
+length = 0.3750125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_p8qnv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gsr1u"]
+_data = {
+&"RESET": SubResource("Animation_4soqs"),
+&"x_marker": SubResource("Animation_6l8f0"),
+&"you_lose": SubResource("Animation_gsr1u"),
+&"you_win": SubResource("Animation_js6jk")
+}
+
+[node name="PopupUI" type="Sprite2D" node_paths=PackedStringArray("ani_player")]
+texture = ExtResource("1_r5ben")
+hframes = 3
+script = ExtResource("2_l1633")
+ani_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gsr1u")
+}

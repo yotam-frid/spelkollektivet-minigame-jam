@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://ryaed88eowqc"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_gxob6"]
+[ext_resource type="PackedScene" uid="uid://co6kfdvvwkcbm" path="res://minigames/jugger_rps/scenes/juggerer.tscn" id="2_2wwcr"]
+[ext_resource type="Script" uid="uid://ci52dilew8blt" path="res://minigames/jugger_rps/scripts/rps_manager.gd" id="2_qfq5t"]
+[ext_resource type="PackedScene" uid="uid://2qlx03ld0s26" path="res://minigames/jugger_rps/scenes/popup_ui.tscn" id="4_qfq5t"]
+[ext_resource type="PackedScene" uid="uid://xedwalvenl4n" path="res://minigames/jugger_rps/scenes/particle.tscn" id="5_ujsgn"]
+[ext_resource type="Texture2D" uid="uid://q1jgwab5cyw5" path="res://minigames/jugger_rps/sprites/SpelBackground.png" id="6_pjgw8"]
+
+[node name="JuggerRPS" type="Node"]
+script = ExtResource("1_gxob6")
+title = "Jugger"
+mouse = 3
+metadata/_custom_type_script = "uid://bajhxofytc8oh"
+
+[node name="Node2D" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(240, 180)
+texture = ExtResource("6_pjgw8")
+
+[node name="RPSManager" type="Node" parent="Node2D"]
+script = ExtResource("2_qfq5t")
+
+[node name="Juggerer" parent="Node2D" instance=ExtResource("2_2wwcr")]
+position = Vector2(138, 280)
+the_player = true
+
+[node name="JuggererRight" parent="Node2D" instance=ExtResource("2_2wwcr")]
+position = Vector2(300, 280)
+
+[node name="PopupUI" parent="Node2D" instance=ExtResource("4_qfq5t")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="Node2D"]
+anchor_mode = 0
+zoom = Vector2(2, 2)
+
+[node name="Particle" parent="Node2D" instance=ExtResource("5_ujsgn")]
+position = Vector2(246, 96)

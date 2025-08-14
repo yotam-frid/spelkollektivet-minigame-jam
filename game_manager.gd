@@ -11,14 +11,19 @@ var current_minigame_won = false
 var is_current_minigame_in_tree = false
 
 @onready var music: AudioStreamPlayer = $Bgmusic
-var music_volume: float = 0.5
+@onready var levelup: AudioStreamPlayer = $Levelup
+
+var music_volume: float = 0.3
+var level = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	music.play()
 	music.volume_linear = music_volume
-	GlobalSong.change_bpm(128)
+	GlobalSong.change_bpm(152)
+	Engine.time_scale = 1.0
 	await get_tree().create_timer(2.0).timeout
+	create_new_minigame_queue()
 	next_minigame()
 
 ###############
@@ -28,7 +33,7 @@ func next_minigame():
 	current_minigame_won = false # Reset state
 	
 	print("Preparing next minigame")
-	prepare_next_minigame()
+	await prepare_next_minigame()
 	ui.set_won(false)
 	
 	print("Showing intro")
@@ -53,7 +58,6 @@ func on_minigame_finished():
 	
 func on_minigame_timer_started():
 	ui.show_ingame_ui(current_minigame)
-	music_down()
 	
 func on_minigame_timer_cleared():
 	print("Timer cleared")
@@ -70,10 +74,15 @@ func create_new_minigame_queue():
 	minigame_queue = minigame_scenes.duplicate()
 	if shuffle:
 		minigame_queue.shuffle()
+	if level == 2:
+		minigame_queue = minigame_queue.slice(0, 5)
 	
 func prepare_next_minigame():
 	if minigame_queue.size() == 0:
+		if level == 1:
+			await increase_level()
 		create_new_minigame_queue()
+		
 	
 	@warning_ignore("unsafe_method_access")
 	current_minigame = minigame_queue.pop_front().instantiate()
@@ -112,3 +121,22 @@ func music_down():
 	#var tween = create_tween()
 	#tween.tween_property(music, "volume_linear", music_volume / 2.0, 1.0)
 	music_restore()
+	
+func increase_level():
+	music_mute()
+	levelup.play()
+	await ui.display_text("FASTER!", 2.0)
+	music.stop()
+	await ui._create_ui_timer(1.0)
+	
+	level += 1
+	Engine.time_scale = 1.2
+	
+	music.pitch_scale = Engine.time_scale
+	GlobalSong.change_bpm(GlobalSong.bpm * Engine.time_scale)
+	music.play()
+	music_restore()
+	await ui._create_ui_timer(2.0)
+	
+func finish_game():
+	print("The end!")

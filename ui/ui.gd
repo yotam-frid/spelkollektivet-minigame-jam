@@ -207,3 +207,8 @@ func _show_lives():
 func _hide_lives():
 	var tween = create_tween()
 	tween.tween_property(lives, "position", lives_reset_pos + Vector2.DOWN * 400, 0.3)
+
+func display_text(text: String, duration: float):
+	_show_text(text)
+	await _create_ui_timer(duration)
+	_hide_text(true)
