@@ -2,7 +2,7 @@ extends Node
 
 signal beat
 
-var bpm = 128
+var bpm = 125
 var beat_timer: Timer
 
 var node_tweens: Dictionary[Node, Array]
@@ -17,6 +17,10 @@ func _ready() -> void:
 	
 	start()
 
+func change_bpm(num: float):
+	beat_timer.stop()
+	bpm = num
+	start()
 
 func start():
 	beat_timer.wait_time = 60.0 / bpm

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cum3oukyed2en"
-path="res://.godot/imported/munchyup0008.png-8c29134e30ed11cff4bec839b3388c49.ctex"
+uid="uid://uow2ttg71rl7"
+path="res://.godot/imported/spelware0001.png-93ff8e677171ba08624a56c85a600a6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/munchy_mammals_2/frames/munchyup0008.png"
-dest_files=["res://.godot/imported/munchyup0008.png-8c29134e30ed11cff4bec839b3388c49.ctex"]
+source_file="res://ui/images/spelware0001.png"
+dest_files=["res://.godot/imported/spelware0001.png-93ff8e677171ba08624a56c85a600a6a.ctex"]
 
 [params]
 

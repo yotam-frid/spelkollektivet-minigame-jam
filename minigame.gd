@@ -5,6 +5,7 @@ signal game_won
 signal game_finished
 signal timer_started
 signal timer_cleared
+signal music_muted
 
 ## Instruction text shown before the game starts.
 @export var title = ""
@@ -69,6 +70,10 @@ func clear_timer():
 		
 	_timer_cleared = true
 	timer_cleared.emit()
+	
+## Mutes the global playing music.
+func mute_music():
+	music_muted.emit()
 	
 func start_timer():
 	timer_started.emit()

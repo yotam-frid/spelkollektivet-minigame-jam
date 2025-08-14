@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://dva8la1rsdwcj"]
+
+[ext_resource type="Texture2D" uid="uid://uow2ttg71rl7" path="res://ui/images/spelware0001.png" id="1_s2ta7"]
+[ext_resource type="AudioStream" uid="uid://dwfu1htamg3ne" path="res://assets/bassdrop.wav" id="1_y72e6"]
+[ext_resource type="AudioStream" uid="uid://ge1hrrxajacp" path="res://assets/intro.ogg" id="2_ayt76"]
+[ext_resource type="AudioStream" uid="uid://md120pylfeuw" path="res://assets/confirm.wav" id="2_u2rf6"]
+[ext_resource type="FontFile" uid="uid://bsueqpcviwyrx" path="res://assets/upheavtt.ttf" id="3_7a8ye"]
+
+[sub_resource type="GDScript" id="GDScript_ayt76"]
+script/source = "extends Control
+
+
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var flash: ColorRect = $Flash
+@onready var target_pos = sprite.global_position
+@onready var label: Label = $Label
+@onready var fade_out: ColorRect = $FadeOut
+
+const GAME = preload(\"res://main_game.tscn\")
+
+var is_ready = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	sprite.global_position.y += 1000
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(sprite, \"global_position\", target_pos, 3.0)
+	sprite.modulate = Color.BLACK
+	
+	tween.tween_callback(_on_start)
+	
+
+func _on_start():
+	is_ready = true
+	sprite.modulate = Color.WHITE
+	GlobalSong.change_bpm(62.5)
+	GlobalSong.animate_on_beat(sprite, \"scale\", Vector2(.2, .2), true)
+	GlobalSong.animate_on_beat(label, \"position\", Vector2(0, 20), true)
+	flash.show()
+	label.show()
+	
+	var tween = create_tween()
+	tween.tween_property(flash, \"modulate:a\", 0.0, 1.0)
+	
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed():
+		start_game()
+		
+func start_game():
+	if fade_out.visible or not is_ready:
+		return
+		
+	fade_out.show()
+	var tween = create_tween()
+	tween.tween_property(fade_out, \"modulate:a\", 1.0, 2.0)
+	$Intro.stop()
+	$Bassdrop.play()
+	$Confirm.play()
+	await get_tree().create_timer(3.0).timeout
+	get_tree().change_scene_to_packed(GAME)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_0a7ni"]
+font = ExtResource("3_7a8ye")
+font_size = 69
+font_color = Color(0, 0, 0, 1)
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ayt76")
+
+[node name="Bassdrop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_y72e6")
+
+[node name="Confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u2rf6")
+volume_db = -10.0
+pitch_scale = 0.5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(485, 314)
+texture = ExtResource("1_s2ta7")
+
+[node name="Intro" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-2, 0)
+stream = ExtResource("2_ayt76")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 593.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press any key to play!"
+label_settings = SubResource("LabelSettings_0a7ni")
+horizontal_alignment = 1
+
+[node name="Flash" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FadeOut" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

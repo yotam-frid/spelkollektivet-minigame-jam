@@ -10,9 +10,15 @@ var current_minigame: Minigame = null
 var current_minigame_won = false
 var is_current_minigame_in_tree = false
 
+@onready var music: AudioStreamPlayer = $Bgmusic
+var music_volume: float = 0.6
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await get_tree().create_timer(1.0).timeout
+	music.play()
+	music.volume_linear = music_volume
+	GlobalSong.change_bpm(128)
+	await get_tree().create_timer(2.0).timeout
 	next_minigame()
 
 ###############
@@ -36,6 +42,7 @@ func next_minigame():
 func on_minigame_finished():
 	# Wait 1 frame to let any logic run
 	await get_tree().process_frame
+	music_restore()
 	
 	print("Game finished, won: " + str(current_minigame_won))
 	ui.finish_game(current_minigame, current_minigame_won)
@@ -46,10 +53,14 @@ func on_minigame_finished():
 	
 func on_minigame_timer_started():
 	ui.show_ingame_ui(current_minigame)
+	music_down()
 	
 func on_minigame_timer_cleared():
 	print("Timer cleared")
 	ui.hide_ingame_ui()
+	
+func on_minigame_music_muted():
+	music_mute()
 	
 
 #############
@@ -70,6 +81,7 @@ func prepare_next_minigame():
 	current_minigame.game_finished.connect(on_minigame_finished)
 	current_minigame.timer_started.connect(on_minigame_timer_started)
 	current_minigame.timer_cleared.connect(on_minigame_timer_cleared)
+	current_minigame.music_muted.connect(on_minigame_music_muted)
 	
 	# Expose game on the global scope
 	CurrentGame.set_instance(current_minigame)
@@ -87,3 +99,16 @@ func on_minigame_won():
 	print("Received win signal")
 	current_minigame_won = true
 	ui.set_won(true)
+	
+func music_mute():
+	var tween = create_tween()
+	tween.tween_property(music, "volume_linear", 0.0, 1.0)
+	
+func music_restore():
+	var tween = create_tween()
+	tween.tween_property(music, "volume_linear", music_volume, 1.0)
+
+func music_down():
+	#var tween = create_tween()
+	#tween.tween_property(music, "volume_linear", music_volume / 2.0, 1.0)
+	music_restore()
