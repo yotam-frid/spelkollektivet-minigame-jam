@@ -1,10 +1,12 @@
-[gd_scene load_steps=194 format=3 uid="uid://dkk3ele4jbpob"]
+[gd_scene load_steps=197 format=3 uid="uid://dkk3ele4jbpob"]
 
 [ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_6tker"]
 [ext_resource type="Script" uid="uid://r6b7lw3lfar8" path="res://minigames/lasagna_seconds/lasagna_gamemanager.gd" id="2_t7q41"]
 [ext_resource type="Texture2D" uid="uid://jiqkpv8o3fo7" path="res://minigames/lasagna_seconds/lasagnaAssets/EndingAnim/Sprite-0001-Sheet.png" id="2_xohit"]
+[ext_resource type="AudioStream" uid="uid://pgpb0dmmy6pp" path="res://minigames/lasagna_seconds/lasagnaAssets/music/FRENZYMUSIC.mp3" id="3_moevo"]
 [ext_resource type="Texture2D" uid="uid://o2fp25v1qo8v" path="res://minigames/lasagna_seconds/lasagnaAssets/0001.png" id="3_xohit"]
 [ext_resource type="Texture2D" uid="uid://caebfvnnmj0us" path="res://minigames/lasagna_seconds/lasagnaAssets/0002.png" id="4_231e7"]
+[ext_resource type="AudioStream" uid="uid://dcflrsnbrcs5m" path="res://minigames/lasagna_seconds/lasagnaAssets/music/BUONISSIMA.mp3" id="4_g1crv"]
 [ext_resource type="Texture2D" uid="uid://hv0pgan06hmc" path="res://minigames/lasagna_seconds/lasagnaAssets/0003.png" id="5_3d7wm"]
 [ext_resource type="Texture2D" uid="uid://fi3f4kkbyuu1" path="res://minigames/lasagna_seconds/lasagnaAssets/0004.png" id="6_oh5gf"]
 [ext_resource type="Texture2D" uid="uid://d01nujiu375rb" path="res://minigames/lasagna_seconds/lasagnaAssets/0005.png" id="7_moevo"]
@@ -180,6 +182,7 @@
 [ext_resource type="Texture2D" uid="uid://ft7psln6b8ga" path="res://minigames/lasagna_seconds/lasagnaAssets/0175.png" id="177_d8btm"]
 [ext_resource type="Texture2D" uid="uid://dgliqnvdik7in" path="res://minigames/lasagna_seconds/lasagnaAssets/0176.png" id="178_vwcla"]
 [ext_resource type="Texture2D" uid="uid://dppij1adu854i" path="res://minigames/lasagna_seconds/lasagnaAssets/0177.png" id="179_pxyyq"]
+[ext_resource type="AudioStream" uid="uid://dlp6miwfixulj" path="res://minigames/lasagna_seconds/lasagnaAssets/music/FANCY.mp3" id="181_3d7wm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_231e7"]
 atlas = ExtResource("2_xohit")
@@ -794,21 +797,6 @@ font_size = 91
 outline_size = 14
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_xohit"]
-resource_name = "Seconds_trigger"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
 [sub_resource type="Animation" id="Animation_231e7"]
 length = 0.001
 tracks/0/type = "value"
@@ -834,6 +822,21 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xohit"]
+resource_name = "Seconds_trigger"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_3d7wm"]
@@ -868,6 +871,7 @@ metadata/_custom_type_script = "uid://bajhxofytc8oh"
 [node name="LasagnaGamemanager" type="Node2D" parent="."]
 script = ExtResource("2_t7q41")
 reaction_window = 1.0
+clips = Array[AudioStream]([ExtResource("3_moevo"), ExtResource("4_g1crv")])
 
 [node name="Camera2D" type="Camera2D" parent="LasagnaGamemanager"]
 position = Vector2(480.00003, 360)
@@ -882,8 +886,9 @@ one_shot = true
 texture_filter = 1
 scale = Vector2(1.1038169, 1.1038167)
 sprite_frames = SubResource("SpriteFrames_x466j")
-animation = &"Lost_pre"
 autoplay = "default"
+frame = 84
+frame_progress = 0.39819777
 centered = false
 
 [node name="Label" type="Label" parent="LasagnaGamemanager"]
@@ -892,11 +897,11 @@ anchor_left = 0.42600003
 anchor_top = 0.374
 anchor_right = 0.72
 anchor_bottom = 0.544
-offset_left = 155.0
-offset_top = 292.0
-offset_right = 818.0
-offset_bottom = 417.0
-text = "TAKE SECONDS"
+offset_left = 150.0
+offset_top = 517.0
+offset_right = 814.0
+offset_bottom = 642.0
+text = "Take seconds..."
 label_settings = SubResource("LabelSettings_xohit")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -905,6 +910,10 @@ vertical_alignment = 1
 libraries = {
 &"": SubResource("AnimationLibrary_3d7wm")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="LasagnaGamemanager"]
+stream = ExtResource("181_3d7wm")
+autoplay = true
 
 [connection signal="timeout" from="LasagnaGamemanager/signal_timer" to="LasagnaGamemanager" method="_on_signal_timer_timeout"]
 [connection signal="timeout" from="LasagnaGamemanager/window_timer" to="LasagnaGamemanager" method="_on_window_timer_timeout"]

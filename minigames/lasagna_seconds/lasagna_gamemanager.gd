@@ -6,8 +6,11 @@ var can_click = false
 @export var min_wait_time = 2.0
 @export var max_wait_time = 4.0
 @export var reaction_window = 0.5
+@export var clips: Array[AudioStream]
 
 @onready var camera: Camera2D = $Camera2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 
 func _ready():
 	CurrentGame.instance.clear_timer()
@@ -17,7 +20,6 @@ func _ready():
 	
 func start_waiting():
 	can_click = false
-	waiting_for_signal = true
 	$Label.text = "12:29"
 	# Tiempo random hasta la señal
 	$signal_timer.start(randf_range(min_wait_time,max_wait_time))
@@ -35,6 +37,8 @@ func _input(event):
 
 func win_game():
 	can_click = false
+	audio_stream_player_2d.stream = clips[1]
+	audio_stream_player_2d.play()
 	$AnimatedSprite2D.play("Won")
 	$AnimatedSprite2D.scale = Vector2(4,4)
 	$Label.text = "NECTAR!"
@@ -44,6 +48,7 @@ func win_game():
 
 func lose_game():
 	can_click = false
+	audio_stream_player_2d.stop()
 	$Label.text = "No more lasagna... :c"
 	$AnimatedSprite2D.play("Lost_pre")
 	$AnimatedSprite2D.scale = Vector2(4,4)
@@ -57,6 +62,8 @@ func lose_game():
 func _on_signal_timer_timeout():
 	waiting_for_signal = false
 	can_click = true
+	audio_stream_player_2d.stream = clips[0]
+	audio_stream_player_2d.play()
 	$Label.text = "12:30"
 	$AnimatedSprite2D.scale = Vector2(4,4)
 	$AnimatedSprite2D.play("1230")
