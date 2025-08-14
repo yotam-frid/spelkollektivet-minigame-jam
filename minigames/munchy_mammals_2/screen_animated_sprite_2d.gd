@@ -21,8 +21,9 @@ var is_active = false
 func _ready() -> void:
 	centered = false
 	if not Engine.is_editor_hint():
-		if play_on_start:
-			play()
+		play()
+		if not play_on_start:
+			speed_scale = 0.0
 		show()
 		if is_first:
 			activate()
@@ -51,8 +52,12 @@ func activate():
 	if sound != null:
 		sound.play()
 		
+	if not visible:
+		show()
+		
 	if not play_on_start:
 		play()
+		speed_scale = 1.0
 	
 func disable():
 	self_modulate = Color(Color.WHITE, 0)

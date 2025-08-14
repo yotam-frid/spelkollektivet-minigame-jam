@@ -11,7 +11,7 @@ var current_minigame_won = false
 var is_current_minigame_in_tree = false
 
 @onready var music: AudioStreamPlayer = $Bgmusic
-var music_volume: float = 0.6
+var music_volume: float = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

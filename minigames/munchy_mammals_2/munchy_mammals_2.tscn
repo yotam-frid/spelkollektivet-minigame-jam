@@ -19,20 +19,20 @@
 [ext_resource type="Texture2D" uid="uid://cley4vg5ormsg" path="res://minigames/munchy_mammals_2/frames/munchy0011.png" id="11_vuf7p"]
 [ext_resource type="Texture2D" uid="uid://bvkvrxm3bw6q2" path="res://minigames/munchy_mammals_2/frames/munchy0012.png" id="12_kfwy6"]
 [ext_resource type="AudioStream" uid="uid://djqgbqb7b78lw" path="res://minigames/munchy_mammals_2/munch.wav" id="15_vuf7p"]
-[ext_resource type="Texture2D" uid="uid://c6lwhjaqcsbop" path="res://minigames/munchy_mammals_2/frames/munchyup0005.png" id="15_xiypb"]
-[ext_resource type="Texture2D" uid="uid://0aliad4kid6w" path="res://minigames/munchy_mammals_2/frames/munchyup0006.png" id="16_frgx5"]
-[ext_resource type="Texture2D" uid="uid://cp37jj2a0hdw7" path="res://minigames/munchy_mammals_2/frames/munchyup0007.png" id="17_s6sfe"]
-[ext_resource type="Texture2D" uid="uid://cum3oukyed2en" path="res://minigames/munchy_mammals_2/frames/munchyup0008.png" id="18_nk3mq"]
-[ext_resource type="Texture2D" uid="uid://cu4tg3rjxq2vn" path="res://minigames/munchy_mammals_2/frames/munchyup0009.png" id="19_obu42"]
-[ext_resource type="Texture2D" uid="uid://b5kfjybxnldi3" path="res://minigames/munchy_mammals_2/frames/munchyup0010.png" id="20_t8emb"]
-[ext_resource type="Texture2D" uid="uid://bonv6eef62rfc" path="res://minigames/munchy_mammals_2/frames/munchyup0011.png" id="21_3dmo8"]
-[ext_resource type="Texture2D" uid="uid://qd3tkmxh3eq4" path="res://minigames/munchy_mammals_2/frames/munchyup0012.png" id="22_6owwf"]
-[ext_resource type="Texture2D" uid="uid://4y3bgukk03br" path="res://minigames/munchy_mammals_2/frames/munchyup0013.png" id="23_r48o0"]
-[ext_resource type="Texture2D" uid="uid://b8k02brn0vvot" path="res://minigames/munchy_mammals_2/frames/munchyup0014.png" id="24_w7m5o"]
-[ext_resource type="Texture2D" uid="uid://bahcewkhdc0o4" path="res://minigames/munchy_mammals_2/frames/munchyup0015.png" id="25_g8myc"]
-[ext_resource type="Texture2D" uid="uid://djmub85c1gh25" path="res://minigames/munchy_mammals_2/frames/munchyup0016.png" id="26_v42dm"]
-[ext_resource type="Texture2D" uid="uid://w145vjie6go6" path="res://minigames/munchy_mammals_2/frames/munchyup0017.png" id="27_eaxuy"]
-[ext_resource type="Texture2D" uid="uid://ce1i2t16u0md" path="res://minigames/munchy_mammals_2/frames/munchyup0018.png" id="28_5wpbi"]
+[ext_resource type="Texture2D" uid="uid://h2h21k022etr" path="res://minigames/munchy_mammals_2/frames/munchyup0005.png" id="15_xiypb"]
+[ext_resource type="Texture2D" uid="uid://btdpmflso7xfq" path="res://minigames/munchy_mammals_2/frames/munchyup0006.png" id="16_frgx5"]
+[ext_resource type="Texture2D" uid="uid://c6n6ci6cnj2co" path="res://minigames/munchy_mammals_2/frames/munchyup0007.png" id="17_s6sfe"]
+[ext_resource type="Texture2D" uid="uid://dalq4x8bhfshe" path="res://minigames/munchy_mammals_2/frames/munchyup0008.png" id="18_nk3mq"]
+[ext_resource type="Texture2D" uid="uid://gg1g3vtypebt" path="res://minigames/munchy_mammals_2/frames/munchyup0009.png" id="19_obu42"]
+[ext_resource type="Texture2D" uid="uid://c821jrukba7dh" path="res://minigames/munchy_mammals_2/frames/munchyup0010.png" id="20_t8emb"]
+[ext_resource type="Texture2D" uid="uid://bdq3ahavqsnru" path="res://minigames/munchy_mammals_2/frames/munchyup0011.png" id="21_3dmo8"]
+[ext_resource type="Texture2D" uid="uid://d3esrhn2inwqi" path="res://minigames/munchy_mammals_2/frames/munchyup0012.png" id="22_6owwf"]
+[ext_resource type="Texture2D" uid="uid://demsm5wi1heox" path="res://minigames/munchy_mammals_2/frames/munchyup0013.png" id="23_r48o0"]
+[ext_resource type="Texture2D" uid="uid://dad6q6x27ls66" path="res://minigames/munchy_mammals_2/frames/munchyup0014.png" id="24_w7m5o"]
+[ext_resource type="Texture2D" uid="uid://cwxj5vwtfe3hs" path="res://minigames/munchy_mammals_2/frames/munchyup0015.png" id="25_g8myc"]
+[ext_resource type="Texture2D" uid="uid://b00l5xdbhmgoa" path="res://minigames/munchy_mammals_2/frames/munchyup0016.png" id="26_v42dm"]
+[ext_resource type="Texture2D" uid="uid://dakq4hhusuaag" path="res://minigames/munchy_mammals_2/frames/munchyup0017.png" id="27_eaxuy"]
+[ext_resource type="Texture2D" uid="uid://c5noxkati0bnp" path="res://minigames/munchy_mammals_2/frames/munchyup0018.png" id="28_5wpbi"]
 
 [sub_resource type="GDScript" id="GDScript_xiypb"]
 script/source = "extends Node
@@ -308,11 +308,11 @@ script = ExtResource("4_ctuib")
 sound = NodePath("../../Control/Scream2")
 metadata/_custom_type_script = "uid://hlymkvsb35rv"
 
-[node name="MunchyAnimatedSprite2D4" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D"]
-visible = false
+[node name="MunchyAnimatedSprite2D4" type="AnimatedSprite2D" parent="MunchyAnimatedSprite2D" node_paths=PackedStringArray("sound")]
 sprite_frames = SubResource("SpriteFrames_j3hwe")
 centered = false
 script = ExtResource("4_ctuib")
+sound = NodePath("../../Control/Move")
 play_on_start = false
 metadata/_custom_type_script = "uid://hlymkvsb35rv"
 
