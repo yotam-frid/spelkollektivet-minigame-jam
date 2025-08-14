@@ -1,0 +1,340 @@
+[gd_scene load_steps=45 format=3 uid="uid://dc4i0fvyofl34"]
+
+[ext_resource type="Script" uid="uid://bajhxofytc8oh" path="res://minigame.gd" id="1_25anf"]
+[ext_resource type="Script" uid="uid://d3cgpu46tg0wi" path="res://minigames/wrap_it_up/manager.gd" id="2_eefly"]
+[ext_resource type="Texture2D" uid="uid://cmkbpg6y2wywo" path="res://minigames/wrap_it_up/background.png" id="2_w7vms"]
+[ext_resource type="Texture2D" uid="uid://x4ru5a8bk0i5" path="res://minigames/wrap_it_up/questions_slide.png" id="3_ppyp1"]
+[ext_resource type="Texture2D" uid="uid://c2rgx8f8g2b38" path="res://minigames/wrap_it_up/slides/s1.png" id="3_w7vms"]
+[ext_resource type="Texture2D" uid="uid://dwe4ffnovv1r2" path="res://minigames/wrap_it_up/presenter_1.png" id="4_4v4uy"]
+[ext_resource type="Texture2D" uid="uid://q3plpsvdea1r" path="res://minigames/wrap_it_up/slides/s2.png" id="4_dsemc"]
+[ext_resource type="Script" uid="uid://cs1cka3qnkxl" path="res://utils/beat_sprite_2d.gd" id="5_m0qq8"]
+[ext_resource type="Texture2D" uid="uid://ds0ji1xnwo4fg" path="res://minigames/wrap_it_up/slides/s3.png" id="5_ppyp1"]
+[ext_resource type="AudioStream" uid="uid://c6eixn4ndxs2r" path="res://minigames/wrap_it_up/lose audio.ogg" id="7_vx1uv"]
+[ext_resource type="Texture2D" uid="uid://dl3i3aaucsukk" path="res://minigames/wrap_it_up/slides/s4.png" id="7_yl3a1"]
+[ext_resource type="AudioStream" uid="uid://cj7utdcgdp1ij" path="res://minigames/wrap_it_up/win_sound.ogg" id="8_1efwf"]
+[ext_resource type="Texture2D" uid="uid://dycsct0hc0dhh" path="res://minigames/wrap_it_up/hand_holding_phone.png" id="8_n4nnu"]
+[ext_resource type="Script" uid="uid://6l1l8ujvcq4" path="res://minigames/wrap_it_up/beat_control.gd" id="8_pxpvc"]
+[ext_resource type="Texture2D" uid="uid://cvhw4ql7rnbgs" path="res://minigames/wrap_it_up/slides/s5.png" id="8_w6y7u"]
+[ext_resource type="Texture2D" uid="uid://cmk3wku2forjc" path="res://minigames/wrap_it_up/slides/s6.png" id="9_jprlq"]
+[ext_resource type="AudioStream" uid="uid://mosu7irtukg0" path="res://minigames/wrap_it_up/slide.ogg" id="9_n5nnw"]
+[ext_resource type="Script" uid="uid://dendkbgqa3v2c" path="res://minigames/wrap_it_up/timer.gd" id="9_pxpvc"]
+[ext_resource type="Texture2D" uid="uid://05yd7qdyr3i7" path="res://minigames/wrap_it_up/slides/s7.png" id="10_fcu5e"]
+[ext_resource type="Texture2D" uid="uid://n8lymr45il3r" path="res://minigames/wrap_it_up/circle_timer.png" id="10_fjsrq"]
+[ext_resource type="Texture2D" uid="uid://cf7xp6dme3frj" path="res://minigames/wrap_it_up/slides/s8.png" id="11_ebn1g"]
+[ext_resource type="Texture2D" uid="uid://dbdychvbk02ox" path="res://minigames/wrap_it_up/raised_hand.png" id="12_fjsrq"]
+[ext_resource type="Texture2D" uid="uid://dohbuiapnuoye" path="res://minigames/wrap_it_up/slides/s9.png" id="12_p7v8m"]
+[ext_resource type="Texture2D" uid="uid://d28pk38nc1ymf" path="res://minigames/wrap_it_up/slides/s10.png" id="13_n6rys"]
+[ext_resource type="Texture2D" uid="uid://pqlda2kwlpms" path="res://minigames/wrap_it_up/slides/s11.png" id="14_eajyp"]
+[ext_resource type="Texture2D" uid="uid://86mj8sfa0frl" path="res://minigames/wrap_it_up/slides/s12.png" id="15_5yn0h"]
+[ext_resource type="Script" uid="uid://c7wok1m7hnwsa" path="res://minigames/wrap_it_up/raised_hand.gd" id="16_78bup"]
+[ext_resource type="Texture2D" uid="uid://y4fl640kmyej" path="res://minigames/wrap_it_up/slides/s13.png" id="16_f7d8o"]
+[ext_resource type="Script" uid="uid://clcst0nfek714" path="res://minigames/wrap_it_up/presenter.gd" id="17_cy4qa"]
+[ext_resource type="Texture2D" uid="uid://d2h08vo0wb3ng" path="res://minigames/wrap_it_up/slides/s14.png" id="17_eu4s8"]
+[ext_resource type="Texture2D" uid="uid://8beenenayrih" path="res://minigames/wrap_it_up/presenter_2.png" id="19_y0qvr"]
+[ext_resource type="Texture2D" uid="uid://cp1740lmgkmis" path="res://minigames/wrap_it_up/presenter_3.png" id="20_3bq8p"]
+[ext_resource type="Texture2D" uid="uid://byar2pfhuq7q5" path="res://minigames/wrap_it_up/presenter_4.png" id="21_gjwvc"]
+[ext_resource type="Texture2D" uid="uid://c28s37ylp0ocs" path="res://minigames/wrap_it_up/presenter_5.png" id="22_fc42u"]
+[ext_resource type="Texture2D" uid="uid://xckaqu8kh61l" path="res://minigames/wrap_it_up/presenter_win.png" id="23_kwaeb"]
+[ext_resource type="Texture2D" uid="uid://c3f4ub6pf0jbq" path="res://minigames/wrap_it_up/presenter_lose.png" id="24_ax5ha"]
+[ext_resource type="Texture2D" uid="uid://dnh0u4rdb1lgx" path="res://minigames/wrap_it_up/confetti.png" id="26_3bq8p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y0qvr"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Animation" id="Animation_y0qvr"]
+resource_name = "timer_shake"
+length = 0.400004
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.30210903, 0.40329045, 0.5, 0.5211665, 0.6211665, 0.7220941, 0.82327557, 0.92445695, 1, 1.1, 1.2009276, 1.302109, 1.32, 1.4032905, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(712.495, 447.52), Vector2(716.37, 459.41), Vector2(716.37, 428.825), Vector2(700.46, 459.41), Vector2(716.37, 468.005), Vector2(712.11, 456.42), Vector2(712.495, 447.52), Vector2(716.37, 459.41), Vector2(716.37, 428.825), Vector2(706.64, 459.41), Vector2(716.37, 468.445), Vector2(712.495, 447.52), Vector2(716.37, 459.41), Vector2(716.37, 428.825), Vector2(706.64, 459.41), Vector2(712.11, 456.42), Vector2(716.37, 468.445), Vector2(712.11, 456.42)]
+}
+
+[sub_resource type="Animation" id="Animation_3bq8p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(717, 453)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gjwvc"]
+_data = {
+&"RESET": SubResource("Animation_3bq8p"),
+&"timer_shake": SubResource("Animation_y0qvr")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gjwvc"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fc42u"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_kwaeb"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="WrapItUpMinigame" type="Node"]
+script = ExtResource("1_25anf")
+title = "WRAP IT UP!"
+duration = 4
+keyboard = 2
+
+[node name="MANAGER" type="Node" parent="." node_paths=PackedStringArray("slide_rects", "big_slide")]
+script = ExtResource("2_eefly")
+questions_slide = ExtResource("3_ppyp1")
+slides = Array[Texture2D]([ExtResource("3_w7vms"), ExtResource("4_dsemc"), ExtResource("5_ppyp1"), ExtResource("7_yl3a1"), ExtResource("8_w6y7u"), ExtResource("9_jprlq"), ExtResource("10_fcu5e"), ExtResource("11_ebn1g"), ExtResource("12_p7v8m"), ExtResource("13_n6rys"), ExtResource("14_eajyp"), ExtResource("15_5yn0h"), ExtResource("16_f7d8o"), ExtResource("17_eu4s8")])
+slide_rects = [NodePath("../UI/container/slot_1"), NodePath("../UI/container/slot_2"), NodePath("../UI/container/slot_3"), NodePath("../UI/container/slot_4"), NodePath("../UI/container/slot_5")]
+big_slide = NodePath("../slide")
+
+[node name="lose sound" type="AudioStreamPlayer" parent="MANAGER"]
+stream = ExtResource("7_vx1uv")
+volume_db = -3.5
+
+[node name="win sound" type="AudioStreamPlayer" parent="MANAGER"]
+stream = ExtResource("8_1efwf")
+
+[node name="slide" type="AudioStreamPlayer" parent="MANAGER"]
+stream = ExtResource("9_n5nnw")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(482, 356)
+texture = ExtResource("2_w7vms")
+
+[node name="slide" type="Sprite2D" parent="."]
+position = Vector2(583, 247.49998)
+scale = Vector2(1.1465517, 1.0324074)
+texture = ExtResource("3_w7vms")
+
+[node name="slide particle" type="CPUParticles2D" parent="slide"]
+z_index = 3
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_y0qvr")
+position = Vector2(-245.95486, 152.55608)
+scale = Vector2(0.8721804, 0.9686098)
+emitting = false
+amount = 1
+texture = ExtResource("4_dsemc")
+lifetime = 2.25
+one_shot = true
+speed_scale = 1.75
+randomness = 0.05
+direction = Vector2(-17.79, -14.355)
+spread = 150.85
+gravity = Vector2(25, 980)
+initial_velocity_min = 337.5
+initial_velocity_max = 400.0
+angular_velocity_min = 37.85
+angular_velocity_max = 278.18
+linear_accel_min = 8.55
+linear_accel_max = 16.51
+radial_accel_max = 100.0
+damping_min = 3.035
+damping_max = 3.035
+scale_amount_min = 0.15
+scale_amount_max = 0.4
+anim_speed_min = 0.1
+anim_speed_max = 1.65
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="container" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 376.0
+offset_right = 845.0
+offset_bottom = 424.0
+
+[node name="slot_1" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_2" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_3" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_4" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="slot_5" type="TextureRect" parent="UI/container"]
+layout_mode = 2
+texture = ExtResource("3_w7vms")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_pxpvc")
+beat_position_add = Vector2(0, 5)
+
+[node name="TIMER" type="TextureRect" parent="UI/Control" node_paths=PackedStringArray("time_label", "progress_bar")]
+z_index = 5
+layout_mode = 0
+offset_left = 717.0
+offset_top = 453.0
+offset_right = 1057.9353
+offset_bottom = 812.83264
+texture = ExtResource("8_n4nnu")
+expand_mode = 1
+script = ExtResource("9_pxpvc")
+time_label = NodePath("Label")
+progress_bar = NodePath("TextureProgressBar")
+
+[node name="Label" type="Label" parent="UI/Control/TIMER"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 85.8344
+offset_right = 188.0
+offset_bottom = 153.8344
+scale = Vector2(0.86298954, 0.87048805)
+theme_override_colors/font_color = Color(0.88191617, 0.88764286, 0.8884105, 1)
+theme_override_colors/font_shadow_color = Color(0.47047204, 0.29526004, 0.15076756, 0.6901961)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 4
+theme_override_font_sizes/font_size = 41
+text = "04:30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/Control/TIMER"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 218.0
+offset_bottom = 218.0
+scale = Vector2(0.78298956, 0.7897929)
+max_value = 1.0
+step = 0.0
+value = 0.9000000000523869
+fill_mode = 4
+texture_progress = ExtResource("10_fjsrq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control/TIMER"]
+libraries = {
+&"": SubResource("AnimationLibrary_gjwvc")
+}
+
+[node name="RAISED HAND" type="TextureRect" parent="UI"]
+z_index = 5
+layout_mode = 0
+offset_left = 762.0
+offset_top = 734.0
+offset_right = 934.0
+offset_bottom = 1214.0
+texture = ExtResource("12_fjsrq")
+script = ExtResource("16_78bup")
+
+[node name="presenter parent" type="Node" parent="."]
+script = ExtResource("17_cy4qa")
+presenter_frames = Array[Texture2D]([ExtResource("4_4v4uy"), ExtResource("19_y0qvr"), ExtResource("20_3bq8p"), ExtResource("21_gjwvc"), ExtResource("22_fc42u")])
+win_frame = ExtResource("23_kwaeb")
+lose_frame = ExtResource("24_ax5ha")
+
+[node name="presenter" type="Sprite2D" parent="presenter parent"]
+z_index = 10
+z_as_relative = false
+position = Vector2(188, 710)
+texture = ExtResource("4_4v4uy")
+centered = false
+offset = Vector2(-177, -483.91)
+script = ExtResource("5_m0qq8")
+beat_scale_target = Vector2(1, 0.9)
+metadata/_custom_type_script = "uid://cs1cka3qnkxl"
+
+[node name="CONFETTI HOLDER" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_gjwvc")
+
+[node name="confetti" type="CPUParticles2D" parent="CONFETTI HOLDER"]
+material = SubResource("CanvasItemMaterial_fc42u")
+position = Vector2(173, 701)
+rotation = -1.5489079
+emitting = false
+amount = 60
+texture = ExtResource("26_3bq8p")
+emission_shape = 1
+emission_sphere_radius = 28.9
+particle_flag_align_y = true
+spread = 68.85
+gravity = Vector2(0, 100)
+initial_velocity_min = 13.05
+initial_velocity_max = 1000.0
+angular_velocity_min = 53.85
+angular_velocity_max = 63.15
+scale_amount_min = 0.25
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color = Color(0.8259198, 0.56896925, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_kwaeb")
+anim_offset_max = 0.4085
+
+[node name="confetti2" type="CPUParticles2D" parent="CONFETTI HOLDER"]
+material = SubResource("CanvasItemMaterial_fc42u")
+position = Vector2(797, 706.99994)
+rotation = -1.6148107
+emitting = false
+amount = 60
+texture = ExtResource("26_3bq8p")
+emission_shape = 1
+emission_sphere_radius = 28.9
+particle_flag_align_y = true
+spread = 68.85
+gravity = Vector2(0, 100)
+initial_velocity_min = 13.05
+initial_velocity_max = 1000.0
+angular_velocity_min = 53.85
+angular_velocity_max = 63.15
+scale_amount_min = 0.25
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color = Color(0.8259198, 0.56896925, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_kwaeb")
+anim_offset_max = 0.4085
+
+[connection signal="on_change_slide" from="MANAGER" to="presenter parent" method="_on_switch"]
+[connection signal="timer_go_over" from="UI/Control/TIMER" to="MANAGER" method="on_timer_go_over"]
+[connection signal="timer_go_over" from="UI/Control/TIMER" to="presenter parent" method="_on_lose"]
