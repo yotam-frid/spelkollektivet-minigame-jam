@@ -17,8 +17,8 @@ var code_strings = ["C=C--",
 					"VAR X=1/0",
 					"FOR I=0;I<1;I--"]
 var win_strings = ["error at line -1",
-					"blood sacrifice\n⛤ accepted ⛤",
-					" (╯°□°)╯( ┻━┻",
+					"blood sacrifice\n accepted ",
+					" (/°0°)/( |___|",
 					"cannot be completed\nfolder is open in\nanother program",
 					":(",
 					"task failed succesfully",
@@ -78,49 +78,49 @@ func _process(delta):
 		str = win_string
 		color = Color.WHITE * 0.5 * background_outline_color
 	set_text("HW_CodeLabel", code_x, code_y, str, color)
-
-func _draw():
-	var thickness = 3.0
-	var x = 0
-	var y = 0
-	var width = 0
-	var height = 0
-	
-	#Background
-	draw_rect(Rect2(-1, -1, screen_width + 2, screen_height + 2), Color.BLACK)
-	#draw_rect(Rect2(-1, -1, screen_width + 2, screen_height + 2), background_outline_color)
-	#draw_rect(Rect2(thickness, thickness, screen_width - (2 * thickness), screen_height - (2 * thickness)), Color.BLACK)
-	
-	#Monitor
-	x = monitor_x - (0.5 * monitor_width)
-	y = monitor_y
-	width = monitor_width
-	height = monitor_height
-
-	draw_rect(Rect2(x - thickness, y - thickness, width + (2 * thickness), height + (2 * thickness)), background_outline_color)
-	draw_rect(Rect2(x, y, width, height), Color.BLACK)
-	
-	#Monitor screen
-	x = monitor_x - (0.5 * (monitor_width - monitor_outline))
-	y = monitor_y + (0.5 * monitor_outline)
-	width = monitor_width - monitor_outline
-	height = monitor_height - monitor_outline
-	
-	var monitor_color = Color.BLACK
-	if(won):
-		monitor_color = win_screen_color
-		
-	draw_rect(Rect2(x - thickness, y - thickness, width + (2 * thickness), height + (2 * thickness)), background_outline_color)
-	draw_rect(Rect2(x, y, width, height), monitor_color)
-	
-	#Keyboard
-	x = keyboard_x - (0.5 * keyboard_width)
-	y = keyboard_y - (0.5 * keyboard_height)
-	width = keyboard_width
-	height = keyboard_height
-	
-	draw_rect(Rect2(x - thickness, y - thickness, width + (2 * thickness), height + (2 * thickness)), background_outline_color)
-	draw_rect(Rect2(x, y, width, height), Color.BLACK)
+#
+#func _draw():
+	#var thickness = 3.0
+	#var x = 0
+	#var y = 0
+	#var width = 0
+	#var height = 0
+	#
+	##Background
+	#draw_rect(Rect2(-1, -1, screen_width + 2, screen_height + 2), Color.BLACK)
+	##draw_rect(Rect2(-1, -1, screen_width + 2, screen_height + 2), background_outline_color)
+	##draw_rect(Rect2(thickness, thickness, screen_width - (2 * thickness), screen_height - (2 * thickness)), Color.BLACK)
+	#
+	##Monitor
+	#x = monitor_x - (0.5 * monitor_width)
+	#y = monitor_y
+	#width = monitor_width
+	#height = monitor_height
+#
+	#draw_rect(Rect2(x - thickness, y - thickness, width + (2 * thickness), height + (2 * thickness)), background_outline_color)
+	#draw_rect(Rect2(x, y, width, height), Color.BLACK)
+	#
+	##Monitor screen
+	#x = monitor_x - (0.5 * (monitor_width - monitor_outline))
+	#y = monitor_y + (0.5 * monitor_outline)
+	#width = monitor_width - monitor_outline
+	#height = monitor_height - monitor_outline
+	#
+	#var monitor_color = Color.BLACK
+	#if(won):
+		#monitor_color = win_screen_color
+		#
+	#draw_rect(Rect2(x - thickness, y - thickness, width + (2 * thickness), height + (2 * thickness)), background_outline_color)
+	#draw_rect(Rect2(x, y, width, height), monitor_color)
+	#
+	##Keyboard
+	#x = keyboard_x - (0.5 * keyboard_width)
+	#y = keyboard_y - (0.5 * keyboard_height)
+	#width = keyboard_width
+	#height = keyboard_height
+	#
+	#draw_rect(Rect2(x - thickness, y - thickness, width + (2 * thickness), height + (2 * thickness)), background_outline_color)
+	#draw_rect(Rect2(x, y, width, height), Color.BLACK)
 
 func play_sound(sound, volume, pitch, offset, loop):
 	var player := AudioStreamPlayer2D.new()
