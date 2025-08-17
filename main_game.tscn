@@ -31,7 +31,8 @@ grow_vertical = 2
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("ui")]
 script = ExtResource("1_1oj5k")
 ui = NodePath("../UI")
-minigame_scenes = Array[PackedScene]([ExtResource("2_umrn2"), ExtResource("2_ih6an"), ExtResource("2_borgi"), ExtResource("2_qpaub"), ExtResource("2_krmtw"), ExtResource("9_mf81u"), ExtResource("2_aomqu"), ExtResource("10_02kkc"), ExtResource("2_ykeeq"), ExtResource("3_6bm6p"), ExtResource("4_2pltu"), ExtResource("5_f52ns"), ExtResource("6_f52ns"), ExtResource("7_l5ukw"), ExtResource("8_4srsv")])
+shuffle = false
+minigame_scenes = Array[PackedScene]([ExtResource("3_6bm6p"), ExtResource("9_mf81u"), ExtResource("6_f52ns"), ExtResource("2_umrn2"), ExtResource("2_ih6an"), ExtResource("2_borgi"), ExtResource("2_qpaub"), ExtResource("2_krmtw"), ExtResource("2_aomqu"), ExtResource("10_02kkc"), ExtResource("2_ykeeq"), ExtResource("4_2pltu"), ExtResource("5_f52ns"), ExtResource("7_l5ukw"), ExtResource("8_4srsv")])
 
 [node name="Bgmusic" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource("13_jgkyn")

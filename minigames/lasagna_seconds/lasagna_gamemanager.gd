@@ -9,7 +9,7 @@ var can_click = false
 @export var clips: Array[AudioStream]
 
 @onready var camera: Camera2D = $Camera2D
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_stream_player_2d: AudioStreamPlayer = $AudioStreamPlayer2D
 
 
 func _ready():

@@ -55,14 +55,14 @@ var win_string = ""
 
 func _ready():
 	var difficulty = CurrentGame.instance.difficulty
-	var code_preview_index = randi() % (3 * difficulty)
+	var code_preview_index = randi()
 	code_preview_string = code_strings[code_preview_index] #code_strings[code_strings.size() - 1]
 	win_string = win_strings[code_preview_index]
 	play_sound(preload("res://minigames/hello_world/HW_MouseClickSFX.mp3"), 0, 1, 0, false)
 	
 	set_text("HW_CodePreviewLabel", code_x, code_y, code_preview_string, code_preview_color)
 	create_keyboard()
-	CurrentGame.instance.duration = 3 + (0.5 * code_preview_string.length()) - (0.25 * difficulty)
+	CurrentGame.instance.duration = 4 + (0.5 * code_preview_string.length())
 
 func _process(delta):
 	hue += delta * hue_speed  # speed of hue change

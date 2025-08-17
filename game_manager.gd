@@ -104,7 +104,7 @@ func create_new_minigame_queue():
 	
 func prepare_next_minigame():
 	if minigame_queue.size() == 0:
-		CurrentGame.lost = true
+		CurrentGame.lost = false
 		await screen_game_over()
 		return
 		#if level == 1:

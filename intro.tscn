@@ -22,7 +22,15 @@ var is_ready = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	
+	sprite.hide()
+	
+	await get_tree().create_timer(2.0).timeout
+	$Intro.play()
+	
 	sprite.global_position.y += 1000
+	sprite.show()
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(sprite, \"global_position\", target_pos, 3.0)
@@ -101,7 +109,6 @@ texture = ExtResource("1_s2ta7")
 [node name="Intro" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-2, 0)
 stream = ExtResource("2_ayt76")
-autoplay = true
 
 [node name="Label" type="Label" parent="."]
 visible = false

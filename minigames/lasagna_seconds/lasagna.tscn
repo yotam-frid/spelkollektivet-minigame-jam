@@ -911,7 +911,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_3d7wm")
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="LasagnaGamemanager"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="LasagnaGamemanager"]
 stream = ExtResource("181_3d7wm")
 autoplay = true
 
