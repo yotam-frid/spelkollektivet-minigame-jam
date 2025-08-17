@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://behrqoheofx24" path="res://minigames/hello_world/hw_key.gd" id="1_rj5xn"]
 
 [node name="HW_Key" type="Button"]
+visibility_layer = 4
+z_index = 1
+z_as_relative = false
 script = ExtResource("1_rj5xn")
 
 [node name="HW_KeyText" type="Label" parent="."]
