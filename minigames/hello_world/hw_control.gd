@@ -55,7 +55,7 @@ var win_string = ""
 
 func _ready():
 	var difficulty = CurrentGame.instance.difficulty
-	var code_preview_index = randi()
+	var code_preview_index = randi() % code_strings.size()
 	code_preview_string = code_strings[code_preview_index] # code_strings[code_strings.size() - 1]
 	win_string = win_strings[code_preview_index]
 	play_sound(preload("res://minigames/hello_world/HW_MouseClickSFX.mp3"), 0, 1, 0, false)

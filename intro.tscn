@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dva8la1rsdwcj"]
+[gd_scene load_steps=12 format=3 uid="uid://dva8la1rsdwcj"]
 
 [ext_resource type="Texture2D" uid="uid://uow2ttg71rl7" path="res://ui/images/spelware0001.png" id="1_s2ta7"]
 [ext_resource type="AudioStream" uid="uid://dwfu1htamg3ne" path="res://assets/bassdrop.wav" id="1_y72e6"]
 [ext_resource type="AudioStream" uid="uid://ge1hrrxajacp" path="res://assets/intro.ogg" id="2_ayt76"]
 [ext_resource type="AudioStream" uid="uid://md120pylfeuw" path="res://assets/confirm.wav" id="2_u2rf6"]
 [ext_resource type="FontFile" uid="uid://bsueqpcviwyrx" path="res://assets/upheavtt.ttf" id="3_7a8ye"]
+[ext_resource type="Texture2D" uid="uid://btciipifngyef" path="res://ui/mainscene/boxes.png" id="6_dk2oa"]
+[ext_resource type="Script" uid="uid://cs1cka3qnkxl" path="res://utils/beat_sprite_2d.gd" id="7_7ufi4"]
+[ext_resource type="Texture2D" uid="uid://ck5xk7q7mhv5t" path="res://ui/mainscene/fitzgerald.png" id="8_h0kys"]
+[ext_resource type="Texture2D" uid="uid://4a7mmmgdbl7m" path="res://ui/mainscene/meatballs.png" id="9_d0rr7"]
 
 [sub_resource type="GDScript" id="GDScript_ayt76"]
 script/source = "extends Control
@@ -25,6 +29,7 @@ func _ready() -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	
 	sprite.hide()
+	$Extras.hide()
 	
 	await get_tree().create_timer(2.0).timeout
 	$Intro.play()
@@ -47,6 +52,7 @@ func _on_start():
 	GlobalSong.animate_on_beat(label, \"position\", Vector2(0, 20), true)
 	flash.show()
 	label.show()
+	$Extras.show()
 	
 	var tween = create_tween()
 	tween.tween_property(flash, \"modulate:a\", 0.0, 1.0)
@@ -74,7 +80,7 @@ func _process(delta: float) -> void:
 
 [sub_resource type="LabelSettings" id="LabelSettings_0a7ni"]
 font = ExtResource("3_7a8ye")
-font_size = 69
+font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [node name="Intro" type="Control"]
@@ -119,9 +125,39 @@ anchor_bottom = 1.0
 offset_top = 593.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press any key to play!"
+text = "Press any key!"
 label_settings = SubResource("LabelSettings_0a7ni")
 horizontal_alignment = 1
+
+[node name="Extras" type="Node2D" parent="."]
+
+[node name="FitzTower" type="Node2D" parent="Extras"]
+position = Vector2(870, 763)
+
+[node name="Boxes" type="Sprite2D" parent="Extras/FitzTower"]
+position = Vector2(-16, -131.5)
+texture = ExtResource("6_dk2oa")
+offset = Vector2(0, 20)
+script = ExtResource("7_7ufi4")
+beat_position_add = Vector2(0, 15)
+beat_scale_target = Vector2(1.1, 0.9)
+
+[node name="Fitzgerald" type="Sprite2D" parent="Extras/FitzTower"]
+position = Vector2(11, -274.5)
+texture = ExtResource("8_h0kys")
+script = ExtResource("7_7ufi4")
+beat_position_add = Vector2(0, 25)
+beat_scale_target = Vector2(1.2, 0.8)
+
+[node name="MeatballsPivot" type="Node2D" parent="Extras"]
+position = Vector2(128, 767)
+
+[node name="Meatballs" type="Sprite2D" parent="Extras/MeatballsPivot"]
+position = Vector2(-16, -117)
+texture = ExtResource("9_d0rr7")
+script = ExtResource("7_7ufi4")
+beat_position_add = Vector2(0, 15)
+beat_scale_target = Vector2(1.1, 0.9)
 
 [node name="Flash" type="ColorRect" parent="."]
 visible = false
